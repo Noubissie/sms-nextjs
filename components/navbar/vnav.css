@@ -1,0 +1,114 @@
+
+.color-nav-menu{
+    background-color: darkblue;
+    filter: contrast(100%) saturate(100%) brightness(70%);
+}
+#vnav{
+    filter: brightness(100%) saturate(100%) contrast(120%) opacity(1) ;
+
+    z-index:2;
+    height: 100%;
+    /* background-color: orange; */
+    
+    /* transform: rotateX(180deg); */
+    /* float: left; */
+    /* width: 100px; */
+    /* background-color: darkblue; */
+}
+.zIndex{
+    z-index:2;
+}
+.zIndex3{
+    z-index:3;
+}
+#brand {
+    /* padding: 20px; */
+
+}
+.black{
+    color:black;
+}
+.colornav{
+    background-color: rgb(3, 2, 88);
+}
+.orange-color{
+    color:orange;
+    
+}
+
+.text-decor:focus{
+    background-color: orange;
+    color: white;
+    text-decoration: none;
+}
+.text-decor:hover{
+    background-color: grey;
+    color: white;
+    text-decoration: none;
+}
+
+
+
+
+.dropbtn {
+    background-color: rgb(3, 2, 88);
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    
+  }
+  
+  .dropright {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropright-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1; 
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropright-content > a {
+    margin-left: 3px;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+.dropright-content> a:hover { color: black;}
+
+.dropright:hover > .dropright-content {display: inline-block; z-index: 11;}
+
+.dropright:hover .dropbtn {background-color: #7e807e;}
+
+.overflow-visualHeight{
+    
+    height:100vh;
+    overflow-x: unset;
+    overflow-y:scroll;
+    z-index: 10;
+}
+
+.darkwhite{
+    background-color: rgb(211, 208, 208);
+}
+.overflows{
+    overflow-wrap: break-word;
+    overflow-x: inherit;
+    overflow-y:scroll;
+}
+.gridref{
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+.heightcontrol{
+    height: 500px;
+    overflow-wrap: break-word;
+    overflow: scroll;
+}
