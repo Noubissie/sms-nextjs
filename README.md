@@ -1,30 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1> SMS MUTENGENE </h1>
 
-## Getting Started
+    An application used manage the workflow in secondary schools, built with React, Nextjs,JavaScript, Nodejs, prisma, MySQL.
 
-First, run the development server:
+<h1>Project Status</h1>
+This project is currently in development.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+<h1>Installation and Setup Instructions</h1>
 
-## Learn More
+    Clone down this repository. You will need node and npm installed globally on your machine.
 
-To learn more about Next.js, take a look at the following resources:
+<h1>Installation:</h1>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    npm install
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+<h1>To Start Server:</h1>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    npm run dev
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+<h1>To Visit App:</h1>
+
+    localhost:3000
+
+<h1>Built With</h1>
+[] <a href="https://nextjs.org/docs">nextjs</a>
+[] <a href="https://reactjs.org/docs/hooks-intro.html">reacthooks</a>
+[] nodejs
+[] javascript
+[] <a href="https://www.prisma.io/docs/">prisma2</a>
+[] mysql
+<h1>Contributing</h1>
+    Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
+
+<h1>Authors</h1>
+[] Noubissie(@obito)
+[] Ngassa Client(@Jason)
+Reflection
+What was the context for this project? (ie: was this a side project? was this for Turing? was this for an experiment?)
+What did you set out to build?
+Why was this project challenging and therefore a really good learning experience?
+What were some unexpected obstacles?
+What tools did you use to implement this project?
+This might seem obvious because you are IN this codebase, but to all other humans now is the time to talk about why you chose webpack instead of create react app, or D3, or vanilla JS instead of a framework etc. Brag about your choices and justify them here.
+Example:
+This was a 3 week long project built during my third module at Turing School of Software and Design. Project goals included using technologies learned up until this point and familiarizing myself with documentation for new features.
+
+Originally I wanted to build an application that allowed users to pull data from the Twitter API based on what they were interested in, such as 'most tagged users'. I started this process by using the create-react-app boilerplate, then adding react-router-4.0 and redux.
+
+One of the main challenges I ran into was Authentication. This lead me to spend a few days on a research spike into OAuth, Auth0, and two-factor authentication using Firebase or other third parties. Due to project time constraints, I had to table authentication and focus more on data visualization from parts of the API that weren't restricted to authenticated users.
+
+At the end of the day, the technologies implemented in this project are React, React-Router 4.0, Redux, LoDash, D3, and a significant amount of VanillaJS, JSX, and CSS. I chose to use the create-react-app boilerplate to minimize initial setup and invest more time in diving into weird technological rabbit holes. In the next iteration I plan on handrolling a webpack.config.js file to more fully understand the build process.
+
