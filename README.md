@@ -1,6 +1,6 @@
 <h1> SMS MUTENGENE </h1>
 
-    An application used manage the workflow in secondary schools, built with React, Nextjs,JavaScript, Nodejs, prisma, MySQL.
+    An application used to manage the workflow in secondary schools, built with React, Nextjs,JavaScript, Nodejs, prisma, MySQL.
 
 <h1>Project Status</h1>
 This project is currently in development.
