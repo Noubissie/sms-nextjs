@@ -38,7 +38,7 @@ This project is currently in development.
 
 <h1>Authors</h1>
 [] Noubissie(@obito)<br/>
-[] Client Jason(@clintjason)<br/>
+[] Clint Jason(@clintjason)<br/>
 <h1>USAGE</h1>
 <h2 ><a href="https://gitlab.com/obito0/sms-mutengene/-/tree/master/components">React Components/next component folder</a></h2>
 <h2  ><a href="https://gitlab.com/obito0/sms-mutengene/-/tree/master/components/age">age:</a></h2>
