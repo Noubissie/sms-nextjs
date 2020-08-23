@@ -1,38 +1,43 @@
 <h1> SMS MUTENGENE </h1>
 
-    <h3>An application used manage the workflow in secondary schools, built with React, Nextjs,JavaScript, Nodejs, prisma, MySQL.</h3>
+    An application used manage the workflow in secondary schools, built with React, Nextjs,JavaScript, Nodejs, prisma, MySQL.
 
 <h1>Project Status</h1>
 This project is currently in development.
 
 
-Project Screen Shot(s)
-Example:
-[ PRETEND SCREEN SHOT IS HERE ]
 
-[ PRETEND OTHER SCREEN SHOT IS HERE ]
+<h1>Installation and Setup Instructions</h1>
 
-Installation and Setup Instructions
-Example:
-Clone down this repository. You will need node and npm installed globally on your machine.
+    Clone down this repository. You will need node and npm installed globally on your machine.
 
-Installation:
+<h1>Installation:</h1>
 
-npm install
-
-To Run Test Suite:
-
-npm test
-
-To Start Server:
-
-npm run dev
+    npm install
 
 
-To Visit App:
+<h1>To Start Server:</h1>
 
-localhost:3000
+    npm run dev
 
+
+<h1>To Visit App:</h1>
+
+    localhost:3000
+
+<h1>Built With</h1>
+[] <a href="https://nextjs.org/docs">nextjs</a>
+[] <a href="https://reactjs.org/docs/hooks-intro.html">reacthooks</a>
+[] nodejs
+[] javascript
+[] <a href="https://www.prisma.io/docs/">prisma2</a>
+[] mysql
+<h1>Contributing</h1>
+    Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
+
+<h1>Authors</h1>
+[] Noubissie(@obito)
+[] Ngassa Client(@Jason)
 Reflection
 What was the context for this project? (ie: was this a side project? was this for Turing? was this for an experiment?)
 What did you set out to build?
