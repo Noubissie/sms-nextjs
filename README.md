@@ -37,7 +37,7 @@ This project is currently in development.
     Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
 
 <h1>Authors</h1>
-[] Noubissie(@obito)<br/>
+[] Noubissie(@obito0)<br/>
 [] Clint Jason(@clintjason)<br/>
 <h1>USAGE</h1>
 <h2 ><a href="https://gitlab.com/obito0/sms-mutengene/-/tree/master/components">React Components/next component folder</a></h2>
