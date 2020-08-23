@@ -1,44 +1,8 @@
 import React from "react"
 import {Card,ListGroup,Button} from "react-bootstrap"
 import moment from "moment"
+import NoticeData from "./noticeData"
 
-let notice_data = [
-    {
-        label:"info",
-        date:moment("01-22-1999").format("DD-MM-YYYY"),
-        notice:"notice to be pass down",
-        noticeOwner: "user that post the notice",
-        period: moment().subtract(10,"days").fromNow(true)   // "present_time - post_time"
-    },
-    {
-        label:"warning",
-        date:moment("01-22-1999").format("DD-MM-YYYY"),
-        notice:"notice to be pass down",
-        noticeOwner: "user that post the notice",
-        period: moment().subtract(10,"days").fromNow(true)   // "present_time - post_time"
-    },
-    {
-        label:"primary",
-        date:moment("01-22-1999").format("DD-MM-YYYY"),
-        notice:"notice to be pass down",
-        noticeOwner: "user that post the notice",
-        period: moment().subtract(10,"days").fromNow(true)   // "present_time - post_time"
-    },
-    {
-        label:"secondary",
-        date:moment("01-22-1999").format("DD-MM-YYYY"),
-        notice:"notice to be pass down",
-        noticeOwner: "user that post the notice",
-        period: moment().subtract(10,"days").fromNow(true)   // "present_time - post_time"
-    },
-    {
-        label:"danger",
-        date:moment("01-22-1999").format("DD-MM-YYYY"),
-        notice:"notice to be pass down",
-        noticeOwner: "user that post the notice",
-        period: moment().subtract(10,"days").fromNow(true)   // "present_time - post_time"
-    }
-]
 
 let NoticeBoard = ()=>{
 
@@ -52,7 +16,7 @@ let NoticeBoard = ()=>{
                     
                     <ListGroup className="list-group-flush">
                     {
-                        notice_data.map((noticeInfo,index)=>{
+                        NoticeData.map((noticeInfo,index)=>{
                             return(
                                 <ListGroup.Item key={index}>
                                     <Button as="div" className={`bg-${noticeInfo.label}`}>{noticeInfo.date}</Button>

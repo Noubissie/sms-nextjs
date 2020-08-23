@@ -1,4 +1,6 @@
-
+body{
+    filter: contrast(100%) saturate(150%) brightness(100%);
+}
 .color-nav-menu{
     background-color: darkblue;
     filter: contrast(100%) saturate(100%) brightness(70%);
@@ -104,6 +106,7 @@
     overflow-y:scroll;
 }
 .gridref{
+    /* height:20px; */
     display: grid;
     grid-template-columns: 20% 80%;
 }
@@ -111,4 +114,31 @@
     height: 500px;
     overflow-wrap: break-word;
     overflow: scroll;
+}
+.fullWidth{
+    width:100vw
+}
+.opacityControl{
+    opacity: 0.1;
+}
+.height50{
+    height: 200px;
+    overflow-wrap: break-word;
+    /* overflow: scroll; */
+}
+.hnavbartop{
+    top:100px;
+}
+.grey{
+    background-color: #cecece;
+}
+.height30{
+    height:30px;
+}
+
+.top{
+    margin-top:80px;
+}
+.width300{
+    width:300px;
 }

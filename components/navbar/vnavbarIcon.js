@@ -26,7 +26,7 @@ let VnavbarIcon = (props)=>{
                                     </button>
                                     
                                     <div className="dropright-content">
-                                        <Link as="/index" href="/index" >
+                                        <Link as="/admin" href="/admin" >
                                                 <a className="d-block w-100 h-100  p-2  text-light text-decor colornav" >
                                                         Admin 
                                                 </a>

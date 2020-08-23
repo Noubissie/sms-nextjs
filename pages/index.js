@@ -5,9 +5,7 @@ let Index = ()=>{
     return (
         <div>
             <Layout >
-                <div >
-
-                </div>
+                
             </Layout>
         </div>
     )

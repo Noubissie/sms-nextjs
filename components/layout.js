@@ -1,45 +1,56 @@
+import {useState,useRef} from "react"
 import Navbar from './navbar/navbar'
-import {Container,Row,Col} from 'react-bootstrap'
+// import {Container,Row,Col} from 'react-bootstrap'
 import Hnav from "./navbar/hnavbar"
+// import VnavFull from './navbar/vnavFull'
+// import VnavbarIcon from './navbar/vnavbarIcon'
+// import dynamic from "next/dynamic"
+let initialState = {
+    display:"none"
+}
+// let BrowserSiteOutput = dynamic(
+//     ()=>import("./browserSiteOutput").then((mod)=>mod.BrowserSiteOutput),
+//         {ssr:false})
 let Layout = (props)=>{
+    let [state, setState] = useState(initialState)
+    let disappearRef  = useRef()
+
+    // useEffect(()=>{
+    //     disappearRef.current.
+    // })
+    let onclick = (e)=>{
+        if(state.display=="inline"){
+            setState(()=>({
+                display:"none"
+            }))
+        }
+        else{
+            setState(()=>({
+                display:"inline"
+            }))
+        }
+        
+    }
     return(
-        <div>
-            
-            {/* <Container className="w-100 m-0 p-0 " fluid="true">
-                <Row className="w-100 m-0 p-0">
-                    <Col  md="3" className="d-none d-md-block w-100 m-0 p-0 sticky t-0  overflow-visualHeight">
+        <div className="overflow-visualHeight">
+            <div className="  text-light   sticky t-0 w-100 ">
+                <Hnav onclick={onclick} />
+            </div>
+            <div  className=" d-none d-md-block darkwhite " >
+                    <div style={{height:"90vh", overflow:"scroll"}} className="  sticky t-0 float-left  bg-info  width300">
                         <Navbar/>
-                    </Col>
-                    <Col xs="12" md="9"  className="w-100  m-0 p-0 sticky t-0  overflow-visualHeight"> */}
-                        {/* <Hnavbar/> */}
-                        {/* <div   className="zIndex d-md-none m-0 p-0 ">
-                            <Navbar />
-                        </div>
-                        <div className="w-100 m-0 p-0 bg-info">
+                    </div>
+                    <div>
+                        <div style={{height:"90vh"}}  className="overflow-visualHeight  ">
+                            {/* <div className="mt-3 mb-4 ml-3">
+                                <h3 >Admin Dashboard</h3>
+                                <BrowserSiteOutput />
+                            </div> */}
                             {props.children}
                         </div>
-
-                    </Col>
-                </Row>
-            </Container> */}
-            <div className="d-none d-md-block gridref">
-                <div   className="sticky t-0 float-left bg-info overflow-visualHeight">
-                    <Navbar />
-                </div >
-                <div className="sticky t-0 overflow-visualHeight darkwhite">
-                    <Hnav />
-                    {props.children}
-                    
-                </div>
+                    </div>
             </div>
-            <div className="d-md-none">
-                <div className="sticky t-0 overflow-visualHeight darkwhite">
-                    <Hnav />
-                    {props.children}
-                    
-                </div>
-            </div>
-            
+           
         </div>
     )
 }
