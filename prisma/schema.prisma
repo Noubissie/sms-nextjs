@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Classes {
+  id    Int     @id
+  class String?
+}
+
+model Gender {
+  id             Int              @id
+  gender         String?
+  ParentProfile  ParentProfile[]
+  StaffProfile   StaffProfile[]
+  StudentProfile StudentProfile[]
+}
+
+model ParentProfile {
+  id          Int     @id
+  firstname   String?
+  lastname    String?
+  age         Int
+  gender      Int
+  email       String? @unique
+  parentTitle Int
+  phoneNumber String?
+  Gender      Gender  @relation(fields: [gender], references: [id])
+  Title       Title   @relation(fields: [parentTitle], references: [id])
+
+  @@index([gender], name: "gender")
+  @@index([parentTitle], name: "parentTitle")
+}
+
+model Position {
+  id       Int     @id
+  position String?
+}
+
+model Section {
+  id      Int     @default(autoincrement()) @id
+  section String?
+}
+
+model StaffProfile {
+  id               Int       @id
+  firstname        String?
+  lastname         String?
+  staffTitle       Int
+  dateofbirth      DateTime?
+  dateOfAssumption DateTime  @default(now())
+  age              Int
+  gender           Int
+  email            String?   @unique
+  phoneNumber      String?
+  Gender           Gender    @relation(fields: [gender], references: [id])
+  Title            Title     @relation(fields: [staffTitle], references: [id])
+
+  @@index([gender], name: "gender")
+  @@index([staffTitle], name: "staffTitle")
+}
+
+model StudentProfile {
+  id               Int       @id
+  firstname        String?
+  lastname         String?
+  dateofbirth      DateTime?
+  dateOfEnrollment DateTime  @default(now())
+  age              Int
+  gender           Int
+  email            String?   @unique
+  Gender           Gender    @relation(fields: [gender], references: [id])
+
+  @@index([gender], name: "gender")
+}
+
+model Subjects {
+  id      Int     @id
+  subject String?
+}
+
+model Title {
+  id            Int             @id
+  title         String?
+  ParentProfile ParentProfile[]
+  StaffProfile  StaffProfile[]
+}
