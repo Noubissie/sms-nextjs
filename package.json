@@ -5,7 +5,7 @@
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "dev": "next dev",
-    "devlan": "next dev --hostname  192.168.43.157",
+    "devlan": "next dev --hostname  192.168.1.2",
     "build": "next build",
     "start": "next start -p $PORT",
     "mock-server": "json-server --watch ./db.json -p 4001"

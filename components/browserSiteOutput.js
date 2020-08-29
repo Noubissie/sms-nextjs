@@ -1,10 +1,10 @@
 import Link from "next/link"
 import  Breadcrumb from "react-bootstrap/Breadcrumb"
-
-let BrowserSiteOutput = ()=>{
+import {GrRefresh} from "react-icons/gr"
+let BrowserSiteOutput = ({marginRight})=>{
     
     return (
-        <Breadcrumb className="mr-3 ">
+        <Breadcrumb className={marginRight}>
             <Link as="/home" href="/">
                 <a>Home </a>
             </Link> 
@@ -12,4 +12,5 @@ let BrowserSiteOutput = ()=>{
         </Breadcrumb>
     )
 }
+
 export {BrowserSiteOutput}

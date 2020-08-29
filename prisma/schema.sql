@@ -3,8 +3,9 @@ CREATE   DATABASE  School;
 -- In prisma all tables begin in capital letter else an error occurs during introspection
 USE School; 
 CREATE TABLE IF NOT EXISTS Section(
-    id INTEGER  PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    section TEXT
+    id_ INTEGER  PRIMARY KEY  NOT NULL,
+    section VARCHAR(255) UNIQUE  NOT NULL,
+    languages TEXT
 );
 CREATE TABLE IF NOT EXISTS  Gender (
     id INTEGER PRIMARY KEY  NOT NULL, 
@@ -71,3 +72,7 @@ CREATE TABLE IF NOT EXISTS ParentProfile(
   FOREIGN KEY (parentTitle) REFERENCES Title(id)
 );
 
+INSERT INTO 
+  Gender (id, gender) 
+VALUES 
+  (1,"Male"),(2,"Female"),(3,"unknown");

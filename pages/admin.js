@@ -119,13 +119,13 @@ let Admin = ({femaleNumber,malesNumber,countTotalStudents,femalestaffNumber,male
             <Layout>
                 <div className="mt-3 mb-4 ml-3">
                     <h3 >Admin Dashboard</h3>
-                    <BrowserSiteOutput />
+                    <BrowserSiteOutput marginRight="mr-3" />
                 </div>
                 <Container  fluid="true" className="p-3">
                     <Row>
                         <Col xs="12"  md="6" lg="3" className="mb-3">
                             <Card className="">
-                                <Card.Body className="overflows">
+                                <Card.Body className="overflows noscrollX">
                                     <i >
                                         <FaUserGraduate color="blue" size="70" className="border rounded-circle bg-info"/>
                                     </i>
@@ -278,42 +278,7 @@ let Admin = ({femaleNumber,malesNumber,countTotalStudents,femalestaffNumber,male
 // }
 
 export async function getStaticProps(){
-    
-    // const prisma = new PrismaClient()
-    // let student = await prisma.studentProfile.count({
-    //     where:{
-    //         Gender:{
-    //             gender:"Male"
-    //         }
-    //     }
-    // })
-    // console.log("student",student)
-
-    // class StudentDatabase{
-    //     constructor(){
-    //         this.prisma = new PrismaClient()
-    //     }
-    //     countMale = () =>{
-    //         let maleNumber =  this.prisma.studentProfile.count({
-    //             where:{
-    //                 Gender:{
-    //                     gender:"Male"
-    //                 }
-    //             }
-    //         })
-    //         return maleNumber
-    //     }
-    //     CountFemale =  () =>{
-    //         let femaleNumber =  this.prisma.studentProfile.count({
-    //             where:{
-    //                 Gender:{
-    //                     gender:"Fenale"
-    //                 }
-    //             }
-    //         })
-    //         return femaleNumber
-    //     }
-    // }
+   
     
     let student = new StudentDatabase()
     let staff = new StaffDatabase()

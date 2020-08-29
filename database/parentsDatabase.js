@@ -18,7 +18,7 @@ class ParentDatabase{
         let femalenNumber = await this.prisma.parentProfile.count({
             where:{
                 Gender:{
-                    gender:"Fenale"
+                    gender:"Female"
                 }
             }
         })
@@ -29,7 +29,5 @@ class ParentDatabase{
         return totalNumber
     }
 }
-function change(){
-    return 0
-}
+
 export default ParentDatabase

@@ -85,7 +85,7 @@ let AdmissionForm = ()=>{
                             
                                 <div className="mt-4 mb-4 ml-3">
                                     <h3 >Student</h3>
-                                    <BrowserSiteOutput />
+                                    <BrowserSiteOutput marginRight="mr-3"/>
                                 </div>
                                 <Container fluid="true" className="p-3">
                                     <Card >
@@ -147,10 +147,9 @@ let AdmissionForm = ()=>{
                                                         className="p-3 m-0 w-100  border-info grey"
                                                         >
                                                             <option defaultValue hidden  label="choose gender"/>
-                                                            <option value="4" label="Male"/>
+                                                            <option value="1" label="Male"/>
                                                             <option value="2" label="Female"/>
-                                                            <option value="both" label="both"/>
-                                                            <option value="unknown" label="unknown"/>
+                                                            <option value="3" label="unknown"/>
                                                     </Field>
                                                 </Col>
                                             </Row>

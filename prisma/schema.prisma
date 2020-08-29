@@ -42,8 +42,9 @@ model Position {
 }
 
 model Section {
-  id      Int     @default(autoincrement()) @id
-  section String?
+  id_       Int     @id
+  section   String  @unique
+  languages String?
 }
 
 model StaffProfile {

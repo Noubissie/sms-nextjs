@@ -18,7 +18,7 @@ class StaffDatabase{
         let femalenNumber = await this.prisma.staffProfile.count({
             where:{
                 Gender:{
-                    gender:"Fenale"
+                    gender:"Female"
                 }
             }
         })
