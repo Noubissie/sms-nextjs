@@ -85,7 +85,7 @@ let AdmissionForm = ()=>{
                         <Form onSubmit={handleSubmit}>
                             
                                 <div className="mt-4 mb-4 ml-3">
-                                    <h3 >Student</h3>
+                                    <h3 classNamae="bg-light opacityControl rounded">Student</h3>
                                     <BrowserSiteOutput marginRight="mr-3"/>
                                 </div>
                                 <Container fluid="true" className="p-3">

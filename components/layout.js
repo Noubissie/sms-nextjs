@@ -56,7 +56,7 @@ let Layout = (props)=>{
                     </div>
 
                     <div style={{height:"100vh", overflow:"scroll"}} className=" d-md-none position-absolute sticky t-0 float-left    navwidth ">
-                        <VnavFull color="whitesmoke" position="absolute" />
+                        <VnavFull color="grey" position="absolute" />
                         <div style={{height:"20vh"}}>
 
                         </div>
