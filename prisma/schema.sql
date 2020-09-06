@@ -7,19 +7,10 @@ CREATE TABLE IF NOT EXISTS Section(
     section VARCHAR(255) UNIQUE  NOT NULL,
     languages TEXT
 );
+
 CREATE TABLE IF NOT EXISTS  Gender (
-    id INTEGER PRIMARY KEY  NOT NULL, 
+    id INTEGER PRIMARY KEY  NOT NULL,
     gender VARCHAR(10)
-);
-CREATE TABLE IF NOT EXISTS Classes (
-    id INTEGER PRIMARY KEY  NOT NULL, 
-    class TEXT
-);
-
-
-CREATE TABLE IF NOT EXISTS Subjects (
-    id INTEGER PRIMARY KEY,
-    subject VARCHAR(255)
 );
 
 CREATE TABLE  IF NOT EXISTS Title(
@@ -32,8 +23,30 @@ CREATE TABLE IF NOT EXISTS Position (      -- post held BY Staff
     position VARCHAR(100)
 );
 
+CREATE TABLE IF NOT EXISTS Subjects (
+    id INTEGER PRIMARY KEY,
+    subject VARCHAR(255),
+    sectionId INTEGER,
+    FOREIGN KEY (sectionId) REFERENCES Section(id_)
+);
+
+CREATE TABLE IF NOT EXISTS Classes (
+    id INTEGER PRIMARY KEY  NOT NULL,
+    class TEXT UNIQUE NOT NULL,
+    sectionId INTEGER NOT NULL,
+    FOREIGN KEY (sectionId) REFERENCES Section(id_)
+);
+
+CREATE TABLE IF NOT EXISTS ClassSubject(
+  id INTEGER PRIMARY KEY NOT NULL,
+  classId INTEGER NOT NULL,
+  subjectId INTEGER NOT NULL,
+  FOREIGN KEY (classId) REFERENCES Classes(id),
+  FOREIGN KEY (subjectId) REFERENCES Subjects(id)
+);
+
 CREATE TABLE IF NOT EXISTS StudentProfile(
-  id INTEGER PRIMARY KEY  NOT NULL, -- AUTO_INCREMENT
+  id INTEGER PRIMARY KEY  NOT NULL, -- AUTO_INCREMENT NO
   firstname TEXT,
   lastname TEXT,
   dateofbirth DATE, -- YYYY-MM-DD
@@ -45,7 +58,7 @@ CREATE TABLE IF NOT EXISTS StudentProfile(
 );
 
 CREATE TABLE IF NOT EXISTS StaffProfile(
-  id INTEGER PRIMARY KEY  NOT NULL, -- AUTO_INCREMENT
+  id INTEGER PRIMARY KEY  NOT NULL, -- AUTO_INCREMENT NO
   firstname TEXT,
   lastname TEXT,
   staffTitle INTEGER NOT NULL,

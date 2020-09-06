@@ -50,8 +50,7 @@ let Sectionapi = async (req,res)=>{
                 languages:sectionBody.languages
             }
         })
-
-        res.status(404).json({ok:"ok"})
+        res.status(200).json({ok:"ok"})
     }
     
 }

@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container"
 import FormControl from "react-bootstrap/FormControl"
 import InputGroup from "react-bootstrap/InputGroup"
 import {Formik, Form, Field, FastField, ErrorMessage } from "formik"
-import Layout from "../components/layout"
+import Layout from "../../components/layout"
 
 import {mutate, trigger} from "swr"
 // import makeAnimated from 'react-select/animated'
@@ -18,13 +18,10 @@ import { Button } from "react-bootstrap"
 // import { BrowserSiteOutput } from "../components/browserSiteOutput"
 
 const BrowserSiteOutput = dynamic(
-    ()=>import("../components/browserSiteOutput").then((mod)=>mod.BrowserSiteOutput),
+    ()=>import("../../components/browserSiteOutput").then((mod)=>mod.BrowserSiteOutput),
         {ssr:false})
 
-        
-let AdmissionForm = ()=>{
-    
-        let initialValues = {
+    let initialValues = {
             firstname:"",
             lastname:"",
             Gender:"",
@@ -40,6 +37,10 @@ let AdmissionForm = ()=>{
             shortBiography:"",
             studentPicture:"",
         }
+        
+let AdmissionForm = ()=>{
+    
+        
         let onSubmit = async (values) =>{
             console.log("value:",values)
             let res = await fetch("/api/b",

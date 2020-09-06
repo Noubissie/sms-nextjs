@@ -1,4 +1,4 @@
-import React  from "react"
+import React,{useEffect}  from "react"
 import dynamic from "next/dynamic"
 import Card from "react-bootstrap/Card"
 import Container from "react-bootstrap/Container"
@@ -9,9 +9,10 @@ import {Formik, Field, Form, FieldArray, ErrorMessage} from  "formik"
 import Layout from "../../components/layout"
 import * as Yup from "yup"
 import toast from "../../components/decoration/toast"
-
-import options from "../../components/languages/languages"
+import SectionDatabase from "../../database/sectiondatabase"
 import {errorFieldMessage} from "../../components/error/errorFieldMessage"
+import useSWR from "swr"
+import {useRouter} from "next/router"
 // let Select = dynamic(
 //     ()=>import("react-select"),
 //         {ssr:false})
@@ -24,33 +25,41 @@ let BrowserSiteOutput = dynamic(
 
 const customStyles = {}
 
-let Section = ()=>{
+let AddClass = ({sectionAll})=>{
+
+    const router = useRouter()
     
     
+    let {data , error} = useSWR("/api/sectionapi")
+    let sectionOptions = data || sectionAll
+
+    
+
+    console.log("sectionAll::",sectionAll)
      let initialValues = {
-        
-        section:[{
+        classes:[{
             id:"",
-            sectionName:"",
-            sectionLanguage:"",
+            clas:"",
+            sectionTaught:"",
         }],
      }
     
     let validationSchema = Yup.object({
-        section: Yup.array().nullable().of(
+        classes: Yup.array().nullable().of(
             Yup.object({
                 id: Yup.number().nullable().required("enter section ID"),
-                sectionName: Yup.string().nullable().required("enter section").min(3,"Greater than 3 letters"),
-                sectionLanguage: Yup.string().nullable().required("enter Language")
+                clas: Yup.string().nullable().required("enter section").min(3,"least 3 letters"),
+                sectionTaught: Yup.string().nullable().required("enter Language")
             })
         )
     })
+
     let onSubmit = async (values, onSubmitProps) =>{
         onSubmitProps.setSubmitting(true)
         
         toast.success("BasicConfiguration",{position: toast.POSITION.TOP_CENTER,autoClose:2000})
-        
-        let res = await fetch("/api/sectionapi",
+        {console.log("valuess::",values)}
+        let res = await fetch("/api/classesapi",
         {
             method:"POST",
             body: JSON.stringify(values),
@@ -59,6 +68,10 @@ let Section = ()=>{
             }
         })
         onSubmitProps.resetForm(true)
+        console.log("res::",res)
+        // if(res.status==400){
+        //     router.push("/section/sections")
+        // }
         // trigger("/api/a")
     }
     let onReset = ()=>{
@@ -68,13 +81,11 @@ let Section = ()=>{
     return (
         <React.Fragment>
             <Layout>
-                    
-                    <div className="mt-1 mb-4 ml-3 mr-3 opacityControl">
-                        
-                        <h3 className="bg-light rounded" >Section</h3>
-                        <BrowserSiteOutput marginRight=""/>
+                    <div className="mt-3 mb-4 ml-3">
+                        <h3 >Class</h3>
+                        <BrowserSiteOutput marginRight="mr-3"/>
                     </div>
-                <Container fluid="true" className="p-3 opacityControl">
+                <Container fluid="true" className="p-3">
                     <Formik
                         initialValues={initialValues}
                         validationSchema={validationSchema}
@@ -96,118 +107,101 @@ let Section = ()=>{
                                 /* and other goodies */
                             })=>(
                             <Form onSubmit={handleSubmit}>
-                            <Card>
-                        
+                            <Card className="opacityControl">
+                                
                                 <div className="mt-3 mb-4 ml-3">
                                     <h3>
-                                        Add New Section
+                                        Add New Class
                                     </h3>
                                 </div>
                             
                                 <Card.Body>
-                                <FieldArray name="section">
+                                <FieldArray name="classes">
                                     
                                     {   
                                         (fieldprops,index)=>{
                                             let {push,remove,form} = fieldprops
                                             const {values} = form
-                                            const {section} = values 
+                                            const {classes} = values 
                                           return(
                                             <div key={index}>
                                             {
-                                                section.map((value,index)=>{
-                                                    console.log("valuess::",value)
+                                                classes.map((value,index)=>{
+                                                    
                                                     return(
                                                         <div key={index}>
                                                             <Row>
                                                                 <Col lg="2">
                                                                     <div className="mb-4">
-                                                                        {index == 0 && <label  className="" >Section ID</label>}
+                                                                        {index == 0 && <label  className="" >class ID</label>}
                                                                         
                                                                         <Field
                                                                             as="input"
-                                                                            {...getFieldProps(section[index].id)}
+                                                                            {...getFieldProps(classes[index].id)}
                                                                             type="number"
                                                                             step="1"
                                                                             value={value.id}
-                                                                            placeholder="Section ID"
-                                                                            name={`section[${index}].id`}
-                                                                            min="1"
+                                                                            placeholder="class ID"
+                                                                            name={`classes[${index}].id`}
                                                                             className="w-100 p-3  rounded"
                                                                         />
                                                                         {/* { Object.keys(errors.section? errors.section:{}).length >= 1 && Object.keys(touched.section ? touched.section:{}).length >= 1 ? <div className="text-danger border rounded border-warning">{errors.section[index]?errors.section[index].id:null}</div> : null} */}
-                                                                        <ErrorMessage name={`section[${index}].id`}  component={errorFieldMessage}/>
+                                                                        <ErrorMessage name={`classes[${index}].id`}  component={errorFieldMessage}/>
                                                                     </div>
                                                                    
                                                                     
                                                                 </Col >
                                                                 <Col lg="4">
                                                                     <div className="mb-4">
-                                                                        {index == 0 && <label  className="" >Section Name</label>}
+                                                                        {index == 0 && <label  className="" >Class Name</label>}
                                                                         
                                                                         <Field
                                                                             as="input"
-                                                                            {...getFieldProps(section[index].sectionName)}
-                                                                            value={value.sectionName}
-                                                                            placeholder="Section Name"
-                                                                            name={`section[${index}].sectionName`}
+                                                                            {...getFieldProps(classes[index].clas)}
+                                                                            value={value.clas}
+                                                                            placeholder="Class Name"
+                                                                            name={`classes[${index}].clas`}
                                                                             className="w-100 p-3  rounded"
                                                                         />
-                                                                        {/* { Object.keys(errors.section? errors.section:{}).length >= 1 && Object.keys(touched.section ? touched.section:{}).length >= 1 ? <div className="text-danger border rounded border-warning">{errors.section[index]?errors.section[index].sectionName:null}</div> : null} */}
-                                                                        <ErrorMessage name={`section[${index}].sectionName`}  component={errorFieldMessage}/>
+                                                                        {/* { Object.keys(errors.section? errors.section:{}).length >= 1 && Object.keys(touched.section ? touched.section:{}).length >= 1 ? <div className="text-danger border rounded border-warning">{errors.section[index]?errors.section[index].clas:null}</div> : null} */}
+                                                                        <ErrorMessage name={`classes[${index}].clas`}  component={errorFieldMessage}/>
                                                                     </div>
                                                                    
                                                                     
                                                                 </Col >
                                                                 <Col lg="4">
                                                                     <div className="mb-2">
-                                                                        {index == 0 && <label  className="" >Section Language</label>}
+                                                                        {index == 0 && <label  className="" >Section Taught</label>}
                                                                         
                                                                         <Field 
                                                                             as="select"
-                                                                            
-                                                                            {...getFieldProps(section[index].sectionLanguage)}
-                                                                            name={`section[${index}].sectionLanguage`}
-                                                                            value={value.sectionLanguage}
+                                                                            // defaultValue="select Section"
+                                                                            {...getFieldProps(classes[index].sectionTaught)}
+                                                                            name={`classes[${index}].sectionTaught`}
+                                                                            value={value.sectionTaught}
                                                                             className="bg-secondary p-3 pb-4  rounded w-100"
                                                                             // multiple
                                                                             >
+                                                                            {/* bug can'r get the default value to be seleted initially when disabled */}
+                                                                                {/* <option selected disabled={true} value="select Section" label="select Section" />  */}
+                                                                                <option selected defaultValue disabled  label="select Section" /> 
+                                                                                
                                                                                 {
-                                                                                    options.map((value1,index)=>{
+                                                                                    sectionOptions.map((value1,index)=>{
                                                                                         return (
-                                                                                            <option key={index} value={value1.value} label={value1.label}/>
+                                                                                            <option key={value1.id_} value={value1.id_} label={value1.section}/>
                                                                                         )
                                                                                     })
                                                                                 }
                                                                         </Field>
-                                                                        {/* { Object.keys(errors.section? errors.section:{}).length >= 1 && Object.keys(touched.section ? touched.section:{}).length >= 1  ? <div className="text-danger border rounded border-warning">{errors.section[index]? errors.section[index].sectionLanguage:null}</div> : null} */}
-                                                                        <ErrorMessage name={`section[${index}].sectionLanguage`}  component={errorFieldMessage}/>
+                                                                        {/* { Object.keys(errors.section? errors.section:{}).length >= 1 && Object.keys(touched.section ? touched.section:{}).length >= 1  ? <div className="text-danger border rounded border-warning">{errors.section[index]? errors.section[index].sectionTaught:null}</div> : null} */}
+                                                                        <ErrorMessage name={`classes[${index}].sectionTaught`}  component={errorFieldMessage}/>
                                                                     </div>
                                                                     
                                                                     
                                                                 </Col>
                                                                             
-                                                                {/* 
-                                                                <Col lg="6">
-                                                                    <label htmlFor="section" className="">Language</label>
-                                                                    <Select
-                                                                        styles={customStyles}
-                                                                            onChange={selectedOption =>
-                                                                                setFieldValue("fieldName", selectedOption)
-                                                                            }
-                                                                            onBlur={handleBlur}
-                                                                            // {...getFieldProps("fieldName")}
-                                                                            id="section"
-                                                                            isMulti
-                                                                            options={options}
-                                                                            className="bg-secondary p-3"
-                                                                            />
-                                                                        {
-                                                                            errors.fieldName && touched.fieldName ? <div className="text-danger ">errors {errors.fieldName}</div>: null
-                                                                        }
-                                                                    
-                                                                </Col> 
-                                                                */}
+                                                               
                                                                 <Col xs="3" lg="1" className="mb-2">
                                                                     {index == 0 && <label  className="d-none d-lg-block" >del</label>}
                                                                     {index >= 1 ? <button className="bg-danger p-3  rounded w-100" type="button" onClick={()=>remove(index)}>X</button> :<pre  ></pre>}
@@ -217,8 +211,8 @@ let Section = ()=>{
                                                                     <button className="bg-info p-3  rounded w-100" type="button" onClick={
                                                                         ()=>push({
                                                                                 id:"",
-                                                                                sectionName:"",
-                                                                                sectionLanguage:"",
+                                                                                clas:"",
+                                                                                sectionTaught:"",
                                                                             })} disabled={!(dirty && isValid || isSubmitting) 
                                                                             }>+</button>
                                                                 </Col>
@@ -260,10 +254,12 @@ let Section = ()=>{
 
 
 export async function getStaticProps(){
+    let sections = new SectionDatabase()
+    let sectionAll = await sections.getSection()
     return{
         props:{
-
+            sectionAll
         }
     }
 }
-export default Section
+export default AddClass

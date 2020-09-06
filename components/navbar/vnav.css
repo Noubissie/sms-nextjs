@@ -1,32 +1,47 @@
 body{
     filter: contrast(100%) saturate(150%) brightness(100%);
-    /* filter: contrast(100%) saturate(150%) brightness(60%); */
+    /* filter: contrast(100%) saturate(150%) brightness(60%);  */
     overflow: hidden;
+    font-size: .975rem;
+    letter-spacing: .2px;
     
     
 }
-/* width */
-/* ::-webkit-scrollbar {
-    width: 5px;
-  } */
+
+/*that is currently Firefox-only */
+/* * {
+  scrollbar-width: thin;
+  scrollbar-color:  whitesmoke;
   
-  /* Track */
-  /* ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 2px grey;
-    border-radius: 5px;
-  } */
   
-  /* Handle */
-  /* ::-webkit-scrollbar-thumb {
-    background: grey;
-    border-radius: 10px;
-  } */
+} */
+
+/* Works on Chrome/Edge/Safari */
+/* *::-webkit-scrollbar {
+  width: 9px;
+  color: whitesmoke;
+  border-radius: 30px;
+}
+*::-webkit-scrollbar-track {
+  background: grey;
+  border-radius: 30px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: whitesmoke;
+  border-radius: 30px;
+  
+  
+} */
+
+
 .check{
-    background-image: url("../images/bImg.jpg");
+    /* background-image: url("../images/bImg.jpg"); */
+    /* background-image: url("/2.jpeg"); */
     height: 100%;
-    background-position: center;
+    /* background-position: center; */
     background-repeat: no-repeat;
     background-size: cover;
+    
 }
 .pixel15{
     border-radius:0px 15px 15px 0px;
@@ -87,12 +102,12 @@ body{
 }
 
 .text-decor:focus{
-    background-color: orange;
+    background-color: rgb(60, 112, 60);
     color: white;
     text-decoration: none;
 }
 .text-decor:hover{
-    background-color: grey;
+    background-color: rgb(40, 40, 82);
     color: white;
     text-decoration: none;
 }
@@ -198,4 +213,22 @@ body{
     top: -10px !important;
     left:-20px !important;
     border-radius: 100%;
+}
+.noborder{
+    border:none;
+}
+.white{
+    -webkit-font-smoothing: antialiased;
+    font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-size: .975rem;
+    font-weight: bolder;
+    letter-spacing: .2px;
+    /* color: black;
+     */
+     background: red;
+     color:white;
+    text-decoration-color: rgb(255, 255, 255);
+    text-align: left;
+    filter: saturate(200%) brightness(400%) contrast(200%);
+    /* text-shadow: 0 1px 2px rgb(255, 255, 255); */
 }

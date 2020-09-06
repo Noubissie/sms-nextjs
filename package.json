@@ -8,7 +8,9 @@
     "devlan": "next dev --hostname  192.168.1.2",
     "build": "next build",
     "start": "next start -p $PORT",
-    "mock-server": "json-server --watch ./db.json -p 4001"
+    "mock-server": "json-server --watch ./db.json -p 4001",
+    
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@prisma/client": "^2.4.1",
@@ -26,7 +28,6 @@
     "react-no-ssr": "^1.1.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-select": "^3.1.0",
     "react-toastify": "^6.0.8",
     "recharts": "^1.8.5",
     "socket.io": "^2.3.0",

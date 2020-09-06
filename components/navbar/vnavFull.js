@@ -14,18 +14,19 @@ return (
 <div style={{"display":props.display1,"backgroundColor":props.color,"position":props.position,zIndex:5}}  className="">
 
 <Navbar expand="md" id="vnav" className="w-100 m-0 p-0 flex-column nobackground"    fluid="true">
+        
             <Navbar.Toggle style={{top:"100px"}} aria-controls="basic-navbar-nav" >
                 +
             </Navbar.Toggle>
        
 
   
-        <Navbar.Collapse  id="basic-navbar-nav" className="w-100 m-0 p-0 nobackground" >
+        <Navbar.Collapse  id="basic-navbar-nav" className="w-100 m-0 p-0 nobackground " >
             
             <Accordion /* defaultActiveKey="DashBoard" */ className="w-100 m-0 p-0 ">
-            <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder">
-                        <Accordion.Toggle  eventKey="section" className="pixel15 nobackground border border-secondary p-2">
-                            <i className="pl-3 float-left"><FaBookOpen color="yellow" size="25"/></i><span className="p-2">section</span>
+            <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder white">
+                        <Accordion.Toggle  eventKey="section" className="pixel15 nobackground border border-secondary p-2 white">
+                            <i className="pl-3 float-left"><FaBookOpen color="yellow" size="20"/></i><span className=" p-2 ml-1 ">Section</span>
                             <i className=" float-right"> <FaPlus color="orange" size="14" /></i>
                         </Accordion.Toggle>
                             <Accordion.Collapse eventKey="section" className="colornav">
@@ -48,11 +49,77 @@ return (
                                         </a>
                                     </Link>
                                 </Nav.Item>
-                                <Nav.Item  className="m-0 p-0">
-                                    <Link as="/Modifiersection" href="/section/modifiersection" >
+                                
+                            </Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
+                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder white">
+                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2 white" eventKey="class">
+                            <i className="pl-3 float-left"><FaDoorOpen color="yellow" size="25"/></i><span className="p-2">Class</span>
+                            <i className=" float-right"> <FaPlus color="orange" size="14" /></i>
+                        </Accordion.Toggle>
+                            <Accordion.Collapse eventKey="class" className="colornav">
+                            <Card.Body className="m-0 p-0">  
+                            <Nav.Item  className="m-0 p-0">
+                                    <Link as="/classes/classses" href="/classes/classses">
                                         <a className="d-block w-80 h-100 pl-5 pr-3 p-2 border border-solid text-light text-decor" >
                                             <i className="orange-color p-2">&#x25C8;</i>
-                                                Modifier section 
+                                                All Classes 
+                                            <i className=" float-right orange-color">&#x21E8;</i>
+                                        </a>
+                                    </Link>
+                                </Nav.Item>
+                                <Nav.Item  className="m-0 p-0">
+                                    <Link as="/classes/addclasses" href="/classes/addclasses" >
+                                        <a className="d-block w-80 h-100 pl-5 pr-3 p-2 border border-solid text-light text-decor" >
+                                            <i className="orange-color p-2">&#x25C8;</i>
+                                                Add New Class 
+                                            <i className=" float-right orange-color">&#x21E8;</i>
+                                        </a>
+                                    </Link>
+                                </Nav.Item>
+                            </Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
+                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder white">
+                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2 white" eventKey="subject">
+                            <i className="pl-3 float-left"><FaBookOpen color="yellow" size="25"/></i><span className="p-2">Subject</span>
+                            <i className=" float-right"> <FaPlus color="orange" size="14" /></i>
+                        </Accordion.Toggle>
+                            <Accordion.Collapse eventKey="subject" className="colornav">
+                            <Card.Body className="m-0 p-0">  
+                            <Nav.Item  className="m-0 p-0">
+                                    <Link as="/subject/subject" href="/subject/subject" >
+                                        <a className="d-block w-80 h-100 pl-5 pr-3 p-2 border border-solid text-light text-decor" >
+                                            <i className="orange-color p-2">&#x25C8;</i>
+                                                Subject 
+                                            <i className=" float-right orange-color">&#x21E8;</i>
+                                        </a>
+                                    </Link>
+                                </Nav.Item>
+                                <Nav.Item  className="m-0 p-0">
+                                    <Link as="/subject/addsubject" href="/subject/addsubject" >
+                                        <a className="d-block w-80 h-100 pl-5 pr-3 p-2 border border-solid text-light text-decor" >
+                                            <i className="orange-color p-2">&#x25C8;</i>
+                                                Add New subject 
+                                            <i className=" float-right orange-color">&#x21E8;</i>
+                                        </a>
+                                    </Link>
+                                </Nav.Item>
+                                <Nav.Item  className="m-0 p-0">
+                                    <Link as="/subject/subjectClassAssign" href="/subject/subjectClassAssign" >
+                                        <a className="d-block w-80 h-100 pl-5 pr-3 p-2 border border-solid text-light text-decor" >
+                                            <i className="orange-color p-2">&#x25C8;</i>
+                                                Assign Subjects 
+                                            <i className=" float-right orange-color">&#x21E8;</i>
+                                        </a>
+                                    </Link>
+                                </Nav.Item>
+                                <Nav.Item  className="m-0 p-0">
+                                    <Link as="/subject/subjectClassTable" href="/subject/subjectClassTable" >
+                                        <a className="d-block w-80 h-100 pl-5 pr-3 p-2 border border-solid text-light text-decor" >
+                                            <i className="orange-color p-2">&#x25C8;</i>
+                                                Subject To Class 
                                             <i className=" float-right orange-color">&#x21E8;</i>
                                         </a>
                                     </Link>
@@ -61,10 +128,9 @@ return (
                         </Accordion.Collapse>
                     </Card>
 
-
                 
-                <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder">
-                    <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2" eventKey="DashBoard">
+                <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder white">
+                    <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2 white" eventKey="DashBoard">
                         <i className="pl-3 float-left"><FaLifeRing  color="yellow" size="25" /></i><span className="p-2">Dashboard</span>
                         <i className=" float-right"> <FaPlus color="orange" size="14" /></i>
                     </Accordion.Toggle>
@@ -110,15 +176,15 @@ return (
                     </Card.Body>
                     </Accordion.Collapse>
                 </Card>
-                <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder">
-                    <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2" eventKey="students">
+                <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder white">
+                    <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2 white" eventKey="students">
                         <i className="pl-3 float-left"><FaUserPlus color="yellow" size="25"/></i><span className="p-2">Students</span>
                         <i className=" float-right"> <FaPlus color="orange" size="14" /></i>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="students" className="colornav">
                     <Card.Body className="m-0 p-0">  
                     <Nav.Item  className="m-0 p-0">
-                            <Link as="/index" href="/index" >
+                            <Link as="/student/AllStudent" href="/student/AllStudent" >
                                 <a className="d-block w-80 h-100 pl-5 pr-3 p-2 border border-solid text-light text-decor" >
                                     <i className="orange-color p-2">&#x25C8;</i>
                                         All Students 
@@ -136,7 +202,7 @@ return (
                             </Link>
                         </Nav.Item>
                         <Nav.Item  className="m-0 p-0">
-                            <Link as="/admissionForm" href="/admissionForm" >
+                            <Link as="/student/admissionForm" href="/student/admissionForm" >
                                 <a className="d-block w-80 h-100 pl-5 pr-3 p-2 border border-solid text-light text-decor" >
                                     <i className="orange-color p-2">&#x25C8;</i>
                                         Admission Form 
@@ -156,8 +222,8 @@ return (
                     </Card.Body>
                     </Accordion.Collapse>
                 </Card>
-                <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder">
-                    <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2" eventKey="Teacher">
+                <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder white">
+                    <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2 white" eventKey="Teacher">
                         <i className="pl-3 float-left"><FaChalkboardTeacher color="yellow" size="25"/></i><span className="p-2">Teachers</span>
                         <i className=" float-right"> <FaPlus color="orange" size="14" /></i>
                     </Accordion.Toggle>
@@ -203,8 +269,8 @@ return (
                     </Accordion.Collapse>
                 </Card>
 
-                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder">
-                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2" eventKey="parents">
+                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder white">
+                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2 white" eventKey="parents">
                             <i className="pl-3 float-left"><FaUserFriends color="yellow" size="25"/></i><span className="p-2">Parents</span>
                             <i className=" float-right"> <FaPlus color="orange" size="14" /></i>
                         </Accordion.Toggle>
@@ -240,8 +306,8 @@ return (
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
-                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder">
-                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2" eventKey="library">
+                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder white">
+                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2 white" eventKey="library">
                             <i className="pl-3 float-left"><FaBookReader color="yellow" size="25"/></i><span className="p-2">Library</span>
                             <i className=" float-right"> <FaPlus color="orange" size="14" /></i>
                         </Accordion.Toggle>
@@ -268,8 +334,8 @@ return (
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
-                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder">
-                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2" eventKey="Accounts">
+                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder white">
+                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2 white" eventKey="Accounts">
                             <i className="pl-3 float-left"><FaMoneyCheckAlt color="yellow" size="25"/></i><span className="p-2">Accounts</span>
                             <i className=" float-right"> <FaPlus color="orange" size="14" /></i>
                         </Accordion.Toggle>
@@ -305,64 +371,9 @@ return (
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
-                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder">
-                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2" eventKey="class">
-                            <i className="pl-3 float-left"><FaDoorOpen color="yellow" size="25"/></i><span className="p-2">Class</span>
-                            <i className=" float-right"> <FaPlus color="orange" size="14" /></i>
-                        </Accordion.Toggle>
-                            <Accordion.Collapse eventKey="class" className="colornav">
-                            <Card.Body className="m-0 p-0">  
-                            <Nav.Item  className="m-0 p-0">
-                                    <Link as="/index" href="/index" >
-                                        <a className="d-block w-80 h-100 pl-5 pr-3 p-2 border border-solid text-light text-decor" >
-                                            <i className="orange-color p-2">&#x25C8;</i>
-                                                All Classes 
-                                            <i className=" float-right orange-color">&#x21E8;</i>
-                                        </a>
-                                    </Link>
-                                </Nav.Item>
-                                <Nav.Item  className="m-0 p-0">
-                                    <Link as="/index" href="/index" >
-                                        <a className="d-block w-80 h-100 pl-5 pr-3 p-2 border border-solid text-light text-decor" >
-                                            <i className="orange-color p-2">&#x25C8;</i>
-                                                Add New Class 
-                                            <i className=" float-right orange-color">&#x21E8;</i>
-                                        </a>
-                                    </Link>
-                                </Nav.Item>
-                            </Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
-                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder">
-                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2" eventKey="subject">
-                            <i className="pl-3 float-left"><FaBookOpen color="yellow" size="25"/></i><span className="p-2">Subject</span>
-                            <i className=" float-right"> <FaPlus color="orange" size="14" /></i>
-                        </Accordion.Toggle>
-                            <Accordion.Collapse eventKey="subject" className="colornav">
-                            <Card.Body className="m-0 p-0">  
-                            <Nav.Item  className="m-0 p-0">
-                                    <Link as="/index" href="/index" >
-                                        <a className="d-block w-80 h-100 pl-5 pr-3 p-2 border border-solid text-light text-decor" >
-                                            <i className="orange-color p-2">&#x25C8;</i>
-                                                Subject 
-                                            <i className=" float-right orange-color">&#x21E8;</i>
-                                        </a>
-                                    </Link>
-                                </Nav.Item>
-                                <Nav.Item  className="m-0 p-0">
-                                    <Link as="/index" href="/index" >
-                                        <a className="d-block w-80 h-100 pl-5 pr-3 p-2 border border-solid text-light text-decor" >
-                                            <i className="orange-color p-2">&#x25C8;</i>
-                                                Add New subject 
-                                            <i className=" float-right orange-color">&#x21E8;</i>
-                                        </a>
-                                    </Link>
-                                </Nav.Item>
-                            </Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
-                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder">
-                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2" eventKey="classRoutine">
+                    
+                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder white">
+                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2 white" eventKey="classRoutine">
                             <i className="pl-3 float-left"><FaCalendarAlt color="yellow" size="25"/></i><span className="p-2">Class Routines</span>
                             <i className=" float-right"> <FaPlus color="orange" size="14" /></i>
                         </Accordion.Toggle>
@@ -389,8 +400,8 @@ return (
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
-                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder">
-                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2" eventKey="Attendance">
+                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder white">
+                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2 white" eventKey="Attendance">
                             <i className="pl-3 float-left"><FaCalendarCheck color="yellow" size="25"/></i><span className="p-2">Attendance</span>
                             <i className=" float-right"> <FaPlus color="orange" size="14" /></i>
                         </Accordion.Toggle>
@@ -417,8 +428,8 @@ return (
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
-                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder">
-                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2" eventKey="Exams">
+                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder white">
+                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2 white" eventKey="Exams">
                             <i className="pl-3 float-left"><FaPagelines color="yellow" size="25"/></i><span className="p-2">Exams</span>
                             <i className=" float-right"> <FaPlus color="orange" size="14" /></i>
                         </Accordion.Toggle>
@@ -445,8 +456,8 @@ return (
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
-                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder">
-                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2" eventKey="Transport">
+                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder white">
+                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2 white" eventKey="Transport">
                             <i className="pl-3 float-left"><FaBusAlt color="yellow" size="25"/></i><span className="p-2">Transport</span>
                             <i className=" float-right"> <FaPlus color="orange" size="14" /></i>
                         </Accordion.Toggle>
@@ -473,8 +484,8 @@ return (
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
-                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder">
-                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2" eventKey="Hostel">
+                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder white">
+                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2 white" eventKey="Hostel">
                             <i className="pl-3 float-left"><FaWarehouse color="yellow" size="25"/></i><span className="p-2">Hostel</span>
                             <i className=" float-right"> <FaPlus color="orange" size="14" /></i>
                         </Accordion.Toggle>
@@ -501,8 +512,8 @@ return (
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
-                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder">
-                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2" eventKey="Notice">
+                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder white">
+                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2 white" eventKey="Notice">
                             <i className="pl-3 float-left"><FaInfo color="yellow" size="25"/></i><span className="p-2">Notice</span>
                             <i className=" float-right"> <FaPlus color="orange" size="14" /></i>
                         </Accordion.Toggle>
@@ -529,8 +540,8 @@ return (
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
-                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder">
-                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2" eventKey="Message">
+                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder white">
+                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2 white" eventKey="Message">
                             <i className="pl-3 float-left"><FaEnvelopeOpenText color="yellow" size="25"/></i><span className="p-2">Message</span>
                             <i className=" float-right"> <FaPlus color="orange" size="14" /></i>
                         </Accordion.Toggle>
@@ -557,8 +568,8 @@ return (
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
-                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder">
-                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2" eventKey="ui-Elements">
+                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder white">
+                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2 white" eventKey="ui-Elements">
                             <i className="pl-3 float-left"><FaUikit color="yellow" size="25"/></i><span className="p-2">UI-Elements</span>
                             <i className=" float-right"> <FaPlus color="orange" size="14" /></i>
                         </Accordion.Toggle>
@@ -585,8 +596,8 @@ return (
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
-                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder">
-                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2" eventKey="map">
+                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder white">
+                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2 white" eventKey="map">
                             <i className="pl-3 float-left"><FaMapMarkedAlt color="yellow" size="25"/></i><span className="p-2">Map</span>
                             <i className=" float-right"> <FaPlus color="orange" size="14" /></i>
                         </Accordion.Toggle>
@@ -613,8 +624,8 @@ return (
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
-                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder">
-                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2" eventKey="userAccount">
+                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder white">
+                        <Accordion.Toggle className="pixel15 nobackground border border-secondary p-2 white" eventKey="userAccount">
                             <i className="pl-3 float-left"><FaUser color="yellow" size="25"/></i><span className="p-2">User Account</span>
                             <i className=" float-right"> <FaPlus color="orange" size="14" /></i>
                         </Accordion.Toggle>

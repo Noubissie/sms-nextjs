@@ -8,8 +8,24 @@ datasource db {
 }
 
 model Classes {
-  id    Int     @id
-  class String?
+  id           Int            @id
+  class        String?
+  sectionId    Int?
+  Section      Section?       @relation(fields: [sectionId], references: [id_])
+  ClassSubject ClassSubject[]
+
+  @@index([sectionId], name: "sectionId")
+}
+
+model ClassSubject {
+  id        Int      @id
+  classId   Int
+  subjectId Int
+  Classes   Classes  @relation(fields: [classId], references: [id])
+  Subjects  Subjects @relation(fields: [subjectId], references: [id])
+
+  @@index([classId], name: "classId")
+  @@index([subjectId], name: "subjectId")
 }
 
 model Gender {
@@ -42,9 +58,11 @@ model Position {
 }
 
 model Section {
-  id_       Int     @id
-  section   String  @unique
+  id_       Int        @id
+  section   String     @unique
   languages String?
+  Classes   Classes[]
+  Subjects  Subjects[]
 }
 
 model StaffProfile {
@@ -80,8 +98,13 @@ model StudentProfile {
 }
 
 model Subjects {
-  id      Int     @id
-  subject String?
+  id           Int            @id
+  subject      String?
+  sectionId    Int?
+  Section      Section?       @relation(fields: [sectionId], references: [id_])
+  ClassSubject ClassSubject[]
+
+  @@index([sectionId], name: "sectionId")
 }
 
 model Title {

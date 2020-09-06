@@ -9,27 +9,26 @@ import toast from "../../components/decoration/toast"
 import {BsThreeDots,BsXOctagonFill,BsPen} from "react-icons/bs"
 import {Formik,Form, FastField,} from "formik"
 import options from "../../components/languages/languages"
-
+import SubjectDatabase from "../../database/subjectdatabase"
 import SectionDatabase from "../../database/sectiondatabase"
 
 let BrowserSiteOutput = dynamic(
     ()=>import("../../components/browserSiteOutput").then((mod)=>mod.BrowserSiteOutput),
         {ssr:false})
 
-let Section = ({totalsections})=>{
-    console.log("totalsections::",totalsections)
+let Subject = ({totalsubjects, totalSection})=>{
+    console.log("totalsubjects::",totalsubjects)
 
-    let {data, error} = useSWR('/api/sectionapi')
+    let {data:sectorData, error:sectorError} = useSWR('/api/sectionapi')
+    let {data:data, error:subjectError} = useSWR('/api/subjectapi')
     
-    console.log("Sectiondata::",data)
-    data = data || totalsections
-    console.log("Sectiondata2::",data[1])
+    data = data || totalsubjects
     let stater = (data)=>{
         let state = {}
         if(data){
             for(let d of data){
-                state[`displayon${d.id_}`]="table-row"
-                state[`displayoff${d.id_}`]="none"
+                state[`displayon${d.id}`]="table-row"
+                state[`displayoff${d.id}`]="none"
             }
             console.log("state::",state)
             return state
@@ -55,9 +54,11 @@ let Section = ({totalsections})=>{
     }
     return (
         <React.Fragment>
+            
             <Layout>
-                <div className="mt-3 mb-4 ml-3 mr-3">
-                    <h3 className="bg-light rounded">Section</h3>
+            
+                <div className="mt-1 mb-4 ml-3 mr-3 opacityControl">
+                    <h3 className="bg-light rounded">Subjects</h3>
                     <BrowserSiteOutput />
                         <Formik
                             initialValues={initialState || initialFormValue}
@@ -70,11 +71,11 @@ let Section = ({totalsections})=>{
                                         return(
                                             <Form onSubmit={handleSubmit}>
                                                 <Table responsive className="table table-striped table-bordered table-hover  bg-light opacityControl">
-                                                    <thead>
+                                                    <thead className="bg-info">
                                                         <tr>
                                                             <td>ID</td>
+                                                            <td>Subject</td>
                                                             <td>Section</td>
-                                                            <td>Section Language</td>
                                                             <td>Modifier</td>
                                                         </tr>
                                                     </thead>
@@ -82,13 +83,13 @@ let Section = ({totalsections})=>{
                                                         {
                                                             data ? data.map((value,index)=>{
                                                                 return (
-                                                                    <React.Fragment key={value.id_}>
+                                                                    <React.Fragment key={value.id}>
 
                                                                     
-                                                                        <tr style={{display:initialdisplay[`displayon${value.id_}`]}}>
-                                                                            <td >{value.id_}</td>
-                                                                            <td>{value.section}</td>
-                                                                            <td>{value.languages}</td>
+                                                                        <tr style={{display:initialdisplay[`displayon${value.id}`]}}>
+                                                                            <td >{value.id}</td>
+                                                                            <td>{value.subject}</td>
+                                                                            <td>{value.Section.section}</td>
                                                                             <td>
                                                                                 <Dropdown className="p-0 m-0" drop="left">
                                                                                     <Dropdown.Toggle variant="none"  id="dropdown-basic">
@@ -102,33 +103,34 @@ let Section = ({totalsections})=>{
                                                                                                             setInitialdisplay((previousState)=>({
                                                                                                                 ...previousState,
                                                                                                                 
-                                                                                                                [`displayon${value.id_}`]:"none",
-                                                                                                                [`displayoff${value.id_}`]:"table-row"
+                                                                                                                [`displayon${value.id}`]:"none",
+                                                                                                                [`displayoff${value.id}`]:"table-row"
                                                                                                             
                                                                                                         }))
                                                                                                             setInitialState((previousState)=>({
                                                                                                                     ...previousState,
-                                                                                                                    [`section${value.id_}`]:{
-                                                                                                                        id_ : value.id_,
-                                                                                                                        section:value.section,
-                                                                                                                        languages:value.languages
+                                                                                                                    [`subject${value.id}`]:{
+                                                                                                                        id : value.id,
+                                                                                                                        subject:value.subject,
+                                                                                                                        sectionID:value.Section.id_
                                                                                                                     },
                                                                                                                 
                                                                                                             }))
                                                                                             }} 
-                                                                                      ><BsPen color="blue" className="m-2"/>
+                                                                                      >
+                                                                                        <BsPen color="blue" className="m-2"/>
                                                                                                 Edit
                                                                                             </Button>
                                                                                         </Dropdown.Item>
                                                                                         <Dropdown.Item >
                                                                                             <Button type="button"  className="w-100 bg-danger" onClick={async ()=>{
-                                                                                                    let responce = await fetch("/api/sectionapi",{
+                                                                                                    let responce = await fetch("/api/subjectapi",{
                                                                                                         method:"DELETE",
                                                                                                         body:JSON.stringify({
-                                                                                                            section:{
-                                                                                                                id_:value.id_,
-                                                                                                                languages:value.languages,
-                                                                                                                section:value.section
+                                                                                                            subject:{
+                                                                                                                id:value.id,
+                                                                                                                subject:value.subject,
+                                                                                                                sectionID:value.Section.id_
                                                                                                             }
                                                                                                         })
                                                                                                     })
@@ -143,40 +145,40 @@ let Section = ({totalsections})=>{
                                                                             </td>
                                                                             
                                                                         </tr>
-                                                                        <tr style={{display:initialdisplay[`displayoff${value.id_}`]}}>
+                                                                        <tr style={{display:initialdisplay[`displayoff${value.id}`]}}>
                                                                             <td>
-                                                                            <FastField 
-                                                                                {...getFieldProps(`section${value.id_}.id_`)}
-                                                                                name={`section${value.id_}.id_`}
-                                                                                readOnly = {true}
-                                                                                value={value.id_}
-                                                                                type="number"
-                                                                                min="1"
-                                                                                step="1"
+                                                                                <FastField 
+                                                                                    {...getFieldProps(`subject${value.id}.id`)}
+                                                                                    name={`subject${value.id}.id`}
+                                                                                    readOnly = {true}
+                                                                                    value={value.id}
+                                                                                    type="number"
+                                                                                    min="1"
+                                                                                    step="1"
                                                                                 />
                                                                             </td>
-                                                                            <td><FastField 
-                                                                                {...getFieldProps(`section${value.id_}.section`)}
-                                                                                name={`section${value.id_}.section`}
-                                                                               
-     
-                                                                                value={values[`section${value.id_}`]? values[`section${value.id_}`].section :""}
+                                                                            <td>
+                                                                                <FastField 
+                                                                                {...getFieldProps(`subject${value.id}.subject`)}
+                                                                                name={`subject${value.id}.subject`}
+                                                                                value={values[`subject${value.id}`]? values[`subject${value.id}`].subject :""}
                                                                                 type="input"
                                                                                 
-                                                                                /></td>
+                                                                                /> 
+                                                                            </td>
                                                                             <td>
                                                                                 <FastField 
                                                                                     as="select"
                                                                                 
-                                                                                    {...getFieldProps(`section${value.id_}.languages`)}
-                                                                                    name={`section${value.id_}.languages`}
-                                                                                    value={values[`section${value.id_}`] ? values[`section${value.id_}`].languages:""}
+                                                                                    {...getFieldProps(`subject${value.id}.sectionID`)}
+                                                                                    name={`subject${value.id}.sectionID`}
+                                                                                    value={values[`subject${value.id}`] ? values[`subject${value.id}`].sectionID:""}
                                                                                     className="bg-secondary p-1 rounded w-100"
                                                                                     >
                                                                                         {
-                                                                                            options.map((value1,index)=>{
+                                                                                            (totalSection || sectorData).map((value1,index)=>{
                                                                                                 return (
-                                                                                                    <option key={index} value={value1.value} label={value1.label}/>
+                                                                                                    <option key={index} value={value1.id_} label={value1.section}/>
                                                                                                 )
                                                                                             })
                                                                                         }
@@ -195,11 +197,11 @@ let Section = ({totalsections})=>{
                                                                                                 setInitialdisplay((previousState)=>({
                                                                                                     ...previousState,
                                                                                                     
-                                                                                                    [`displayon${value.id_}`]:"table-row",
-                                                                                                    [`displayoff${value.id_}`]:"none"
+                                                                                                    [`displayon${value.id}`]:"table-row",
+                                                                                                    [`displayoff${value.id}`]:"none"
                                                                                                 
                                                                                             }))
-                                                                                            delete initialState[`section${value.id_}`]
+                                                                                            delete initialState[`subject${value.id}`]
                                                                                                 setInitialState((previousState)=>({
                                                                                                         ...initialState
                                                                                                 }))
@@ -211,18 +213,20 @@ let Section = ({totalsections})=>{
                                                                                         </Dropdown.Item>
                                                                                         <Dropdown.Item >
                                                                                             <Button type="button"  className="w-100 bg-success" onClick={async ()=>{
-                                                                                                    let responce = await fetch("/api/sectionapi",{
+                                                                                                    let responce = await fetch("/api/subjectapi",{
                                                                                                         method:"PUT",
-                                                                                                        body:JSON.stringify(values[`section${value.id_}`])
+                                                                                                        body:JSON.stringify(values[`subject${value.id}`])
                                                                                                     })
                                                                                                     setInitialdisplay((previousState)=>({
                                                                                                         ...previousState,
                                                                                                         
-                                                                                                        [`displayon${value.id_}`]:"table-row",
-                                                                                                        [`displayoff${value.id_}`]:"none"
+                                                                                                        [`displayon${value.id}`]:"table-row",
+                                                                                                        [`displayoff${value.id}`]:"none"
                                                                                                     
                                                                                                 }))
+
                                                                                                     toast.success(`${JSON.stringify(responce)} was deleted`,{position: toast.POSITION.TOP_CENTER,autoClose:2000})
+                                                                                                    
                                                                                                 }}><BsXOctagonFill color="grey" className="m-2"/>
                                                                                                     update
                                                                                             </Button>
@@ -251,12 +255,15 @@ let Section = ({totalsections})=>{
     )
 }
 export async function getStaticProps(){
-    let section = new SectionDatabase()
-    let totalsections = await section.getSection()
+    let subjects = new SubjectDatabase()
+    let sections = new SectionDatabase()
+    let totalSection = await sections.getSection()
+    let totalsubjects = await subjects.getSubject()
     return{
         props:{
-            totalsections,
+            totalsubjects,
+            totalSection,
         }
     }
 }
-export default Section
+export default Subject

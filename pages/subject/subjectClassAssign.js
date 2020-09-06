@@ -9,8 +9,9 @@ import {Formik, Field, Form, FieldArray, ErrorMessage} from  "formik"
 import Layout from "../../components/layout"
 import * as Yup from "yup"
 import toast from "../../components/decoration/toast"
-
-import options from "../../components/languages/languages"
+import useSWR from "swr"
+import SubjectDatabase from "../../database/subjectdatabase"
+import ClassesDatabase from "../../database/classesDatabase"
 import {errorFieldMessage} from "../../components/error/errorFieldMessage"
 // let Select = dynamic(
 //     ()=>import("react-select"),
@@ -24,33 +25,37 @@ let BrowserSiteOutput = dynamic(
 
 const customStyles = {}
 
-let Section = ()=>{
+let SubjectClass = ({AllSubject,AllClasss})=>{
+    let {data:subjectData,error:subjectError} = useSWR("/api/subjectapi")
+    let {data:classsData,error:classsError} = useSWR("/api/classesapi")
     
-    
+    let subjectOptions = subjectData || AllSubject
+    let classOptions = classsData || AllClasss
+
      let initialValues = {
         
-        section:[{
+        subjectToClass:[{
             id:"",
-            sectionName:"",
-            sectionLanguage:"",
+            subject:"",
+            classs:"",
         }],
      }
     
     let validationSchema = Yup.object({
-        section: Yup.array().nullable().of(
+        subjectToClass: Yup.array().nullable().of(
             Yup.object({
-                id: Yup.number().nullable().required("enter section ID"),
-                sectionName: Yup.string().nullable().required("enter section").min(3,"Greater than 3 letters"),
-                sectionLanguage: Yup.string().nullable().required("enter Language")
+                id: Yup.number().nullable().required("enter  ID"),
+                subject: Yup.string().nullable().required("enter subject").min(3,"Greater than 3 letters"),
+                classs: Yup.string().nullable().required("enter class")
             })
         )
     })
     let onSubmit = async (values, onSubmitProps) =>{
         onSubmitProps.setSubmitting(true)
         
-        toast.success("BasicConfiguration",{position: toast.POSITION.TOP_CENTER,autoClose:2000})
         
-        let res = await fetch("/api/sectionapi",
+        
+        let res = await fetch("/api/subjectClassapi",
         {
             method:"POST",
             body: JSON.stringify(values),
@@ -58,6 +63,7 @@ let Section = ()=>{
                 cookies:"name"
             }
         })
+       await toast.success("BasicConfiguration",{position: toast.POSITION.TOP_CENTER,autoClose:1000})
         onSubmitProps.resetForm(true)
         // trigger("/api/a")
     }
@@ -71,7 +77,7 @@ let Section = ()=>{
                     
                     <div className="mt-1 mb-4 ml-3 mr-3 opacityControl">
                         
-                        <h3 className="bg-light rounded" >Section</h3>
+                        <h3 className="bg-light rounded" >Subject</h3>
                         <BrowserSiteOutput marginRight=""/>
                     </div>
                 <Container fluid="true" className="p-3 opacityControl">
@@ -100,114 +106,104 @@ let Section = ()=>{
                         
                                 <div className="mt-3 mb-4 ml-3">
                                     <h3>
-                                        Add New Section
+                                        Assign Subject To Class
                                     </h3>
                                 </div>
                             
                                 <Card.Body>
-                                <FieldArray name="section">
+                                <FieldArray name="subjectToClass">
                                     
                                     {   
                                         (fieldprops,index)=>{
                                             let {push,remove,form} = fieldprops
                                             const {values} = form
-                                            const {section} = values 
+                                            const {subjectToClass} = values 
                                           return(
                                             <div key={index}>
                                             {
-                                                section.map((value,index)=>{
+                                                subjectToClass.map((value,index)=>{
                                                     console.log("valuess::",value)
                                                     return(
                                                         <div key={index}>
                                                             <Row>
                                                                 <Col lg="2">
                                                                     <div className="mb-4">
-                                                                        {index == 0 && <label  className="" >Section ID</label>}
+                                                                        {index == 0 && <label  className="" > ID</label>}
                                                                         
                                                                         <Field
                                                                             as="input"
-                                                                            {...getFieldProps(section[index].id)}
+                                                                            {...getFieldProps(subjectToClass[index].id)}
                                                                             type="number"
                                                                             step="1"
                                                                             value={value.id}
-                                                                            placeholder="Section ID"
-                                                                            name={`section[${index}].id`}
+                                                                            placeholder="ID"
+                                                                            name={`subjectToClass[${index}].id`}
                                                                             min="1"
                                                                             className="w-100 p-3  rounded"
                                                                         />
                                                                         {/* { Object.keys(errors.section? errors.section:{}).length >= 1 && Object.keys(touched.section ? touched.section:{}).length >= 1 ? <div className="text-danger border rounded border-warning">{errors.section[index]?errors.section[index].id:null}</div> : null} */}
-                                                                        <ErrorMessage name={`section[${index}].id`}  component={errorFieldMessage}/>
+                                                                        <ErrorMessage name={`subjectToClass[${index}].id`}  component={errorFieldMessage}/>
                                                                     </div>
                                                                    
                                                                     
                                                                 </Col >
                                                                 <Col lg="4">
                                                                     <div className="mb-4">
-                                                                        {index == 0 && <label  className="" >Section Name</label>}
+                                                                        {index == 0 && <label  className="" >Subject</label>}
                                                                         
-                                                                        <Field
-                                                                            as="input"
-                                                                            {...getFieldProps(section[index].sectionName)}
-                                                                            value={value.sectionName}
-                                                                            placeholder="Section Name"
-                                                                            name={`section[${index}].sectionName`}
-                                                                            className="w-100 p-3  rounded"
-                                                                        />
-                                                                        {/* { Object.keys(errors.section? errors.section:{}).length >= 1 && Object.keys(touched.section ? touched.section:{}).length >= 1 ? <div className="text-danger border rounded border-warning">{errors.section[index]?errors.section[index].sectionName:null}</div> : null} */}
-                                                                        <ErrorMessage name={`section[${index}].sectionName`}  component={errorFieldMessage}/>
+                                                                        
+                                                                        <Field 
+                                                                            as="select"
+                                                                            
+                                                                            {...getFieldProps(subjectToClass[index].subject)}
+                                                                            name={`subjectToClass[${index}].subject`}
+                                                                            value={value.subject}
+                                                                            className="bg-secondary p-3 pb-4  rounded w-100"
+                                                                            // multiple
+                                                                            >
+                                                                                <option key={index} selected defaultValue disabled label="select subject"/>
+                                                                                {
+                                                                                    subjectOptions.map((value1,index)=>{
+                                                                                        return (
+                                                                                            <option key={index} value={value1.id} label={value1.subject}/>
+                                                                                        )
+                                                                                    })
+                                                                                }
+                                                                        </Field>
+                                                                        {/* { Object.keys(errors.section? errors.section:{}).length >= 1 && Object.keys(touched.section ? touched.section:{}).length >= 1 ? <div className="text-danger border rounded border-warning">{errors.section[index]?errors.section[index].subject:null}</div> : null} */}
+                                                                        <ErrorMessage name={`subjectToClass[${index}].subject`}  component={errorFieldMessage}/>
                                                                     </div>
                                                                    
                                                                     
                                                                 </Col >
                                                                 <Col lg="4">
                                                                     <div className="mb-2">
-                                                                        {index == 0 && <label  className="" >Section Language</label>}
+                                                                        {index == 0 && <label  className="" >Class</label>}
                                                                         
                                                                         <Field 
                                                                             as="select"
                                                                             
-                                                                            {...getFieldProps(section[index].sectionLanguage)}
-                                                                            name={`section[${index}].sectionLanguage`}
-                                                                            value={value.sectionLanguage}
+                                                                            {...getFieldProps(subjectToClass[index].classs)}
+                                                                            name={`subjectToClass[${index}].classs`}
+                                                                            value={value.classs}
                                                                             className="bg-secondary p-3 pb-4  rounded w-100"
                                                                             // multiple
                                                                             >
+                                                                                <option key={index} selected defaultValue disabled label="select class"/>
                                                                                 {
-                                                                                    options.map((value1,index)=>{
+                                                                                    classOptions.map((value1,index)=>{
                                                                                         return (
-                                                                                            <option key={index} value={value1.value} label={value1.label}/>
+                                                                                            <option key={index} value={value1.id} label={value1.class}/>
                                                                                         )
                                                                                     })
                                                                                 }
                                                                         </Field>
-                                                                        {/* { Object.keys(errors.section? errors.section:{}).length >= 1 && Object.keys(touched.section ? touched.section:{}).length >= 1  ? <div className="text-danger border rounded border-warning">{errors.section[index]? errors.section[index].sectionLanguage:null}</div> : null} */}
-                                                                        <ErrorMessage name={`section[${index}].sectionLanguage`}  component={errorFieldMessage}/>
+                                                                        {/* { Object.keys(errors.section? errors.section:{}).length >= 1 && Object.keys(touched.section ? touched.section:{}).length >= 1  ? <div className="text-danger border rounded border-warning">{errors.section[index]? errors.section[index].classs:null}</div> : null} */}
+                                                                        <ErrorMessage name={`subjectToClass[${index}].classs`}  component={errorFieldMessage}/>
                                                                     </div>
                                                                     
                                                                     
                                                                 </Col>
-                                                                            
-                                                                {/* 
-                                                                <Col lg="6">
-                                                                    <label htmlFor="section" className="">Language</label>
-                                                                    <Select
-                                                                        styles={customStyles}
-                                                                            onChange={selectedOption =>
-                                                                                setFieldValue("fieldName", selectedOption)
-                                                                            }
-                                                                            onBlur={handleBlur}
-                                                                            // {...getFieldProps("fieldName")}
-                                                                            id="section"
-                                                                            isMulti
-                                                                            options={options}
-                                                                            className="bg-secondary p-3"
-                                                                            />
-                                                                        {
-                                                                            errors.fieldName && touched.fieldName ? <div className="text-danger ">errors {errors.fieldName}</div>: null
-                                                                        }
-                                                                    
-                                                                </Col> 
-                                                                */}
                                                                 <Col xs="3" lg="1" className="mb-2">
                                                                     {index == 0 && <label  className="d-none d-lg-block" >del</label>}
                                                                     {index >= 1 ? <button className="bg-danger p-3  rounded w-100" type="button" onClick={()=>remove(index)}>X</button> :<pre  ></pre>}
@@ -217,8 +213,8 @@ let Section = ()=>{
                                                                     <button className="bg-info p-3  rounded w-100" type="button" onClick={
                                                                         ()=>push({
                                                                                 id:"",
-                                                                                sectionName:"",
-                                                                                sectionLanguage:"",
+                                                                                subject:"",
+                                                                                classs:"",
                                                                             })} disabled={!(dirty && isValid || isSubmitting) 
                                                                             }>+</button>
                                                                 </Col>
@@ -260,10 +256,16 @@ let Section = ()=>{
 
 
 export async function getStaticProps(){
+    let subjectFinder = new SubjectDatabase()
+    let classsFinder = new ClassesDatabase()
+
+    let AllSubject = await subjectFinder.getSubject()
+    let AllClasss = await classsFinder.getClasses()
     return{
         props:{
-
+            AllSubject,
+            AllClasss
         }
     }
 }
-export default Section
+export default SubjectClass
