@@ -9,9 +9,7 @@
     "devlan": "next dev --hostname  192.168.1.2",
     "build": "next build",
     "start": "next build && next start -p $PORT",
-    "mock-server": "json-server --watch ./db.json -p 4001",
-    
-    
+    "mock-server": "json-server --watch ./db.json -p 4001"
   },
   "engines": {
     "node": "12.18.3"
