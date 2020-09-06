@@ -90,12 +90,41 @@ class MyApp extends App {
               <meta name="robots" content="noindex follow"/>
               <meta name="mobile-web-app-capable" content="yes"/>
               <meta name="apple-mobile-web-app-capable" content="yes"/>
+
               <meta name="theme-color" content="pink"/>
+              <meta name="apple-mobile-web-app-status-bar-style" content="pink"/>
+
               <meta name="background-color" content="pink"/>
               <meta name="short-name" content="GBHS MUTENGENE"/>
               <meta name="name" content="PLANOUS"/>
               <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-              <title>My app</title>
+              <title>Sms-Mutengene</title>
+
+              
+              <meta name="twitter:card" content="/PHOTO.jpg"/>
+
+              <meta property="fb:app_id" content="sms-123-cmr">
+              <meta property="og:url" content="https://sms-mutengene.herokuapp.com/admin"/>
+              <meta property="og:type" content="website"/>
+              <meta property="og:title" content="Sms-mutengene"/>
+              <meta property="og:image" content="/8.jpeg"/>
+              <meta property="og:description" content="School management system prototype"/>
+              <meta property="og:site_name" content="sms-Mutengene"/>
+              <meta property="og:locale" content="en_US"/>
+              <meta property="article:author" content="Noubissie Landry"/>
+
+              <meta name="twitter:card" content="A school Mangement System prototype"/>
+              <meta name="twitter:site" content="@site_account"/>
+              <meta name="twitter:creator" content="@Noubiss95445462"/>
+              <meta name="twitter:url" content="https://sms-mutengene.herokuapp.com/admin"/>
+              <meta name="twitter:title" content="Sms Mutengene"/>
+              <meta name="twitter:description" content="School Mangement System prototype"/> 
+              <meta name="twitter:image" content="/7.jpeg"/>
+
+              <meta name="mobile-web-app-capable" content="yes"/>
+              <meta name="apple-mobile-web-app-capable" content="yes"/>
+              
+              </meta>
               <link rel="icon" type="image/x-icon" href="/PHOTO.jpg" />
             </Head>
             {/* <SWRConfig value={{fetcher:this.fetcher,initialData: 0}}> */}
