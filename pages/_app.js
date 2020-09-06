@@ -103,7 +103,7 @@ class MyApp extends App {
               
               <meta name="twitter:card" content="/PHOTO.jpg"/>
 
-              <meta property="fb:app_id" content="sms-123-cmr">
+              <meta property="fb:app_id" content="sms-123-cmr"/>
               <meta property="og:url" content="https://sms-mutengene.herokuapp.com/admin"/>
               <meta property="og:type" content="website"/>
               <meta property="og:title" content="Sms-mutengene"/>
@@ -124,7 +124,6 @@ class MyApp extends App {
               <meta name="mobile-web-app-capable" content="yes"/>
               <meta name="apple-mobile-web-app-capable" content="yes"/>
               
-              </meta>
               <link rel="icon" type="image/x-icon" href="/PHOTO.jpg" />
             </Head>
             {/* <SWRConfig value={{fetcher:this.fetcher,initialData: 0}}> */}
