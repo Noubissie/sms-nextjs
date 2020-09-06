@@ -11,7 +11,7 @@ import * as Yup from "yup"
 import toast from "../../components/decoration/toast"
 import useSWR from "swr"
 import SubjectDatabase from "../../database/subjectdatabase"
-import ClassesDatabase from "../../database/classesDatabase"
+import ClassesDatabase from "../../database/classDatabase"
 import {errorFieldMessage} from "../../components/error/errorFieldMessage"
 // let Select = dynamic(
 //     ()=>import("react-select"),

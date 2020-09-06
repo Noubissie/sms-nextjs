@@ -46,7 +46,7 @@ let BackgroundControler = ({backgroundImageRef})=>{
             saturation: localStorage.getItem("saturation") ?  localStorage.getItem("saturation") : prevstate.saturation,
         }))
 
-        backgroundImageRef.current.style.backgroundImage = localStorage.getItem("backgroundImage") || "url('/2.jpeg')"
+        backgroundImageRef.current.style.backgroundImage = localStorage.getItem("backgroundImage") || "url('/8.jpeg')"
     },[])
 
     return(

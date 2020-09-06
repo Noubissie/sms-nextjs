@@ -1,7 +1,14 @@
-DROP  DATABASE  IF  EXISTS School;
-CREATE   DATABASE  School;
+-- DROP  DATABASE  IF  EXISTS School;
+-- CREATE   DATABASE  School;
+
+DROP DATABASE IF EXISTS heroku_2a3497a522ffc4d;
+CREATE DATABASE heroku_2a3497a522ffc4d;
+
 -- In prisma all tables begin in capital letter else an error occurs during introspection
-USE School; 
+-- USE School; 
+
+USE heroku_2a3497a522ffc4d;
+
 CREATE TABLE IF NOT EXISTS Section(
     id_ INTEGER  PRIMARY KEY  NOT NULL,
     section VARCHAR(255) UNIQUE  NOT NULL,
@@ -32,7 +39,7 @@ CREATE TABLE IF NOT EXISTS Subjects (
 
 CREATE TABLE IF NOT EXISTS Classes (
     id INTEGER PRIMARY KEY  NOT NULL,
-    class TEXT UNIQUE NOT NULL,
+    class VARCHAR(250) UNIQUE NOT NULL,
     sectionId INTEGER NOT NULL,
     FOREIGN KEY (sectionId) REFERENCES Section(id_)
 );

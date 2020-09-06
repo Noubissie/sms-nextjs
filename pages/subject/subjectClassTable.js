@@ -9,7 +9,7 @@ import toast from "../../components/decoration/toast"
 import {BsThreeDots,BsXOctagonFill,BsPen} from "react-icons/bs"
 import {Formik,Form, FastField,} from "formik"
 import SubjectDatabase from "../../database/subjectdatabase"
-import ClassesDatabase from "../../database/classesDatabase"
+import ClassesDatabase from "../../database/classDatabase"
 import SubjectClassDatabase from "../../database/subjectClassDatabase"
 let BrowserSiteOutput = dynamic(
     ()=>import("../../components/browserSiteOutput").then((mod)=>mod.BrowserSiteOutput),
