@@ -8,7 +8,7 @@ import Layout from "../../components/layout"
 import toast from "../../components/decoration/toast"
 import {BsThreeDots,BsXOctagonFill,BsPen} from "react-icons/bs"
 import {Formik,Form, FastField,} from "formik"
-import ClassesDatabase from "../../database/classdatabase"
+import ClassesDatabase from "../../database/classDatabase"
 import SectionDatabase from "../../database/sectiondatabase"
 
 let BrowserSiteOutput = dynamic(
