@@ -61,15 +61,17 @@ let Layout = (props)=>{
 
                         </div>
                     </div>
-
                     <div style={{height:"100vh", overflow:"hidden",border:"1px solid grey "}} className="d-none d-md-block  sticky t-0 float-right ">
-                        <VnavRight backgroundImageRef={backgroundImageRef} onclickdisplayImageContainer={onclickdisplayImageContainer}/>
-                    </div>
+                        <div style={{height:"100vh", overflow:"hidden",border:"1px solid grey "}} className="d-none d-md-block  sticky t-0 float-right ">
+                            <VnavRight backgroundImageRef={backgroundImageRef} onclickdisplayImageContainer={onclickdisplayImageContainer}/>
+                        </div>
 
 
-                    <div style={{display:state.displayImageContainer,height:"92vh", overflow:"scroll",border:"1px solid grey "}} className=" sticky t-0 float-right bg-light  " >
-                       <BackgroundControler backgroundImageRef={backgroundImageRef}/>
+                        <div style={{display:state.displayImageContainer,height:"92vh", overflow:"scroll",border:"1px solid grey "}} className=" sticky t-0 float-right bg-light  " >
+                        <BackgroundControler backgroundImageRef={backgroundImageRef}/>
+                        </div>
                     </div>
+                    
 
 
                     <div>

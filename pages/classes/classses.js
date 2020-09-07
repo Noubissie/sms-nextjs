@@ -57,7 +57,7 @@ let ClassA = ({totalClass, totalSection})=>{
         <React.Fragment>
             <Layout>
                 <div className="mt-3 mb-4 ml-3 mr-3 ">
-                    <h3 classNamae="bg-light opacityControl rounded" >Classes</h3>
+                    <h3 className="bg-light opacityControl rounded" >Classes</h3>
                     <BrowserSiteOutput />
                         <Formik
                             initialValues={initialState || initialFormValue}

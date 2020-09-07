@@ -9,29 +9,39 @@ body{
 }
 
 /*that is currently Firefox-only */
-/* * {
-  scrollbar-width: thin;
-  scrollbar-color:  whitesmoke;
+* {
+  scrollbar-width: 4px;
+  scrollbar-color:  grey;
+  scrollbar: opacity 0.5;
+  scrollbar-track-color: none;
+    
   
-  
-} */
+}
 
 /* Works on Chrome/Edge/Safari */
-/* *::-webkit-scrollbar {
-  width: 9px;
-  color: whitesmoke;
+*::-webkit-scrollbar {
+  width: 4px;
+  height:4px;
+  color: grey;
   border-radius: 30px;
+  opacity: 0.5;
+}
+*::-webkit-scrollbar :hover{
+    width: 10px;
+    height:10px;
 }
 *::-webkit-scrollbar-track {
-  background: grey;
+  background: none;
   border-radius: 30px;
+  opacity: 0.5;
 }
 *::-webkit-scrollbar-thumb {
-  background-color: whitesmoke;
+  background-color: grey;
   border-radius: 30px;
+  opacity: 0.5;
   
   
-} */
+}
 
 
 .check{
