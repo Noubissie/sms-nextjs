@@ -2,17 +2,21 @@ body{
     filter: contrast(100%) saturate(150%) brightness(100%);
     /* filter: contrast(100%) saturate(150%) brightness(60%);  */
     overflow: hidden;
-    font-size: .975rem;
+    
+    font-size: .855rem;
     letter-spacing: .2px;
+    zoom: 1;;
     
     
 }
 
+
+
 /*that is currently Firefox-only */
 * {
-  scrollbar-width: 4px;
+  scrollbar-width: thin;
   scrollbar-color:  grey;
-  scrollbar: opacity 0.5;
+  
   scrollbar-track-color: none;
     
   
@@ -48,15 +52,24 @@ body{
     /* background-image: url("../images/bImg.jpg"); */
     /* background-image: url("/2.jpeg"); */
     height: 100%;
+    /* overflow-x: scroll; */
     /* background-position: center; */
     background-repeat: no-repeat;
     background-size: cover;
     
 }
 .pixel15{
-    border-radius:0px 15px 15px 0px;
-
+    border:none;
+    background-color: transparent !important;
 }
+.pixel15:hover{
+    border-radius:0px 15px 15px 0px;
+    text-decoration:none;
+    list-style:none;
+    /* background-color:rgba(212, 117, 241, 0.121)!important ; */
+    background-color:rgba(241, 117, 214, 0.081)!important ;
+}
+
 .nobackground{
     background-color: transparent !important;
     /* border: none; */
@@ -104,7 +117,7 @@ body{
     color:black;
 }
 .colornav{
-    background-color: rgb(3, 2, 88);
+    background: none;
 }
 .orange-color{
     color:orange;
@@ -228,16 +241,16 @@ body{
     border:none;
 }
 .white{
-    -webkit-font-smoothing: antialiased;
-    font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
-    font-size: .975rem;
-    font-weight: bolder;
+    /* -webkit-font-smoothing: antialiased; */
+    /* font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif; */
+    /* font-size: .975rem; */
+    /* font-weight: bolder; */
     letter-spacing: .2px;
     /* color: black;
      */
-     background: red;
+     /* background: red; */
      color:white;
-    text-decoration-color: rgb(255, 255, 255);
+    /* text-decoration-color: rgb(255, 255, 255); */
     text-align: left;
     filter: saturate(200%) brightness(400%) contrast(200%);
     /* text-shadow: 0 1px 2px rgb(255, 255, 255); */

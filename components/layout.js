@@ -3,7 +3,6 @@ import VnavFull from "./navbar/vnavFull"
 import Hnav from "./navbar/hnavbar"
 import Button from "react-bootstrap/Button"
 import BackgroundControler from "../components/settingsTabs/backgroundControlers"
-
 import VnavRight from "./settingsTabs/vRightNav"
 
 let initialState = {
@@ -13,7 +12,7 @@ let Layout = (props)=>{
     let [state, setState] = useState(initialState)
     
     let backgroundImageRef = useRef()
-
+    let navrightRef = useRef()
     let onclickdisplayImageContainer = async (e)=>{
         if(state.displayImageContainer=="block"){
            setState(()=>({
@@ -35,7 +34,17 @@ let Layout = (props)=>{
         }))
     },[])
     return(
-        <div className="check" ref={backgroundImageRef}>
+        <div className="check" ref={backgroundImageRef} 
+        // onScroll={(e)=>{
+        //     if(navrightRef.current.style.display="inline"){
+        //         navrightRef.current.style.display = "none"
+        //     }
+        //     else{
+        //         navrightRef.current.style.display = "inline"
+        //     }
+            
+        //     console.log(e.target.scrollLeft)}}
+            >
             
             <div className="  text-light p-0  sticky t-0 w-100 ">
                 <Hnav onclick={onclickdisplayImageContainer} />
@@ -55,8 +64,8 @@ let Layout = (props)=>{
                         </div>
                     </div>
 
-                    <div style={{height:"100vh", overflow:"scroll"}} className=" d-md-none position-absolute sticky t-0 float-left    navwidth ">
-                        <VnavFull color="grey" position="absolute" />
+                    <div ref={navrightRef} style={{height:"100vh", overflow:"scroll"}} className=" d-md-none position-absolute sticky t-0 float-left    navwidth motion">
+                        <VnavFull color="black" position="absolute" />
                         <div style={{height:"20vh"}}>
 
                         </div>
