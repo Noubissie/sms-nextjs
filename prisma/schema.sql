@@ -48,6 +48,7 @@ CREATE TABLE IF NOT EXISTS ClassSubject(
   id INTEGER PRIMARY KEY NOT NULL,
   classId INTEGER NOT NULL,
   subjectId INTEGER NOT NULL,
+  subjectCoefficient INTEGER NOT NULL,
   FOREIGN KEY (classId) REFERENCES Classes(id),
   FOREIGN KEY (subjectId) REFERENCES Subjects(id)
 );

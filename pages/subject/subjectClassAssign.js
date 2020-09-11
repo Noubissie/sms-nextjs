@@ -38,6 +38,7 @@ let SubjectClass = ({AllSubject,AllClasss})=>{
             id:"",
             subject:"",
             classs:"",
+            subjectCoefficient:"",
         }],
      }
     
@@ -46,7 +47,8 @@ let SubjectClass = ({AllSubject,AllClasss})=>{
             Yup.object({
                 id: Yup.number().nullable().required("enter  ID"),
                 subject: Yup.string().nullable().required("enter subject").min(3,"Greater than 3 letters"),
-                classs: Yup.string().nullable().required("enter class")
+                classs: Yup.string().nullable().required("enter class"),
+                subjectCoefficient: Yup.number().nullable().required("Enter Coefficient").max(10,"most be < 1")
             })
         )
     })
@@ -147,7 +149,7 @@ let SubjectClass = ({AllSubject,AllClasss})=>{
                                                                    
                                                                     
                                                                 </Col >
-                                                                <Col lg="4">
+                                                                <Col lg="3">
                                                                     <div className="mb-4">
                                                                         {index == 0 && <label  className="" >Subject</label>}
                                                                         
@@ -176,7 +178,7 @@ let SubjectClass = ({AllSubject,AllClasss})=>{
                                                                    
                                                                     
                                                                 </Col >
-                                                                <Col lg="4">
+                                                                <Col lg="3">
                                                                     <div className="mb-2">
                                                                         {index == 0 && <label  className="" >Class</label>}
                                                                         
@@ -203,6 +205,23 @@ let SubjectClass = ({AllSubject,AllClasss})=>{
                                                                     </div>
                                                                     
                                                                     
+                                                                </Col>
+                                                                <Col lg="2">
+                                                                    <div className="mb-2">
+                                                                        {index == 0 && <label  className="" >Coeff</label>}
+                                                                        <Field
+                                                                            as="input"
+                                                                            {...getFieldProps(subjectToClass[index].subjectCoefficient)}
+                                                                            name={`subjectToClass[${index}].subjectCoefficient`}
+                                                                            type="number"
+                                                                            step="1"
+                                                                            value={value.subjectCoefficient}
+                                                                            placeholder="Coefficient"
+                                                                            min="1"
+                                                                            className="w-100 p-3  rounded"
+                                                                            />
+                                                                        <ErrorMessage name={`subjectToClass[${index}].subjectCoefficient`}  component={errorFieldMessage}/>
+                                                                    </div>
                                                                 </Col>
                                                                 <Col xs="3" lg="1" className="mb-2">
                                                                     {index == 0 && <label  className="d-none d-lg-block" >del</label>}

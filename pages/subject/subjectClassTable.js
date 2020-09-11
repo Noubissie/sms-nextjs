@@ -76,6 +76,7 @@ let SubjectClassTable = ({Allsubjects, AllClasses,AllSubjectClass})=>{
                                                             <td>ID</td>
                                                             <td>class</td>
                                                             <td>subject</td>
+                                                            <td>Coeff</td>
                                                             <td>Modifier</td>
                                                         </tr>
                                                     </thead>
@@ -90,6 +91,7 @@ let SubjectClassTable = ({Allsubjects, AllClasses,AllSubjectClass})=>{
                                                                             <td >{value.id}</td>
                                                                             <td>{value.Classes.class}</td>
                                                                             <td>{value.Subjects.subject}</td>
+                                                                            <td>{value.subjectCoefficient}</td>
                                                                             <td>
                                                                                 <Dropdown className="p-0 m-0" drop="left">
                                                                                     <Dropdown.Toggle variant="none"  id="dropdown-basic">
@@ -175,6 +177,17 @@ let SubjectClassTable = ({Allsubjects, AllClasses,AllSubjectClass})=>{
                                                                                             })
                                                                                         }
                                                                                 </FastField>
+                                                                            </td>
+                                                                            <td>
+                                                                                <FastField 
+                                                                                    {...getFieldProps(`subjectClass${value.id}.subjectCoefficient`)}
+                                                                                    name={`subjectClass${value.id}.subjectCoefficient`}
+                                                                                    readOnly = {true}
+                                                                                    value={value.subjectCoefficient}
+                                                                                    type="number"
+                                                                                    min="1"
+                                                                                    step="1"
+                                                                                />
                                                                             </td>
                                                                             <td>
                                                                                 <FastField 

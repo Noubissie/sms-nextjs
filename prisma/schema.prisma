@@ -9,20 +9,21 @@ datasource db {
 
 model Classes {
   id           Int            @id
-  class        String?
-  sectionId    Int?
-  Section      Section?       @relation(fields: [sectionId], references: [id_])
+  class        String         @unique
+  sectionId    Int
+  Section      Section        @relation(fields: [sectionId], references: [id_])
   ClassSubject ClassSubject[]
 
   @@index([sectionId], name: "sectionId")
 }
 
 model ClassSubject {
-  id        Int      @id
-  classId   Int
-  subjectId Int
-  Classes   Classes  @relation(fields: [classId], references: [id])
-  Subjects  Subjects @relation(fields: [subjectId], references: [id])
+  id                 Int      @id
+  classId            Int
+  subjectId          Int
+  subjectCoefficient Int
+  Classes            Classes  @relation(fields: [classId], references: [id])
+  Subjects           Subjects @relation(fields: [subjectId], references: [id])
 
   @@index([classId], name: "classId")
   @@index([subjectId], name: "subjectId")

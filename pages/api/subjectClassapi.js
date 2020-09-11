@@ -15,13 +15,15 @@ let SubjectToClassapi = async (req,res)=>{
                         id: Number(data.id),
                         Subjects:{
                             connect:{
-                                id:Number(data.subject)}
+                                id:Number(data.subject)
+                                }
                             },
                         Classes:{
                             connect:{
                                 id: Number(data.classs)
                             }
-                        }
+                        },
+                        subjectCoefficient:Number(data.subjectCoefficient)
                         }
             }).catch((e)=>{
                 return undefined
