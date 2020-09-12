@@ -12,7 +12,7 @@ let Hnav = (props)=>{
         <Navbar.Brand href="/index"  id="brand" className="nobackground pt-1 pb-1 ">
             
             <span className="p-0">
-                GBHS MUTENGENE 
+                GBHS DZENG 
             </span>
         </Navbar.Brand>
         

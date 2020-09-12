@@ -1,13 +1,17 @@
 -- DROP  DATABASE  IF  EXISTS School;
 -- CREATE   DATABASE  School;
 
-DROP DATABASE IF EXISTS heroku_2a3497a522ffc4d;
-CREATE DATABASE heroku_2a3497a522ffc4d;
+-- DROP DATABASE IF EXISTS heroku_2a3497a522ffc4d;
+-- CREATE DATABASE heroku_2a3497a522ffc4d;
+
+-- dzeng database
+DROP DATABASE IF EXISTS heroku_83ee802453d0ccc; 
+CREATE DATABASE heroku_83ee802453d0ccc; 
 
 -- In prisma all tables begin in capital letter else an error occurs during introspection
 -- USE School; 
 
-USE heroku_2a3497a522ffc4d;
+USE heroku_83ee802453d0ccc;
 
 CREATE TABLE IF NOT EXISTS Section(
     id_ INTEGER  PRIMARY KEY  NOT NULL,

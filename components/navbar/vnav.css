@@ -255,3 +255,12 @@ body{
     filter: saturate(200%) brightness(400%) contrast(200%);
     /* text-shadow: 0 1px 2px rgb(255, 255, 255); */
 }
+.whitesnow{
+    background-color: #f8f9fa !important;
+    opacity: 0.9;
+    border-radius: 5px;
+}
+.width100{
+    width:100%;
+    margin-left: 2%;
+}

@@ -4,10 +4,7 @@ import Hnav from "./navbar/hnavbar"
 import Button from "react-bootstrap/Button"
 import BackgroundControler from "../components/settingsTabs/backgroundControlers"
 import VnavRight from "./settingsTabs/vRightNav"
-import Switch from '@material-ui/core/Switch';
-import Paper from '@material-ui/core/Paper';
 import Slide from '@material-ui/core/Slide';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 
 let initialState = {
