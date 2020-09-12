@@ -1,5 +1,5 @@
 import React  from "react"
-import dynamic from "next/dynamic"
+import dynamic from "next/dynamic"  //limit size error, if the size exceeds the limited size it fails without throwing an error,hence denial of service attack. Medium vulnerability
 import Card from "react-bootstrap/Card"
 import Container from "react-bootstrap/Container"
 import Col from "react-bootstrap/Col"

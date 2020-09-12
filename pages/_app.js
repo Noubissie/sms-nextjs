@@ -5,62 +5,39 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import "react-toastify/dist/ReactToastify.css"
 // import "antd/dist/antd.css"
 
+import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 import App from 'next/app';
 import Head from 'next/head';
 import Hnav from "../components/navbar/hnavbar"
 
 import {SWRConfig} from "swr"
 
+import { createMuiTheme } from '@material-ui/core/styles';
+import { red } from '@material-ui/core/colors';
+
+// Create a theme instance.
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#556cd6',
+    },
+    secondary: {
+      main: '#19857b',
+    },
+    error: {
+      main: red.A400,
+    },
+    background: {
+      default: '#fff',
+    },
+  },
+});
 
 
 
-// class MyApp extends App {
-//   static async getInitialProps({ Component, ctx }) {
-//     let pageProps = {};
 
-//     if (Component.getInitialProps) {
-//       pageProps = await Component.getInitialProps(ctx);
-//     }
-
-//     return { pageProps };
-//   }
-//   fetcher = async (url)=>{
-//     const res = await fetch(url)
-//     const time = await res.json()
-//     return time
-// }
-//   render() {
-//     const { Component, pageProps } = this.props;
-
-//     return (
-//       <div>
-       
-//             <Head>
-//               <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-//               <meta name="description" content="Report Card Web App for GBHS MUTENGENE"/>
-//               <meta name="application-name" content="GBHSMUTENGENE"/>
-//               <meta name="author" content="Noubissie"/>
-//               <meta name="robots" content="noindex follow"/>
-//               <meta name="mobile-web-app-capable" content="yes"/>
-//               <meta name="apple-mobile-web-app-capable" content="yes"/>
-//               <meta name="theme-color" content="pink"/>
-//               <meta name="background-color" content="pink"/>
-//               <meta name="short-name" content="GBHS MUTENGENE"/>
-//               <meta name="name" content="PLANOUS"/>
-//               <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-//               <title>My app</title>
-//               <link rel="icon" type="image/x-icon" href="/PHOTO.jpg" />
-//             </Head>
-//             {/* <SWRConfig value={{fetcher:this.fetcher,initialData: 0}}> */}
-//             <SWRConfig value={{fetcher:this.fetcher,initialData:undefined,refreshInterval:1000}}>
-//                 <Component { ...pageProps } />
-//             </SWRConfig>
-//       </div>
-//     );
-//   }
-// }
-
-// export default MyApp;
 class MyApp extends App {
   static async getStaticProps({ Component, ctx }) {
     let pageProps = {};
@@ -126,10 +103,13 @@ class MyApp extends App {
               
               <link rel="icon" type="image/x-icon" href="/PHOTO.jpg" />
             </Head>
-            {/* <SWRConfig value={{fetcher:this.fetcher,initialData: 0}}> */}
-            <SWRConfig value={{fetcher:this.fetcher,initialData:undefined,refreshInterval:1000}}>
-                <Component { ...pageProps } />
-            </SWRConfig>
+              <ThemeProvider theme={theme}>
+                  <CssBaseline />
+                  {/* <SWRConfig value={{fetcher:this.fetcher,initialData: 0}}> */}
+                  <SWRConfig value={{fetcher:this.fetcher,initialData:undefined,refreshInterval:1000}}>
+                      <Component { ...pageProps } />
+                  </SWRConfig>
+              </ThemeProvider>
       </div>
     );
   }

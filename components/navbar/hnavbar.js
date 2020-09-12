@@ -7,10 +7,12 @@ let Hnav = (props)=>{
     return (
         <>
     <Navbar   expand="lg" variant="dark" >
+        
+        <i><GiLevelFourAdvanced size="35" onClick={props.toggleNav}/></i>
         <Navbar.Brand href="/index"  id="brand" className="nobackground pt-1 pb-1 ">
-          
+            
             <span className="p-0">
-                <i><GiLevelFourAdvanced size="35"/></i>GBHS MUTENGENE 
+                GBHS MUTENGENE 
             </span>
         </Navbar.Brand>
         

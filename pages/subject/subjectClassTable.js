@@ -1,5 +1,5 @@
 import React , {useState,useEffect} from "react"
-import dynamic from "next/dynamic"
+import dynamic from "next/dynamic"  //limit size error, if the size exceeds the limited size it fails without throwing an error,hence denial of service attack. Medium vulnerability
 import Table from "react-bootstrap/Table"
 import Dropdown from "react-bootstrap/Dropdown"
 import Button from "react-bootstrap/Button"

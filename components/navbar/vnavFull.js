@@ -14,11 +14,11 @@ let VnavFull = (props) =>{
 return (
 <div style={{"display":props.display1,"backgroundColor":props.color,"position":props.position,zIndex:5}}  className="fontsizeNavbar">
 
-<Navbar expand="md" id="vnav" className="w-100 m-0 p-0 flex-column nobackground"    fluid="true">
-        
-            <Navbar.Toggle style={{top:"100px",width:"100%"}} aria-controls="basic-navbar-nav" >
+{/* <Navbar expand="md" id="vnav" className="w-100 m-0 p-0 flex-column nobackground"    fluid="true"> */}
+<Navbar  id="vnav" className="w-100 m-0 p-0 flex-column nobackground"    fluid="true"> 
+            {/* <Navbar.Toggle style={{top:"100px",width:"100%"}} aria-controls="basic-navbar-nav" >
                 <BsChevronDoubleDown color="white" />
-            </Navbar.Toggle>
+            </Navbar.Toggle> */}
        
 
   

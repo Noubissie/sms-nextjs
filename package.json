@@ -25,8 +25,9 @@
     "student"
   ],
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "@prisma/client": "^2.6.2",
-    "antd": "^4.4.3",
     "bootstrap": "^4.5.0",
     "formik": "^2.1.5",
     "moment": "^2.27.0",
