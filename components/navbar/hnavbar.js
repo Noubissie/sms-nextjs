@@ -6,13 +6,13 @@ import {  GiLevelFourAdvanced, GiHelp} from 'react-icons/gi'
 let Hnav = (props)=>{
     return (
         <>
-    <Navbar   expand="lg" variant="dark" >
+    <Navbar   expand="lg" variant="dark" className="bg-info">
         
         <i><GiLevelFourAdvanced size="35" onClick={props.toggleNav}/></i>
-        <Navbar.Brand href="/index"  id="brand" className="nobackground pt-1 pb-1 ">
+        <Navbar.Brand href="/index"  id="brand" className=" pt-1 pb-1 ">
             
             <span className="p-0">
-                GBHS DZENG 
+                GBHS MUTENGENE 
             </span>
         </Navbar.Brand>
         

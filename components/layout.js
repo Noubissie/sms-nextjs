@@ -56,7 +56,6 @@ let Layout = (props)=>{
             <div className="  text-light p-0  sticky t-0 w-100 ">
                 <Hnav onclick={onclickdisplayImageContainer} toggleNav={handleNavChange}/>
             </div>
-            <hr className="p-0 m-0"/>
             <div  className=" darkwhite nobackground ">
                     
                     <div className=" d-none d-lg-inline float-left  navwidth ">
@@ -70,11 +69,11 @@ let Layout = (props)=>{
 
                         </div>
                     </div>
-                    <Slide direction="right" in={checked} mountOnEnter unmountOnExit >
-                        <div ref={navrightRef} style={{height:"100vh", overflow:"scroll"}} className=" d-lg-none position-absolute sticky t-0 float-left    navwidth motion">
-                            <VnavFull color="black" position="absolute" />
-                            <div style={{height:"20vh"}}>
-
+                    <Slide direction="right" in={checked} mountOnEnter unmountOnExit style={{zIndex:"20"}}>
+                        <div ref={navrightRef} style={{height:"100vh", overflow:"scroll",backgroundColor:"black"}} className=" d-lg-none position-absolute sticky t-0 float-left    navwidth motion">
+                            <VnavFull  position="absolute" />
+                            <div style={{height:"30vh"}}>
+                                
                             </div>
                         </div>
                     </Slide>
@@ -93,7 +92,7 @@ let Layout = (props)=>{
 
 
                     <div>
-                        <div style={{height:"100vh",overflow:"hidden"}}  className="">
+                        <div style={{height:"100vh",overflow:"hidden"}}  >
                             <div  className=" ml-3 mr-3  p-0 ">
                                 <button className="ml-2  noborder bg-light rounded">a</button>
                                 <button className="ml-2  noborder bg-light rounded">b</button>

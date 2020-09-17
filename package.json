@@ -8,7 +8,7 @@
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "dev": "next dev",
-    "devlan": "next dev --hostname  192.168.1.3",
+    "devlan": "next dev --hostname  192.168.1.2",
     "build": "next build",
     "start": "next start -p $PORT",
     "mock-server": "json-server --watch ./db.json -p 4001"
@@ -29,6 +29,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "@prisma/client": "^2.6.2",
+    "autosuggest-highlight": "^3.1.1",
     "bootstrap": "^4.5.0",
     "formik": "^2.1.5",
     "moment": "^2.27.0",

@@ -2,7 +2,7 @@ import {useState, useRef,useEffect} from "react"
 import Card from "react-bootstrap/Card"
 import Row from "react-bootstrap/Row"
 // import {Input,Select} from "antd"
-
+import {NavColorChanger} from "./navcolorChanger"
 
 let initialState = {
     brightness:100,
@@ -39,6 +39,10 @@ let BackgroundControler = ({backgroundImageRef})=>{
     }
 
     useEffect(()=>{
+        let navtextcolor = JSON.parse(localStorage.getItem("color"))
+        let colorFrom = navtextcolor ? navtextcolor.colorFrom :"white"
+        let colorTo = navtextcolor ? navtextcolor.colorTo :"black"
+        NavColorChanger(colorFrom,colorTo)
         setState((prevstate)=>({
             ...prevstate,
             brightness: localStorage.getItem("brightness") ?  localStorage.getItem("brightness") : prevstate.brightness,
@@ -60,7 +64,7 @@ let BackgroundControler = ({backgroundImageRef})=>{
                     </Card.Header>
                     <Card.Body>
                         
-                        <div id="themes" className="m-0 p-0 w-100">
+                        <div id="themes" className="m-0 p-0 w-100" >
                             
                             <hr className="m-0 p-0 w-100"/>
                                 <div>THEMES</div>
@@ -68,7 +72,10 @@ let BackgroundControler = ({backgroundImageRef})=>{
                             <Row>
                                 <button className="m-1 p-0 border-info" onClick={()=>{
                                     backgroundImageRef.current.style.backgroundImage = "url('/1.jpeg')"
+                                    NavColorChanger("white","black")
+                                    // document.getElementById("VnavFull").style.backgroundColor = "black"
                                     localStorage.setItem("backgroundImage","url('/1.jpeg')")
+                                    localStorage.setItem("color",JSON.stringify({colorFrom:"white",colorTo:"black"}))
                                 }}>
                                     <Card md="3" style={{ width: '3rem' }} className="" >
                                         <Card.Img   src="/1.jpeg"  className="m-0 h-100"/>
@@ -78,7 +85,9 @@ let BackgroundControler = ({backgroundImageRef})=>{
                             
                                 <button className="m-1 p-0 border-info" onClick={()=>{
                                     backgroundImageRef.current.style.backgroundImage = "url('/2.jpeg')"
+                                    NavColorChanger("white","black")
                                     localStorage.setItem("backgroundImage","url('/2.jpeg')")
+                                    localStorage.setItem("color",JSON.stringify({colorFrom:"white",colorTo:"black"}))
                                 }}>
                                     <Card md="3" style={{ width: '3rem' }} className="h-100 m-0" >
                                         <Card.Img   src="/2.jpeg"  className="m-0 h-100"/>
@@ -88,7 +97,9 @@ let BackgroundControler = ({backgroundImageRef})=>{
                             
                                 <button className="m-1 p-0 border-info" onClick={()=>{
                                     backgroundImageRef.current.style.backgroundImage = "url('/3.jpeg')"
+                                    NavColorChanger("black","white")
                                     localStorage.setItem("backgroundImage","url('/3.jpeg')")
+                                    localStorage.setItem("color",JSON.stringify({colorFrom:"white",colorTo:"black"}))
                                 }}>
                                     <Card md="3" style={{ width: '3rem' }} className="" >
                                         <Card.Img   src="/3.jpeg"  className="m-0 h-100"/>
@@ -98,7 +109,9 @@ let BackgroundControler = ({backgroundImageRef})=>{
                             
                                 <button className="m-1 p-0 border-info" onClick={()=>{
                                     backgroundImageRef.current.style.backgroundImage = "url('/4.jpeg')"
+                                    NavColorChanger("black","white")
                                     localStorage.setItem("backgroundImage","url('/4.jpeg')")
+                                    localStorage.setItem("color",JSON.stringify({colorFrom:"black",colorTo:"white"}))
                                 }}>
                                     <Card md="3" style={{ width: '3rem' }} className="" >
                                         <Card.Img   src="/4.jpeg"  className="m-0 h-100"/>
@@ -109,7 +122,9 @@ let BackgroundControler = ({backgroundImageRef})=>{
                             <Row>
                                 <button className="m-1 p-0 border-info" onClick={()=>{
                                         backgroundImageRef.current.style.backgroundImage = "url('/5.jpeg')"
+                                        NavColorChanger("black","white")
                                         localStorage.setItem("backgroundImage","url('/5.jpeg')")
+                                        localStorage.setItem("color",JSON.stringify({colorFrom:"black",colorTo:"white"}))
                                     }}>
                                         <Card md="3" style={{ width: '3rem' }} className="" >
                                             <Card.Img   src="/5.jpeg"  className="m-0 h-100"/>
@@ -118,7 +133,9 @@ let BackgroundControler = ({backgroundImageRef})=>{
                                 
                                 <button className="m-1 p-0 border-info" onClick={()=>{
                                     backgroundImageRef.current.style.backgroundImage = "url('/6.jpeg')"
+                                    NavColorChanger("black","white")
                                     localStorage.setItem("backgroundImage","url('/6.jpeg')")
+                                    localStorage.setItem("color",JSON.stringify({colorFrom:"black",colorTo:"white"}))
                                 }}>
                                     <Card md="3" style={{ width: '3rem' }} className="" >
                                         <Card.Img   src="/6.jpeg"  className="m-0 h-100"/>
@@ -128,7 +145,9 @@ let BackgroundControler = ({backgroundImageRef})=>{
                                 
                                 <button className="m-1 p-0 border-info" onClick={()=>{
                                     backgroundImageRef.current.style.backgroundImage = "url('/7.jpeg')"
+                                    NavColorChanger("black","white")
                                     localStorage.setItem("backgroundImage","url('/7.jpeg')")
+                                    localStorage.setItem("color",JSON.stringify({colorFrom:"black",colorTo:"white"}))
                                 }}>
                                     <Card md="3" style={{ width: '3rem' }} className="" >
                                         <Card.Img   src="/7.jpeg"  className="m-0 h-100"/>
@@ -138,13 +157,27 @@ let BackgroundControler = ({backgroundImageRef})=>{
                         
                                 <button className="m-1 p-0 border-info" onClick={()=>{
                                     backgroundImageRef.current.style.backgroundImage = "url('/8.jpeg')"
+                                    NavColorChanger("black","white")
                                     localStorage.setItem("backgroundImage","url('/8.jpeg')")
+                                    localStorage.setItem("color",JSON.stringify({colorFrom:"black",colorTo:"white"}))
                                 }}>
                                     <Card md="3" style={{ width: '3rem' }} className="" >
                                         <Card.Img   src="/8.jpeg"  className="m-0 h-100"/>
                                     </Card>
                                 </button>
                             
+                            </Row>
+                            <Row>
+                            <button className="m-1 p-0 border-info" onClick={()=>{
+                                    backgroundImageRef.current.style.backgroundImage = "none"
+                                    NavColorChanger("white","black")
+                                    localStorage.setItem("backgroundImage","none")
+                                    localStorage.setItem("color",JSON.stringify({colorFrom:"white",colorTo:"black"}))
+                                }}>
+                                    <Card md="3" style={{ width: '3rem' }} className="" >
+                                        <Card.Img   src=""  className="m-0 h-100"/>
+                                    </Card>
+                                </button>
                             </Row>
                         </div>
 

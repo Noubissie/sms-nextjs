@@ -5,8 +5,8 @@ body{
     
     font-size: .855rem;
     letter-spacing: .2px;
-    zoom: 1;;
-    
+    zoom: 1;
+   
     
 }
 
@@ -54,8 +54,8 @@ body{
     height: 100%;
     /* overflow-x: scroll; */
     /* background-position: center; */
-    background-repeat: no-repeat;
-    background-size: cover;
+    /* background-repeat: no-repeat; */
+    background-size: contain;
     
 }
 .pixel15{
@@ -183,9 +183,7 @@ body{
     z-index: 4;
 }
 
-.darkwhite{
-    background-color: rgb(211, 208, 208);
-}
+
 .overflows{
     overflow-wrap: break-word;
     overflow-y: scroll;
