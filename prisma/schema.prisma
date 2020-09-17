@@ -7,110 +7,110 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Classes {
+model classes {
   id           Int            @id
   class        String         @unique
   sectionId    Int
-  Section      Section        @relation(fields: [sectionId], references: [id_])
-  ClassSubject ClassSubject[]
+  section      section        @relation(fields: [sectionId], references: [id_])
+  classsubject classsubject[]
 
   @@index([sectionId], name: "sectionId")
 }
 
-model ClassSubject {
+model classsubject {
   id                 Int      @id
   classId            Int
   subjectId          Int
   subjectCoefficient Int
-  Classes            Classes  @relation(fields: [classId], references: [id])
-  Subjects           Subjects @relation(fields: [subjectId], references: [id])
+  classes            classes  @relation(fields: [classId], references: [id])
+  subjects           subjects @relation(fields: [subjectId], references: [id])
 
   @@index([classId], name: "classId")
   @@index([subjectId], name: "subjectId")
 }
 
-model Gender {
+model gender {
   id             Int              @id
   gender         String?
-  ParentProfile  ParentProfile[]
-  StaffProfile   StaffProfile[]
-  StudentProfile StudentProfile[]
+  parentprofile  parentprofile[]
+  staffprofile   staffprofile[]
+  studentprofile studentprofile[]
 }
 
-model ParentProfile {
-  id          Int     @id
-  firstname   String?
-  lastname    String?
-  age         Int
-  gender      Int
-  email       String? @unique
-  parentTitle Int
-  phoneNumber String?
-  Gender      Gender  @relation(fields: [gender], references: [id])
-  Title       Title   @relation(fields: [parentTitle], references: [id])
+model parentprofile {
+  id                           Int     @id
+  firstname                    String?
+  lastname                     String?
+  age                          Int
+  gender                       Int
+  email                        String? @unique
+  parentTitle                  Int
+  phoneNumber                  String?
+  gender_genderToparentprofile gender  @relation(fields: [gender], references: [id])
+  title                        title   @relation(fields: [parentTitle], references: [id])
 
   @@index([gender], name: "gender")
   @@index([parentTitle], name: "parentTitle")
 }
 
-model Position {
+model position {
   id       Int     @id
   position String?
 }
 
-model Section {
+model section {
   id_       Int        @id
   section   String     @unique
   languages String?
-  Classes   Classes[]
-  Subjects  Subjects[]
+  classes   classes[]
+  subjects  subjects[]
 }
 
-model StaffProfile {
-  id               Int       @id
-  firstname        String?
-  lastname         String?
-  staffTitle       Int
-  dateofbirth      DateTime?
-  dateOfAssumption DateTime  @default(now())
-  age              Int
-  gender           Int
-  email            String?   @unique
-  phoneNumber      String?
-  Gender           Gender    @relation(fields: [gender], references: [id])
-  Title            Title     @relation(fields: [staffTitle], references: [id])
+model staffprofile {
+  id                          Int       @id
+  firstname                   String?
+  lastname                    String?
+  staffTitle                  Int
+  dateofbirth                 DateTime?
+  dateOfAssumption            DateTime  @default(now())
+  age                         Int
+  gender                      Int
+  email                       String?   @unique
+  phoneNumber                 String?
+  gender_genderTostaffprofile gender    @relation(fields: [gender], references: [id])
+  title                       title     @relation(fields: [staffTitle], references: [id])
 
   @@index([gender], name: "gender")
   @@index([staffTitle], name: "staffTitle")
 }
 
-model StudentProfile {
-  id               Int       @id
-  firstname        String?
-  lastname         String?
-  dateofbirth      DateTime?
-  dateOfEnrollment DateTime  @default(now())
-  age              Int
-  gender           Int
-  email            String?   @unique
-  Gender           Gender    @relation(fields: [gender], references: [id])
+model studentprofile {
+  id                            Int       @id
+  firstname                     String?
+  lastname                      String?
+  dateofbirth                   DateTime?
+  dateOfEnrollment              DateTime  @default(now())
+  age                           Int
+  gender                        Int
+  email                         String?   @unique
+  gender_genderTostudentprofile gender    @relation(fields: [gender], references: [id])
 
   @@index([gender], name: "gender")
 }
 
-model Subjects {
+model subjects {
   id           Int            @id
   subject      String?
   sectionId    Int?
-  Section      Section?       @relation(fields: [sectionId], references: [id_])
-  ClassSubject ClassSubject[]
+  section      section?       @relation(fields: [sectionId], references: [id_])
+  classsubject classsubject[]
 
   @@index([sectionId], name: "sectionId")
 }
 
-model Title {
+model title {
   id            Int             @id
   title         String?
-  ParentProfile ParentProfile[]
-  StaffProfile  StaffProfile[]
+  parentprofile parentprofile[]
+  staffprofile  staffprofile[]
 }
