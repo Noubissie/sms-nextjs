@@ -46,7 +46,7 @@ let SubjectClass = ({AllSubject,AllClasss})=>{
         subjectToClass: Yup.array().nullable().of(
             Yup.object({
                 id: Yup.number().nullable().required("enter  ID"),
-                subject: Yup.string().nullable().required("enter subject").min(3,"Greater than 3 letters"),
+                subject: Yup.string().nullable().required("enter subject"),
                 classs: Yup.string().nullable().required("enter class"),
                 subjectCoefficient: Yup.number().nullable().required("Enter Coefficient").max(10,"most be < 1")
             })

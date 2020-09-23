@@ -4,6 +4,14 @@ class StudentDatabase{
     constructor(){
         this.prisma = prisma
     }
+    findOneStudent = async (studentID) =>{
+        const student = this.prisma.studentProfile.findOne({
+            where:{
+                AdmissionID: studentID
+            }
+        })
+        return student
+    }
     CountMale = async () =>{
         let maleNumber =  await this.prisma.studentProfile.count({
             where:{

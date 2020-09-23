@@ -99,7 +99,7 @@ let BackgroundControler = ({backgroundImageRef})=>{
                                     backgroundImageRef.current.style.backgroundImage = "url('/3.jpeg')"
                                     NavColorChanger("black","white")
                                     localStorage.setItem("backgroundImage","url('/3.jpeg')")
-                                    localStorage.setItem("color",JSON.stringify({colorFrom:"white",colorTo:"black"}))
+                                    localStorage.setItem("color",JSON.stringify({colorFrom:"black",colorTo:"white"}))
                                 }}>
                                     <Card md="3" style={{ width: '3rem' }} className="" >
                                         <Card.Img   src="/3.jpeg"  className="m-0 h-100"/>

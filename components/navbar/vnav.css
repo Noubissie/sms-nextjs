@@ -262,3 +262,39 @@ body{
     width:100%;
     margin-left: 2%;
 }
+
+/* student detail form decoration */
+.studentImage{
+    
+    width: 300px;
+    height: 300px;
+    border-radius: 15px;
+    
+}
+.centralize{
+    text-align: center;
+    justify-content: center;
+}
+.largeSize{
+    font: bolder;
+    font-size: x-large;
+    color: black;
+}
+.bolder{
+    font: bolder;
+    color: black;
+    font-size: bold;
+    color: blue;
+}
+
+/* pdf icons control styles */
+.listStyle{
+    display:inline-flex;
+    list-style: none;
+    /* text-decoration: none; */
+   
+}
+.padding{
+    margin-top:25%;
+    margin-bottom: 25%;
+}
