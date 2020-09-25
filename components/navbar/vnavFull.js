@@ -230,7 +230,7 @@ return (
                     <Accordion.Collapse eventKey="Teacher" className="colornav">
                     <Card.Body className="m-0 p-0">  
                     <Nav.Item  className="m-0 p-0">
-                            <Link as="/staff/AllStaffs" href="/staff/AllStaffs" >
+                            <Link as="/Staff/AllStaffs" href="/Staff/AllStaffs" >
                                 <a className="d-block w-80 h-100 pl-5 pr-3 p-2 pixel15  p-2 white" >
                                     <i className="text-dark p-2">&#x25C8;</i>
                                         All Teachers 
