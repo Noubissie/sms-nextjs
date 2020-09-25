@@ -80,36 +80,53 @@ let studentAPI = async (req,res)=>{
     }
     
     if(req.method == "GET"){
-        let AdmissionID = req.query.AdmissionID
-        
-        console.log("res::",req.query)
-        const oneStudent = await prisma.studentProfile.findOne({
-            where:{
-                AdmissionID: AdmissionID
-            },
-            include:{
-                Gender:true,
-                Section:true
+        let {query} = req 
+        let AdmissionID = query.AdmissionID
+        console.log("query::",query)
+
+        if(AdmissionID){
+            console.log("res::",req.query)
+            const oneStudent = await prisma.studentProfile.findOne({
+                where:{
+                    AdmissionID: AdmissionID
+                },
+                include:{
+                    Gender:true,
+                    Section:true
+                }
+            })
+            // console.log(oneStudent) +oneStudent.studentPicture 
+            if(oneStudent){
+                const imagePath = path.join(process.cwd(),"public",oneStudent.studentPicture)
+                if(fs.existsSync(imagePath)){
+                    let studentImage = fs.readFileSync(imagePath, 'base64')
+                    return res.json({oneStudent,studentImage})
+                }
             }
-        })
-        // console.log(oneStudent) +oneStudent.studentPicture 
-        if(oneStudent){
-            const imagePath = path.join(process.cwd(),"public",oneStudent.studentPicture)
-            if(fs.existsSync(imagePath)){
-                let studentImage = fs.readFileSync(imagePath, 'base64')
-                return res.json({oneStudent,studentImage})
+            else if(!oneStudent){
+                res.json(null)
             }
         }
+        else if(query.AllstudentInSChool){
+            let AllStudent = await prisma.studentProfile.findMany({
+                include:{
+                    Gender:true,
+                    Section:true
+                }
+            })
+            return res.json(AllStudent)
+        }
         
+        res.status(404).end()
         // console.log("pathh::",path.join(process.cwd(),"public/uploads/Student/images/GO10_photo.jpeg"))
         
         // console.log("error::")
-        else if(!oneStudent){
-            res.json(null)
-        }
+        
         
         
     }
+
+
     if(req.method == "PUT"){
         let data  = JSON.parse(req.body)
         const imagedata = data.imageEditValue

@@ -106,7 +106,7 @@ class MyApp extends App {
               <ThemeProvider theme={theme}>
                   <CssBaseline />
                   {/* <SWRConfig value={{fetcher:this.fetcher,initialData: 0}}> */}
-                  <SWRConfig value={{fetcher:this.fetcher,initialData:undefined,refreshInterval:1000}}>
+                  <SWRConfig value={{fetcher:this.fetcher,initialData:undefined,refreshInterval:3000}}>
                       <Component { ...pageProps } />
                   </SWRConfig>
               </ThemeProvider>

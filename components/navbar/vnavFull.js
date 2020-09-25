@@ -198,7 +198,6 @@ return (
                                 <a  className="d-block w-80 h-100 pl-5 pr-3 p-2 pixel15  p-2 white" >
                                     <i className="text-dark p-2">&#x25C8;</i>
                                         Student Details 
-                                    
                                 </a>
                             </Link>
                         </Nav.Item>
@@ -231,7 +230,7 @@ return (
                     <Accordion.Collapse eventKey="Teacher" className="colornav">
                     <Card.Body className="m-0 p-0">  
                     <Nav.Item  className="m-0 p-0">
-                            <Link as="/index" href="/index" >
+                            <Link as="/staff/AllStaffs" href="/staff/AllStaffs" >
                                 <a className="d-block w-80 h-100 pl-5 pr-3 p-2 pixel15  p-2 white" >
                                     <i className="text-dark p-2">&#x25C8;</i>
                                         All Teachers 
@@ -240,7 +239,7 @@ return (
                             </Link>
                         </Nav.Item>
                         <Nav.Item  className="m-0 p-0">
-                            <Link as="/index" href="/index" >
+                            <Link as="/staff/staffDetails" href="/staff/staffDetails" >
                                 <a className="d-block w-80 h-100 pl-5 pr-3 p-2 pixel15  p-2 white" >
                                     <i className="text-dark p-2">&#x25C8;</i>
                                         Teachers Details
@@ -249,10 +248,10 @@ return (
                             </Link>
                         </Nav.Item>
                         <Nav.Item  className="m-0 p-0">
-                            <Link as="/index" href="/index" >
+                            <Link as="/Staff/staffForm" href="/Staff/staffForm" >
                                 <a className="d-block w-80 h-100 pl-5 pr-3 p-2 pixel15  p-2 white" >
                                     <i className="text-dark p-2">&#x25C8;</i>
-                                        Add Teacher 
+                                        Add staff 
                                     
                                 </a>
                             </Link>

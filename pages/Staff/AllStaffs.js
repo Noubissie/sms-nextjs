@@ -153,7 +153,7 @@ let StudentTable  = ()=>{
 export async function getStaticProps(){
     return{
         props:{
-            
+
         }
     }
 }

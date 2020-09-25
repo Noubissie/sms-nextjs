@@ -2502,7 +2502,7 @@ let StudentDetails =  ()=>{
 export async function getStaticPaths(context){
 
     return{
-        paths:[{params:{studentDetails:"studentDetails"}}],
+        paths:[{params:{studentDetails:"staffDetails"}}],
         fallback:false
     }
 }
