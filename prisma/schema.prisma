@@ -30,8 +30,8 @@ model ClassSubject {
 }
 
 model Gender {
-  id             Int              @id
-  gender         String?
+  id             Int              @id @default(autoincrement())
+  gender         String           @unique
   ParentProfile  ParentProfile[]
   StaffProfile   StaffProfile[]
   StudentProfile StudentProfile[]
@@ -53,51 +53,67 @@ model ParentProfile {
   @@index([parentTitle], name: "parentTitle")
 }
 
-model Position {
-  id       Int     @id
-  position String?
-}
-
 model Section {
-  id_            Int              @id
-  section        String           @unique
-  languages      String?
-  Classes        Classes[]
-  StudentProfile StudentProfile[]
-  Subjects       Subjects[]
+  id_       Int        @id
+  section   String     @unique
+  languages String?
+  Classes   Classes[]
+  Subjects  Subjects[]
 }
 
 model StaffProfile {
-  id               Int       @default(autoincrement()) @id
-  firstname        String?
-  lastname         String?
-  staffTitle       Int
-  dateofbirth      DateTime?
-  dateOfAssumption DateTime  @default(now())
-  age              Int
-  gender           Int
-  email            String?   @unique
-  phoneNumber      String?
-  imagepath        String
-  Gender           Gender    @relation(fields: [gender], references: [id])
-  Title            Title     @relation(fields: [staffTitle], references: [id])
+  id                      Int           @id @default(autoincrement())
+  firstname               String?
+  lastname                String?
+  staffTitle              Int
+  gradeID                 Int
+  matricle                String?       @unique
+  staffID                 String        @unique
+  formerPost              String?
+  locationOfFomerPost     String?
+  decisionNo              String?
+  decisionDate            DateTime?
+  diploma                 String?
+  speciality              Int
+  dateofbirth             DateTime?
+  dateOfAssumption        DateTime      @default(now())
+  gender                  Int
+  email                   String?       @unique
+  phoneNumber             String?
+  imagepath               String
+  shortbiography          String
+  teacherAddress          String?
+  religion                String
+  bloodgroup              String
+  positionID              Int
+  emergencyContactName    String?
+  emergencyContactPhone   String?
+  EcontactOccupation      String?
+  emergencyContactEmail   String?
+  emergencyContactAddress String?
+  Gender                  Gender        @relation(fields: [gender], references: [id])
+  staffgrade              staffgrade    @relation(fields: [gradeID], references: [id])
+  staffPosition           staffPosition @relation(fields: [positionID], references: [id])
+  Subjects                Subjects      @relation(fields: [speciality], references: [id])
+  Title                   Title         @relation(fields: [staffTitle], references: [id])
 
   @@index([gender], name: "gender")
+  @@index([gradeID], name: "gradeID")
+  @@index([positionID], name: "positionID")
+  @@index([speciality], name: "speciality")
   @@index([staffTitle], name: "staffTitle")
 }
 
 model StudentProfile {
-  id               Int       @default(autoincrement()) @id
+  id               Int       @id @default(autoincrement())
   familyname       String
   givenname        String
   dateofbirth      DateTime?
   gender           Int
   dateOfEnrollment DateTime  @default(now())
-  age              Int
   religion         String
   bloodgroup       String
   email            String    @unique
-  sectionid        Int
   AdmissionID      String    @unique
   phonenumber      String?
   StudentAddress   String?
@@ -112,10 +128,8 @@ model StudentProfile {
   MotherAddress    String?
   MotherContact    String?
   Gender           Gender    @relation(fields: [gender], references: [id])
-  Section          Section   @relation(fields: [sectionid], references: [id_])
 
   @@index([gender], name: "gender")
-  @@index([sectionid], name: "sectionid")
 }
 
 model Subjects {
@@ -124,13 +138,26 @@ model Subjects {
   sectionId    Int?
   Section      Section?       @relation(fields: [sectionId], references: [id_])
   ClassSubject ClassSubject[]
+  StaffProfile StaffProfile[]
 
   @@index([sectionId], name: "sectionId")
 }
 
 model Title {
-  id            Int             @id
-  title         String?
+  id            Int             @id @default(autoincrement())
+  title         String          @unique
   ParentProfile ParentProfile[]
   StaffProfile  StaffProfile[]
+}
+
+model staffgrade {
+  id           Int            @id @default(autoincrement())
+  grade        String         @unique
+  StaffProfile StaffProfile[]
+}
+
+model staffPosition {
+  id           Int            @id @default(autoincrement())
+  position     String         @unique
+  StaffProfile StaffProfile[]
 }

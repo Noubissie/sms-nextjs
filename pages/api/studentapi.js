@@ -47,15 +47,15 @@ let studentAPI = async (req,res)=>{
                             id: Number(values.Gender.id)
                         }
                     },
-                    age :Age(values.DateOfBirth),
+                    // age :Age(values.DateOfBirth),
                     religion :values.Religion.doctrine,
                     bloodgroup : values.BloodGroup.group,
                     email : values.eMail,
-                    Section:{
-                        connect:{
-                            id_: Number(values.section.id_)
-                        }
-                    },
+                    // Section:{
+                    //     connect:{
+                    //         id_: Number(values.section.id_)
+                    //     }
+                    // },
                     AdmissionID  : values.AdmissionID,
                     phonenumber  : values.Phone,
                     shortbiography: values.shortBio,
@@ -92,12 +92,12 @@ let studentAPI = async (req,res)=>{
                 },
                 include:{
                     Gender:true,
-                    Section:true
+                    // Section:true
                 }
             })
             // console.log(oneStudent) +oneStudent.studentPicture 
             if(oneStudent){
-                const imagePath = path.join(process.cwd(),"public",oneStudent.studentPicture)
+                const imagePath = path.join(process.cwd(),oneStudent.studentPicture)
                 if(fs.existsSync(imagePath)){
                     let studentImage = fs.readFileSync(imagePath, 'base64')
                     return res.json({oneStudent,studentImage})
@@ -111,7 +111,7 @@ let studentAPI = async (req,res)=>{
             let AllStudent = await prisma.studentProfile.findMany({
                 include:{
                     Gender:true,
-                    Section:true
+                    // Section:true
                 }
             })
             return res.json(AllStudent)

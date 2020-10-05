@@ -28,7 +28,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete"
 import Button  from '@material-ui/core/Button';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import GenderDatabase from "../../database/GeneralDatabase"
-import SectionDatabase from "../../database/sectiondatabase"
+// import SectionDatabase from "../../database/sectiondatabase"
 import useSWR from "swr"
 
 import {ValidationSchema, initialValue} from "../../components/studentfile/studentFormschema"
@@ -42,37 +42,26 @@ const BrowserSiteOutput = dynamic(
     ()=>import("../../components/browserSiteOutput").then((mod)=>mod.BrowserSiteOutput),
         {ssr:false})
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     flexGrow: 1,
-//   },
-//   paper: {
-//     padding: theme.spacing(1),
-//     textAlign: 'center',
-//     width:"100%",
-//     color: theme.palette.text.secondary,
-//   },
-// }));
 let initialStateValues = {
     
     imagesizeError:"none",
     imagedataBack:null,
     filename:""
 }
-let  AdmissionForm = ({genderFindAll,sectionFindAll}) => {
+let  AdmissionForm = ({genderFindAll}) => {
 
     
 
     let [state , setstate] = useState(initialStateValues)
-    let {data:sectionGetData, error:sectionGetError} =  useSWR("/api/sectionapi")
-    let {data:genderGetData, error:genderGetError} =  useSWR("/api/generalapi")
-    let sectiondata = (sectionGetData ? sectionGetData.length != 0 && sectionGetData :undefined) || (sectionFindAll.length == 0 ? [{id_:"",section:"", languages:""}]: sectionFindAll)
+    // let {data:sectionGetData, error:sectionGetError} =  useSWR("/api/sectionapi")
+    let {data:genderGetData, error:genderGetError} =  useSWR("/api/generalapi?gender=true")
+    // let sectiondata = (sectionGetData ? sectionGetData.length != 0 && sectionGetData :undefined) || (sectionFindAll.length == 0 ? [{id_:"",section:"", languages:""}]: sectionFindAll)
     let genderdata = (genderGetData ? genderGetData.length != 0 && genderGetData :undefined) || (genderFindAll.length == 0 ? [{id:"",gender:""}]: genderFindAll)
     
     
     // const classes = useStyles();
 
-    let initialValues=initialValue(genderdata,bloodgroupdata,religiondata,sectiondata)
+    let initialValues=initialValue(genderdata,bloodgroupdata,religiondata)
 
 let onsubmit = async (values,submittingProps)=>{
     let data = await fetch("/api/studentapi",{
@@ -395,7 +384,7 @@ let onsubmit = async (values,submittingProps)=>{
                                                     <Field
                                                         error={errors.hasOwnProperty("StudentAddress") && touched.hasOwnProperty("StudentAddress") ? true : false }
                                                         {...getFieldProps("StudentAddress")}
-                                                        label={errors.hasOwnProperty("StudentAddress") && touched.hasOwnProperty("StudentAddress") ? errors.roll : "StudentAddress" }
+                                                        label={errors.hasOwnProperty("StudentAddress") && touched.hasOwnProperty("StudentAddress") ? errors.StudentAddress : "StudentAddress" }
                                                         value={values.StudentAddress}
                                                         name="StudentAddress"
                                                         id="StudentAddress"
@@ -545,7 +534,7 @@ let onsubmit = async (values,submittingProps)=>{
                                             
                                             </React.Fragment>
                                         <React.Fragment>
-                                        <Grid item xs={12} sm={6} >
+                                        {/* <Grid item xs={12} sm={6} >
                                             <Field
                                                             
                                                 component={Autocomplete}
@@ -595,7 +584,7 @@ let onsubmit = async (values,submittingProps)=>{
                                                             );
                                                             }}
                                                         />
-                                                    </Grid>
+                                                    </Grid> */}
                                         <Grid item xs={12} sm={6}  >
                                                     
                                                     <Field
@@ -888,13 +877,13 @@ let onsubmit = async (values,submittingProps)=>{
 }
 export async function getStaticProps(){
     let Gender = new GenderDatabase()
-    let section = new SectionDatabase()
+    // let section = new SectionDatabase()
     let genderFindAll = await Gender.getGender()
-    let sectionFindAll = await section.getSection()
+    // let sectionFindAll = await section.getSection()
     return{
         props:{
             genderFindAll,
-            sectionFindAll
+            // sectionFindAll
         }
     }
 }

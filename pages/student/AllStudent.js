@@ -54,7 +54,7 @@ let StudentTable  = ()=>{
         {header:"Religion"},
         {header:"Blood Group"},
         {header:"Email"},
-        {header:"Section"},
+        // {header:"Section"},
         {header:"PhoneNumber"},
         // {header:"Student Address"},
         // {header:"short biography"},
@@ -128,11 +128,11 @@ let StudentTable  = ()=>{
                                                     <div>{new Date(data.dateOfEnrollment).toLocaleDateString()}</div>
                                                     <div>{new Date(data.dateOfEnrollment).toLocaleTimeString()}</div>
                                                 </TableCell>
-                                                <TableCell>{data.age}</TableCell>
+                                                <TableCell>{new Date().getFullYear() - new Date(data.dateofbirth).getFullYear() }</TableCell>
                                                 <TableCell>{data.religion}</TableCell>
                                                 <TableCell>{data.bloodgroup}</TableCell>
                                                 <TableCell>{data.email}</TableCell>
-                                                <TableCell>{data.Section.section}</TableCell>
+                                                {/* <TableCell>{data.Section.section}</TableCell> */}
                                                 <TableCell>{data.phonenumber}</TableCell>
                                                 {/* <TableCell>{data.StudentAddress}</TableCell> */}
                                             </TableRow>

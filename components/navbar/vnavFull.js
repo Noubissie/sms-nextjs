@@ -129,6 +129,52 @@ return (
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
+                    <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder white">
+                        <Accordion.Toggle as="div" className="pixel15  p-2 white" eventKey="GeneralInput">
+                            <i className="pl-3 float-left"><FaBookOpen  size="14"/></i><span className="p-2">General Input</span>
+                            <i className=" float-right"> <FaPlus  size="10" /></i>
+                        </Accordion.Toggle>
+                            <Accordion.Collapse eventKey="GeneralInput" className="colornav">
+                            <Card.Body className="m-0 p-0">  
+                            <Nav.Item  className="m-0 p-0">
+                                    <Link as="/general/titlegenderposition" href="/general/titlegenderposition" >
+                                        <a className="d-block w-80 h-100 pl-5 pr-3 p-2 pixel15  p-2 white" >
+                                            <i className="text-dark p-2">&#x25C8;</i>
+                                                set input 
+                                            
+                                        </a>
+                                    </Link>
+                                </Nav.Item>
+                                <Nav.Item  className="m-0 p-0">
+                                    <Link as="/general/inputSetting" href="/general/inputSetting" >
+                                        <a className="d-block w-80 h-100 pl-5 pr-3 p-2 pixel15  p-2 white" >
+                                            <i className="text-dark p-2">&#x25C8;</i>
+                                                Inputs
+                                            
+                                        </a>
+                                    </Link>
+                                </Nav.Item>
+                                <Nav.Item  className="m-0 p-0">
+                                    <Link as="/subject/subjectClassAssign" href="/subject/subjectClassAssign" >
+                                        <a className="d-block w-80 h-100 pl-5 pr-3 p-2 pixel15  p-2 white" >
+                                            <i className="text-dark p-2">&#x25C8;</i>
+                                                Assign Subjects 
+                                            
+                                        </a>
+                                    </Link>
+                                </Nav.Item>
+                                <Nav.Item  className="m-0 p-0">
+                                    <Link as="/subject/subjectClassTable" href="/subject/subjectClassTable" >
+                                        <a className="d-block w-80 h-100 pl-5 pr-3 p-2 pixel15  p-2 white" >
+                                            <i className="text-dark p-2">&#x25C8;</i>
+                                                Subject To Class 
+                                            
+                                        </a>
+                                    </Link>
+                                </Nav.Item>
+                            </Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
 
                 
                 <Card className=" color-nav-menu  mb-1 nobackground  navwidth noborder white">
@@ -239,7 +285,7 @@ return (
                             </Link>
                         </Nav.Item>
                         <Nav.Item  className="m-0 p-0">
-                            <Link as="/staff/staffDetails" href="/staff/staffDetails" >
+                            <Link as="/Staff/staffDetails" href="/Staff/staffDetails" >
                                 <a className="d-block w-80 h-100 pl-5 pr-3 p-2 pixel15  p-2 white" >
                                     <i className="text-dark p-2">&#x25C8;</i>
                                         Teachers Details

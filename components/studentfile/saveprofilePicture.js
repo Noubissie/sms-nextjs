@@ -8,7 +8,7 @@ let saveImage = (baseImage,individualRank,filenamePrefix)=>{
         const uploadPath = process.cwd();
         //path of folder where you want to save the image.
          
-        const localPath = path.join(uploadPath,`public/uploads/${individualRank}/images/`)
+        const localPath = path.join(uploadPath,`uploads/${individualRank}/images/`)
         //Find extension of file
         const ext = baseImage.substring(baseImage.indexOf("/")+1, baseImage.indexOf(";base64"));
         const fileType = baseImage.substring("data:".length,baseImage.indexOf("/"));
@@ -26,7 +26,7 @@ let saveImage = (baseImage,individualRank,filenamePrefix)=>{
             fs.mkdirSync(`${uploadPath}/uploads/`);
         }
         if(!fs.existsSync(`${uploadPath}/uploads/${individualRank}/`)) {
-            fs.mkdirSync(`${uploadPath}/uploads/${individualRank}/`);
+            fs.mkdirSync(`${uploadPath}/uploads/${individualRank}/`)
         }
         if (!fs.existsSync(localPath)) {
             fs.mkdirSync(localPath);

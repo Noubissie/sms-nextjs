@@ -14,60 +14,48 @@ import dynamic from "next/dynamic"
 import Link from "next/link"
 const BrowserSiteOutput = dynamic(
     ()=>import("../../components/browserSiteOutput").then((mod)=>mod.BrowserSiteOutput),
-        {ssr:false})
+        {ssr:false}
+        )
 
-let StudentTable  = ()=>{
+let StaffTable  = ()=>{
 
-    let {data:AllStudents, error:AllStudentsError} = useSWR("/api/studentapi?AllstudentInSChool=true")
+    let {data:AllStaff, error:AllStudentsError} = useSWR("/api/staffapi?AllstaffInSChool=true")
      
     
         
     let handleRefresh = async ()=>{
-        let [AllStudents, setStudentState] = useState(undefined)
-        let data = await fetch("/api/studentapi?AllstudentInSChool=true")
+        let [AllStaff, setStudentState] = useState(undefined)
+        let data = await fetch("/api/staffapi?AllstaffInSChool=true")
         let responces = await data.json()
         setStudentState(responces)
-        
     }
         
-    //     fetch("/api/studentapi?AllstudentInSChool=true",{
+    //     fetch("/api/staffapi?AllstaffInSChool=true",{
     //                 method:"GET"
-    //             }).then((data)=>data.json()).then((student)=>{
-    //                 AllStudents = student
-    //                 console.log("data daata::",student)
+    //             }).then((data)=>data.json()).then((Staff)=>{
+    //                 AllStaff = Staff
+    //                 console.log("data daata::",Staff)
     //             })
             
        
     //     // // AllStudentsError = result.error
-    //     console.log("allStudents:",AllStudents)
-    // },[AllStudents])
+    //     console.log("allStudents:",AllStaff)
+    // },[AllStaff])
 
     let tablehead = [
         {header:"number"},
-        {header:"Admission id"},
+        {header:"staff id"},
         {header:"Family Name"},
         {header:"Given Name"},
-        {header:"DOB"},
+        {header:"speciality"},
         {header:"Gender"},
-        {header:"Date of Enrollment"},
-        {header:"Age"},
-        {header:"Religion"},
+        {header:"staffgrade"},
+        {header:"diploma"},
+        {header:"dateOfAssumption"},
         {header:"Blood Group"},
-        {header:"Email"},
-        {header:"Section"},
-        {header:"PhoneNumber"},
-        // {header:"Student Address"},
-        // {header:"short biography"},
-        // {header:"student Picture"},
-        // {header:"Father Name"},
-        // {header:"Father Occupation"},
-        // {header:"Father Address"},
-        // {header:"Father Contact"},
-        // {header:"Mother Name"},
-        // {header:"Mother Name"},
-        // {header:"Mother Occupation"},
-        // {header:"Mother Address"},
-        // {header:"Mother Contact"}
+        {header:"grade"},
+        {header:"matricle"},
+        {header:"PhoneNumber"}
 
     ]
 
@@ -95,45 +83,47 @@ let StudentTable  = ()=>{
                                 </TableHead>
                                 <TableBody>
                                     
-                                    {AllStudents ? AllStudents.map((data,index)=>{
+                                    {AllStaff ? AllStaff.map((data,index)=>{
                                         return(
-                                            <TableRow hover key={data.AdmissionID}>
+                                            <TableRow hover key={data.staffID}>
                                                 <TableCell>
-                                                    <Link as={`/student/studentDetails?AdmissionID=${data.AdmissionID}&&studentToken`} href={`/student/studentDetails?AdmissionID=${data.AdmissionID}&&studentToken`}>
+                                                    <Link as={`/Staff/staffDetails?staffID=${data.staffID}&&staffToken`} href={`/Staff/staffDetails?staffID=${data.staffID}&&staffToken`}>
                                                         <a>
-                                                            {index}
+                                                            {index+1}
                                                         </a>
                                                     </Link>
                                                 </TableCell>
                                                 <TableCell>
-                                                    <Link as={`/student/studentDetails?AdmissionID=${data.AdmissionID}&&studentToken`} href={`/student/studentDetails?AdmissionID=${data.AdmissionID}&&studentToken`}>
+                                                    <Link as={`/Staff/staffDetails?staffID=${data.staffID}&&staffToken`} href={`/Staff/staffDetails?staffID=${data.staffID}&&staffToken`}>
                                                         <a>
-                                                            {data.AdmissionID}
+                                                            {data.staffID}
                                                         </a>
                                                     </Link>
                                                 </TableCell>
                                                 <TableCell>
-                                                <Link as={`/student/studentDetails?AdmissionID=${data.AdmissionID}&&studentToken`} href={`/student/studentDetails?AdmissionID=${data.AdmissionID}&&studentToken`}>
+                                                <Link as={`/Staff/staffDetails?staffID=${data.staffID}&&staffToken`} href={`/Staff/staffDetails?staffID=${data.staffID}&&staffToken`}>
                                                         <a>
-                                                            {data.familyname}
+                                                            {data.lastname}
                                                         </a>
                                                     </Link>
                                                     
                                                 </TableCell>
-                                                <TableCell>{data.givenname}</TableCell>
-                                                <TableCell>{new Date(data.dateofbirth).toLocaleDateString()}</TableCell>
+                                                <TableCell>{data.firstname}</TableCell>
+                                                <TableCell>{data.Subjects.subject}</TableCell>
                                                 
                                                 <TableCell>{data.Gender.gender}</TableCell>
+                                                <TableCell>{data.staffgrade.grade}</TableCell>
+                                                <TableCell>{data.diploma}</TableCell>
                                                 <TableCell>
-                                                    <div>{new Date(data.dateOfEnrollment).toLocaleDateString()}</div>
-                                                    <div>{new Date(data.dateOfEnrollment).toLocaleTimeString()}</div>
+                                                    <div>{new Date(data.dateOfAssumption).toLocaleDateString()}</div>
+                                                    <div>{new Date(data.dateOfAssumption).toLocaleTimeString()}</div>
                                                 </TableCell>
-                                                <TableCell>{data.age}</TableCell>
-                                                <TableCell>{data.religion}</TableCell>
-                                                <TableCell>{data.bloodgroup}</TableCell>
-                                                <TableCell>{data.email}</TableCell>
-                                                <TableCell>{data.Section.section}</TableCell>
-                                                <TableCell>{data.phonenumber}</TableCell>
+                                                
+                                                
+                                                <TableCell>{/* {data.bloodgroup} */}/</TableCell>
+                                                <TableCell>{data.staffgrade.grade}</TableCell>
+                                                <TableCell>{data.matricle}</TableCell>
+                                                <TableCell>{data.phoneNumber}</TableCell>
                                                 {/* <TableCell>{data.StudentAddress}</TableCell> */}
                                             </TableRow>
                                         )
@@ -157,4 +147,4 @@ export async function getStaticProps(){
         }
     }
 }
-export default StudentTable
+export default StaffTable

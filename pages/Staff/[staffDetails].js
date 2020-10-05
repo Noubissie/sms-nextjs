@@ -22,8 +22,8 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import CloseIcon from '@material-ui/icons/Close';
 import DoneIcon from '@material-ui/icons/Done';
 // import StudentTemplate from "../../components/topdfContainer/studentTemplate"
-import { PDFDownloadLink } from '@react-pdf/renderer';
-import MyDocument from "../../components/topdfContainer/studentTemplate"
+// import { PDFDownloadLink } from '@react-pdf/renderer';
+// import MyDocument from "../../components/topdfContainer/studentTemplate"
 import PrintIcon from '@material-ui/icons/Print';
 
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload'
@@ -31,7 +31,7 @@ import CloudDownloadIcon from '@material-ui/icons/CloudDownload'
 
 
 import TextField from "@material-ui/core/TextField"
-import {Field,Formik,Form,ErrorMessage, FastField} from "formik"
+import {Field,Formik,Form} from "formik"
 // import Styles from "../../components/studentComponent/student.module.css"
 import Input from '@material-ui/core/Input';
 import parse from 'autosuggest-highlight/parse';
@@ -41,19 +41,12 @@ import AddIcon from '@material-ui/icons/Add';
 
 
 import Autocomplete from "@material-ui/lab/Autocomplete"
-// import {errorFieldMessage} from "../../components/error/errorFieldMessage"
-// import GenderDatabase from "../../database/GeneralDatabase"
-// import SectionDatabase from "../../database/sectiondatabase"
-
-
 
 
 
 import {ImageConverter} from "../../components/imageConverter/imageconvert"
 
-import {ValidationSchema, initialValue} from "../../components/studentfile/studentFormschema"
-// import GenderDatabase from "../../database/GeneralDatabase"
-// import SectionDatabase from "../../database/sectiondatabase"
+import {ValidationSchemaTeacher} from "../../components/teacherFile/teacherSchema"
 
 const BrowserSiteOutput = dynamic(
     ()=>import("../../components/browserSiteOutput").then((mod)=>mod.BrowserSiteOutput),
@@ -73,92 +66,123 @@ let initialStateImageValues = {
     filename:""
 }
 let initialEditIcons = {
-
-        studentImageIconEditOff:"none",
+    
+        staffImageIconEditOff:"none",
         FamilyNameIconEditOff:"none",
         GivenNameIconEditOff:"none",
         DateOfBirthIconEditOff:"none",
         GenderIconEditOff: "none",
-        StudentAddressIconEditOff:"none",
+        TeacherAddressIconEditOff:"none",
         BloodGroupIconEditOff:"none",
         ReligionIconEditOff:"none",
         eMailIconEditOff:"none",
-        
-        sectionIconEditOff:"none",
-        AdmissionIDIconEditOff:"none",
-        PhoneIconEditOff:"none",
-        shortBioIconEditOff:"none",
-        // imageholder:state.filename
+        specialityIconEditOff:"none",
 
-        FatherNameIconEditOff:"none",
-        FatherOccupationIconEditOff:"none",
-        FatherAddressIconEditOff:"none",
-        FatherContactIconEditOff:"none",
-        // Mother info
-        MotherNameIconEditOff:"none",
-        MotherOccupationIconEditOff:"none",
-        MotherAddressIconEditOff:"none",
-        MotherContactIconEditOff:"none",
+        // staffIDIconEditOff:oneStaffdata ? oneStaffdata.oneStaff.staffID : "",
+        phoneNumberIconEditOff:"none",
+        shortBioIconEditOff: "none",
+        // imageholder:state.filename
+        GradeIconEditOff:"none",
+        positionIconEditOff:"none",
+        matricleIconEditOff:"none",
+        formerPostIconEditOff:"none",
+        locationOfFomerPostIconEditOff:"none",
+        decisionNoIconEditOff:"none",
+        decisionDateIconEditOff:"none",
+        diplomaIconEditOff:"none",
+        // speciality:"",
+        dateOfAssumptionIconEditOff:"none",
+        // professional address
+        TitleIconEditOff:"none",
+
+        // Emergecy Contact
+        EcontactNameIconEditOff:"none",
+        EcontactOccupationIconEditOff:"none",
+        EcontactAddressIconEditOff:"none",
+        EcontactContactMobileIconEditOff:"none",
+        EContactEmailIconEditOff:"none",
+
 }
 
 let initialDisplay = {
-        studentImageEditon:"inline",
+        // imageholder:state.filename
+        staffImageEditOn:"inline",
         FamilyNameEditOn:"inline",
         GivenNameEditOn:"inline",
         DateOfBirthEditOn:"inline",
         GenderEditOn: "inline",
-        StudentAddressEditOn:"inline",
+        TeacherAddressEditOn:"inline",
         BloodGroupEditOn:"inline",
         ReligionEditOn:"inline",
         eMailEditOn:"inline",
-        
-        sectionEditOn:"inline",
-        AdmissionIDEditOn:"inline",
-        PhoneEditOn:"inline",
-        shortBioEditOn:"inline",
-        // imageholder:state.filename
+        specialityEditOn:"inline",
 
-        FatherNameEditOn:"inline",
-        FatherOccupationEditOn:"inline",
-        FatherAddressEditOn:"inline",
-        FatherContactEditOn:"inline",
-        // Mother info
-        MotherNameEditOn:"inline",
-        MotherOccupationEditOn:"inline",
-        MotherAddressEditOn:"inline",
-        MotherContactEditOn:"inline",
+        // staffIDIconEditOff:oneStaffdata ? oneStaffdata.oneStaff.staffID : "",
+        phoneNumberEditOn:"inline",
+        shortBioEditOn: "inline",
+        // imageholder:state.filename
+        GradeEditOn:"inline",
+        positionEditOn:"inline",
+        matricleEditOn:"inline",
+        formerPostEditOn:"inline",
+        locationOfFomerPostEditOn:"inline",
+        decisionNoEditOn:"inline",
+        decisionDateEditOn:"inline",
+        diplomaIconEditOn:"inline",
+        // speciality:"",
+        dateOfAssumptionEditOn:"inline",
+        // professional address
+        TitleEditOn:"inline",
+
+        // Emergecy Contact
+        EcontactNameEditOn:"inline",
+        EcontactOccupationEditOn:"inline",
+        EcontactAddressEditOn:"inline",
+        EcontactContactMobileEditOn:"inline",
+        EContactEmailEditOn:"inline",
+//      
 // 
-// 
-// 
-        studentImageEditOff:"none",
+        staffImageEditOff:"none",
         FamilyNameEditOff:"none",
         GivenNameEditOff:"none",
         DateOfBirthEditOff:"none",
         GenderEditOff: "none",
-        StudentAddressEditOff:"none",
+        TeacherAddressEditOff:"none",
         BloodGroupEditOff:"none",
         ReligionEditOff:"none",
         eMailEditOff:"none",
-        
-        sectionEditOff:"none",
-        AdmissionIDEditOff:"none",
-        PhoneEditOff:"none",
-        shortBioEditOff:"none",
+        specialityEditOff:"none",
+
+        // staffIDIconEditOff:oneStaffdata ? oneStaffdata.oneStaff.staffID : "",
+        phoneNumberEditOff:"none",
+        shortBioEditOff: "none",
+        // imageholder:state.filename
+        GradeEditOff:"none",
+        positionEditOff:"none",
+        matricleEditOff:"none",
+        formerPostEditOff:"none",
+        locationOfFomerPostEditOff:"none",
+        decisionNoEditOff:"none",
+        decisionDateEditOff:"none",
+        diplomaEditOff:"none",
+        // speciality:"",
+        dateOfAssumptionEditOff:"none",
+        // professional address
+        TitleEditOff:"none",
+
+        // Emergecy Contact
+        EcontactNameEditOff:"none",
+        EcontactOccupationEditOff:"none",
+        EcontactAddressEditOff:"none",
+        EcontactContactMobileEditOff:"none",
+        EContactEmailEditOff:"none",
         // imageholder:state.filename
 
-        FatherNameEditOff:"none",
-        FatherOccupationEditOff:"none",
-        FatherAddressEditOff:"none",
-        FatherContactEditOff:"none",
-        // Mother info
-        MotherNameEditOff:"none",
-        MotherOccupationEditOff:"none",
-        MotherAddressEditOff:"none",
-        MotherContactEditOff:"none",
+        
 }
 
 let n = 0
-let StudentDetails =  ()=>{
+let StaffDetails =  ()=>{
     // n = n+1
     let [stateDownloadIcon,setStateDownloadIcon] = useState(null)
     let [displayState , setDisplayState] = useState(initialDisplay)
@@ -166,103 +190,81 @@ let StudentDetails =  ()=>{
 
     let [state , setstate] = useState(initialStateImageValues)
 
-    let {data:sectionGetData, error:sectionGetError} =  useSWR("/api/sectionapi")
-    let {data:genderGetData, error:genderGetError} =  useSWR("/api/generalapi")
-    let sectiondata = (sectionGetData ? sectionGetData.length != 0 && sectionGetData :undefined) || [{id_:"",section:"", languages:""}]
-    let genderdata = (genderGetData ? genderGetData.length != 0 && genderGetData :undefined) || [{id:"",gender:""}]
+    let {data:titleGetData, error:sectionGetError} =  useSWR("/api/generalapi?title=true")
+    let {data:genderGetData, error:genderGetError} =  useSWR("/api/generalapi?gender=true")
+    let {data:staffGradeGetData, error:staffGradeGetError} = useSWR("/api/generalapi?staffGrade=true")
+    let {data:positionGetData, error:positionGetError} = useSWR("/api/generalapi?position=true")
+    let {data:subjectGetData, error:subjectGetError} =  useSWR("/api/subjectapi")
 
+    let titleData = (titleGetData ? titleGetData.length != 0 && titleGetData :undefined) || [{id:"",title:""}]
+    let genderdata = (genderGetData ? genderGetData.length != 0 && genderGetData :undefined) || [{id:"",gender:""}]
+    let staffGradeData = (staffGradeGetData ? staffGradeGetData.length != 0 && staffGradeGetData :undefined) || [{id:"",grade:""}]
+    let positionData = (positionGetData ? positionGetData.length != 0 && positionGetData :undefined) || [{id:"",position:""}]
+    let specialityData = (subjectGetData ? subjectGetData.length != 0 && subjectGetData :undefined) || [{id:"",subject:"",sectionId:""}]
+    
     // let initialValues=initialValue(genderdata,bloodgroupdata,religiondata,sectiondata)
     
 
     let router = useRouter()
-    console.log("router::",router.query)
+    let {query} = router
     // let [state , setstate] = useState(initialState)
     // // let router = useRouter()
-    // oneStudent = JSON.parse(oneStudent)
+    // oneStaff = JSON.parse(oneStaff)
     // // console.log("router::",router)
-    // console.log("students:::",oneStudent)
-    let {AdmissionID:studentAdmissionID} = router.query
-    // const {data:oneStudentdata, error:onStudentError} = useSWR("/api/studentapi?AdmissionID=GO10&student=GO11")
-    const {data:oneStudentdata, error:onStudentError} = useSWR(`/api/studentapi?AdmissionID=${studentAdmissionID}`)
+    // console.log("students:::",oneStaff)
+    let {staffID:staffID} = router.query
+    // const {data:oneStaffdata, error:onStudentError} = useSWR("/api/studentapi?AdmissionID=GO10&student=GO11")
+    const {data:oneStaffdata, error:oneStaffError} = useSWR(`/api/staffapi?staffID=${staffID}`)
    
      // student=GO11 NOT USEFUL JUST TESTING the end point
     let initialValues={
-        FamilyName:oneStudentdata ? oneStudentdata.oneStudent.familyname:"",
-        GivenName:oneStudentdata ? oneStudentdata.oneStudent.givenname:"",
-        DateOfBirth:oneStudentdata ? oneStudentdata.oneStudent.dateofbirth:"",
-        Gender: genderdata[0],
-        StudentAddress:oneStudentdata ? oneStudentdata.oneStudent.StudentAddress:"",
+        FamilyName:oneStaffdata ? oneStaffdata.oneStaff.lastname:"",
+        GivenName:oneStaffdata ? oneStaffdata.oneStaff.firstname:"",
+        DateOfBirth:oneStaffdata ? new Date(oneStaffdata.oneStaff.dateofbirth).toISOString().slice(0,10):new Date().toISOString().slice(0,10),
+        // DateOfBirth : new Date(),
+        Gender: oneStaffdata ? oneStaffdata.oneStaff.Gender:genderdata[0],
+        TeacherAddress:oneStaffdata ? oneStaffdata.oneStaff.TeacherAddress:"",
+        // BloodGroup:oneStaffdata ? oneStaffdata.oneStaff.bloodgroup:bloodgroupdata[0],
         BloodGroup:bloodgroupdata[0],
+        // Religion:oneStaffdata ? oneStaffdata.oneStaff.religion: religiondata[0],
         Religion:religiondata[0],
-        eMail:oneStudentdata ? oneStudentdata.oneStudent.email:"",
-        
-        section:sectiondata[0],
-        // AdmissionID:"",
-        Phone:oneStudentdata ? oneStudentdata.oneStudent.phonenumber:"",
-        shortBio:oneStudentdata ? oneStudentdata.oneStudent.shortbiography:"",
+        eMail:oneStaffdata ? oneStaffdata.oneStaff.email:"",
+        speciality:oneStaffdata ? oneStaffdata.oneStaff.Subjects:specialityData[0],
+
+        staffID:oneStaffdata ? oneStaffdata.oneStaff.staffID : "",
+        phoneNumber:oneStaffdata ? oneStaffdata.oneStaff.phoneNumber:"",
+        shortBio: oneStaffdata ? oneStaffdata.oneStaff.shortbiography:"",
         // imageholder:state.filename
-    
-        FatherName:oneStudentdata ? oneStudentdata.oneStudent.FatherName:"",
-        FatherOccupation:oneStudentdata ? oneStudentdata.oneStudent.FatherOccupation:"",
-        FatherAddress:oneStudentdata ? oneStudentdata.oneStudent.FatherAddress:"",
-        FatherContact:oneStudentdata ? oneStudentdata.oneStudent.FatherContact:"",
-        // Mother info
-        MotherName:oneStudentdata ? oneStudentdata.oneStudent.MotherName:"",
-        MotherOccupation:oneStudentdata ? oneStudentdata.oneStudent.MotherOccupation:"",
-        MotherAddress:oneStudentdata ? oneStudentdata.oneStudent.MotherAddress:"",
-        MotherContact:oneStudentdata ? oneStudentdata.oneStudent.MotherContact:"",
+        Grade:oneStaffdata ? oneStaffdata.oneStaff.staffgrade:staffGradeData[0],
+        position:oneStaffdata ? oneStaffdata.oneStaff.staffPosition : positionData[0],
+        matricle:oneStaffdata ? oneStaffdata.oneStaff.matricle:"",
+        formerPost:oneStaffdata ? oneStaffdata.oneStaff.formerPost:"",
+        locationOfFomerPost:oneStaffdata ? oneStaffdata.oneStaff.locationOfFomerPost:"",
+        decisionNo:oneStaffdata ? oneStaffdata.oneStaff.decisionNo:"",
+        decisionDate:oneStaffdata ? new Date(oneStaffdata.oneStaff.decisionDate).toISOString().slice(0,10):new Date().toISOString().slice(0,10),
+        // decisionDate:"",
+        diploma:oneStaffdata ? oneStaffdata.oneStaff.diploma:"",
+        // speciality:"",
+        dateOfAssumption:oneStaffdata ? new Date(oneStaffdata.oneStaff.dateOfAssumption).toISOString().slice(0,10):new Date().toISOString().slice(0,10),
+        // professional address
+        Title:oneStaffdata ? oneStaffdata.oneStaff.Title:titleData[0],
+
+        // Emergecy Contact
+        EcontactName:oneStaffdata ? oneStaffdata.oneStaff.emergencyContactName:"",
+        EcontactOccupation:oneStaffdata ? oneStaffdata.oneStaff.EcontactOccupation:"",
+        EcontactAddress:oneStaffdata ? oneStaffdata.oneStaff.emergencyContactAddress:"",
+        EcontactContactMobile:oneStaffdata ? oneStaffdata.oneStaff.emergencyContactPhone:"",
+        EContactEmail:oneStaffdata ? oneStaffdata.oneStaff.emergencyContactEmail:"",
         }
-    // const {data:oneStudentdata, error:onStudentError} = useSWR("public/uploads/Student/images/GO10_photo.jpeg")
-    // console.log("check",oneStudentdata)
-    console.log("onestudent",oneStudentdata)
+    // const {data:oneStaffdata, error:onStudentError} = useSWR("public/uploads/Student/images/GO10_photo.jpeg")
+    // console.log("check",oneStaffdata)
+    console.log("onestudent",oneStaffdata)
     useEffect(()=>{
         setStateDownloadIcon(true)
       },[])
     
-        // console.log("type::",typeof(oneStudentdata.studentImage))
-        // let responce =  URL.createObjectURL(oneStudentdata.studentImage)
-        // console.log(responce)
-        // const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
-        //     const byteCharacters = atob(b64Data);
-        //     const byteArrays = [];
-
-        //     for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-        //         const slice = byteCharacters.slice(offset, offset + sliceSize);
-
-        //         const byteNumbers = new Array(slice.length);
-        //         for (let i = 0; i < slice.length; i++) {
-        //         byteNumbers[i] = slice.charCodeAt(i);
-        //         }
-
-        //         const byteArray = new Uint8Array(byteNumbers);
-        //         byteArrays.push(byteArray);
-        //     }
-                
-        //     const blob = new Blob(byteArrays, {type: contentType});
-        //     return blob;
-        //     }
-
-        //     const contentType = 'image/png';
-
-        //     const b64Data = oneStudentdata.studentImage
-
-        //     const blob = b64toBlob(b64Data, contentType);
-        //     const blobUrl = URL.createObjectURL(blob);
-        //      setstate((prev)=>({
-        //         stuImage: blobUrl
-        //      }))
-        let imageState = ImageConverter(oneStudentdata)
+        let imageState = ImageConverter(oneStaffdata)
        
-        
-        
-    // if(oneStudent){
-        // const imageURL = new Image()    
-        // imageURL.src = oneStudent.studentImage
-        // document.body.appendChild(imageURL)
-        // console.log(oneStudent.studentImage)
-        // const imageURL = reader.readAsBinaryString(oneStudent.studentImage)
-        
-    // }
     
     
     return (
@@ -270,7 +272,6 @@ let StudentDetails =  ()=>{
         <Layout>
             
             <div>
-                {/* <Button onClick={pdfConverter}>help</Button> */}
                 
                 <div className="mt-4 mb-4 ml-3">
                     <h3 className="whitesnow mr-3 p-1 ">Student Details</h3>
@@ -278,7 +279,7 @@ let StudentDetails =  ()=>{
                 </div>
                 <Formik
                     initialValues={initialValues}
-                    validationSchema={ValidationSchema}
+                    validationSchema={ValidationSchemaTeacher}
                     enableReinitialize
                 >
                     {
@@ -304,25 +305,25 @@ let StudentDetails =  ()=>{
                                             <ul className="listStyle">
                                                 {/* <li className="p-2">
                                                     {stateDownloadIcon ? <PDFDownloadLink   document={<MyDocument 
-                                                            help={oneStudentdata ? oneStudentdata.oneStudent.familyname : null}
+                                                            help={oneStaffdata ? oneStaffdata.oneStaff.familyname : null}
                                                         />} fileName="studentID.pdf">
                                                         {({ blob, url, loading, error }) => (loading ? '' : <CloudDownloadIcon />)}
                                                     </PDFDownloadLink>: null}
                                                 </li> */}
-                                                <li className="p-2">{stateDownloadIcon?<a href="#"  download target="_blank" rel="noopener noreferrer"> <PrintIcon /> </a>:null}</li>
+                                                <li className="p-2">{stateDownloadIcon ? <a href="#"  download target="_blank" rel="noopener noreferrer"> <PrintIcon /> </a>:null}</li>
                                             </ul>
                                             
                                         </div>
                                         <CardHeader
-                                            
+                                        
                                             className="p-4 largeSize"
                                             avatar = {
                                                 <Avatar className="bg-info">
-                                                    {` ${oneStudentdata ?  oneStudentdata.oneStudent.givenname.substring(0,1).toUpperCase() : null}`}
+                                                    {` ${oneStaffdata ?  oneStaffdata.oneStaff.firstname.substring(0,1).toUpperCase() : null}`}
                                                 </Avatar>
                                             }
                                             
-                                            title = {`${oneStudentdata ? "ABOUT".concat(" ",oneStudentdata.oneStudent.familyname," ",oneStudentdata.oneStudent.givenname).toUpperCase() : null}`}
+                                            title = {`${oneStaffdata ? "ABOUT ".concat(" ",oneStaffdata.oneStaff.Title.title, " ",oneStaffdata.oneStaff.lastname," ",oneStaffdata.oneStaff.firstname).toUpperCase() : null}`}
                                             subheader={`${new Date().toLocaleDateString()}`}
                                         />
                                         
@@ -331,30 +332,30 @@ let StudentDetails =  ()=>{
 
                                                 <Grid item xs={12}  md={4}  className="text-center" >
                                                 
-                                                <div style={{display:displayState.studentImageEditon}} className="centralize" 
+                                                <div style={{display:displayState.staffImageEditOn}} className="centralize" 
                                                     
                                                     onMouseOver={
                                                         ()=>setDisplayEditIconState((prev)=>({
                                                                 ...prev,
-                                                                studentImageIconEditOff:"inline"
+                                                                staffImageIconEditOff:"inline"
                                                                 
                                                             }))
                                                         }
                                                     onMouseOut={
                                                         ()=>setDisplayEditIconState((prev)=>({
                                                             ...prev,
-                                                            studentImageIconEditOff:"none"
+                                                            staffImageIconEditOff:"none"
                                                             
                                                         }))
                                                     }    
                                                         > 
-                                                    <div style={{display:displayEditIconState.studentImageIconEditOff}} >
+                                                    <div style={{display:displayEditIconState.staffImageIconEditOff}} >
 
                                                         <Button  onClick={()=>{
                                                                 setDisplayState((prev)=>({
                                                                     ...prev,
-                                                                    studentImageEditOff:"inline",
-                                                                    studentImageEditon:"none"
+                                                                    staffImageEditOff:"inline",
+                                                                    staffImageEditOn:"none"
                                                                 }))
                                                             }}><EditIcon />
                                                         </Button>
@@ -365,7 +366,7 @@ let StudentDetails =  ()=>{
                                                     </div>
                                                     <img  src={imageState} className="studentImage"/>
                                                 </div>
-                                                <div style={{display:displayState.studentImageEditOff}}>
+                                                <div style={{display:displayState.staffImageEditOff}}>
                                                     <div>  
                                                         <label htmlFor="image" className="bg-info">
                                                             
@@ -375,24 +376,24 @@ let StudentDetails =  ()=>{
                                                         <Button onClick={()=>{
                                                                 setDisplayState((prev)=>({
                                                                     ...prev,
-                                                                    studentImageEditOff:"none",
-                                                                    studentImageEditon:"inline"
+                                                                    staffImageEditOff:"none",
+                                                                    staffImageEditOn:"inline"
                                                                 }))
                                                             }}><CloseIcon />
                                                         </Button>
                                                         <Button onClick={async ()=>{
-                                                                let studentImageEdit = await fetch("/api/studentapi",{
+                                                                let staffImageEdit = await fetch("/api/staffapi",{
                                                                     body: JSON.stringify(
                                                                         {
-                                                                            studentID: "GO10", // THIS VALUE WILL BE entered with cookies
+                                                                            staffID: staffID, // THIS VALUE WILL BE entered with cookies
                                                                             imageEditValue:state.imagedataBack
                                                                         }),
                                                                     method:"PUT"
                                                                 })
                                                                 setDisplayState((prev)=>({
                                                                     ...prev,
-                                                                    studentImageEditOff:"none",
-                                                                    studentImageEditon:"inline"
+                                                                    staffImageEditOff:"none",
+                                                                    staffImageEditOn:"inline"
                                                                 }))
                                                             }}><DoneIcon />         
                                                         </Button>
@@ -410,7 +411,7 @@ let StudentDetails =  ()=>{
                                                             className="w-100 bg-light text-danger"
                                                             // {...getFieldProps("imageholder")}
                                                             value={state.filename} />
-                                                        <h4 style={{display:state.imagesizeError,color:"red"}} >Image size less than 1MB</h4>
+                                                        <div style={{display:state.imagesizeError,color:"red"}} className="text-center">Image size less than 1MB</div>
                                                         <Field
                                                             width="200cm"
                                                             height="200cm"
@@ -430,11 +431,6 @@ let StudentDetails =  ()=>{
                                                     </div> 
                                                     
                                                     <Field
-                                                        // error={errors.hasOwnProperty("image") && touched.hasOwnProperty("image") ? true : false }
-                                                        // {...getFieldProps("image")}
-                                                        // label={errors.hasOwnProperty("image") && touched.hasOwnProperty("image") ? errors.DateOfBirth : "image" }
-                                                        // value={values.image}
-                                                        // name="image"
                                                         id="image"
                                                         component={Input}
                                                         className="w-100 d-none"
@@ -475,9 +471,9 @@ let StudentDetails =  ()=>{
                                                                             setstate((prev)=>({
                                                                                 ...prev,
                                                                                 imagedataBack:event.target.result,
-                                                                                filename:file.name
+                                                                                filename:file.name,
+                                                                                imagesizeError:"none"
                                                                             }))
-                                                                            console.log("filename::",state.filename)
                                                                             
                                                                         });
                                                                         reader.readAsDataURL(file)
@@ -485,10 +481,6 @@ let StudentDetails =  ()=>{
                                                                         formData.append("file",file)
                                                                     
                                                             }
-                                                            // setFieldValue("image",fileList[0].name)
-                                                            
-                                                            
-                                                            // handleChange(event)
                                                         }}
                                                         />
                                                         
@@ -496,12 +488,6 @@ let StudentDetails =  ()=>{
                                                       
                                                     </div>     
                                                 </Grid>
-                                                {/* <Grid item xs={12}  md={4} className="bg-info text-center" style={{display:displayState.studentImageEditOff}}> */}
-                                                    {/* <FastField */}
-                                                    
-
-                                                        
-                                                {/* </Grid> */}
                                                 
                                         
                                             <Grid item container  xs={12} md={8} spacing={0}>
@@ -509,9 +495,11 @@ let StudentDetails =  ()=>{
                                                 <TableContainer >
                                                     <Table size="small" stickyHeader={true} padding="default" >
                                                         <TableHead>
+                                                        </TableHead>
+                                                        <TableBody>
                                                             <TableRow hover role="checkbox" tabIndex={-1} >
                                                                 <TableCell colSpan="2"className="bg-info" >
-                                                                    <div className="bolder">Student Information</div>
+                                                                    <div className="bolder">Staff Personal Information</div>
                                                                 </TableCell>
                                                             </TableRow>
                                                             <TableRow hover role="checkbox" tabIndex={-1} >
@@ -536,7 +524,7 @@ let StudentDetails =  ()=>{
                                                                         </div>
                                                                             <span style={{display:displayState.shortBioEditOn}}>
                                                                                 <span >
-                                                                                    {oneStudentdata ? oneStudentdata.oneStudent.shortbiography : null}
+                                                                                    {oneStaffdata ? oneStaffdata.oneStaff.shortbiography : null}
                                                                                 </span>
                                                                                 <span style={{display:displayEditIconState.shortBioIconEditOff}}>
 
@@ -579,10 +567,10 @@ let StudentDetails =  ()=>{
                                                                                 }}><CloseIcon />
                                                                             </Button>
                                                                             <Button onClick={async ()=>{
-                                                                                    let studentbiography = await fetch("/api/studentapi",{
+                                                                                    let studentbiography = await fetch("/api/staffapi",{
                                                                                         body: JSON.stringify(
                                                                                             {
-                                                                                                studentID: "GO10", // THIS VALUE WILL BE entered with cookies
+                                                                                                staffID: staffID, // THIS VALUE WILL BE entered with cookies
                                                                                                 shortbiography:values.shortBio
                                                                                             }),
                                                                                         method:"PUT"
@@ -600,6 +588,132 @@ let StudentDetails =  ()=>{
                                                                 </TableCell>
                                                                 
                                                             </TableRow>
+                                                            
+                                                            <TableRow hover>
+                                                                <TableCell  >
+                                                                    Title
+                                                                </TableCell>
+                                                                <TableCell  >
+                                                                <div 
+                                                                        onMouseOver={
+                                                                            ()=>setDisplayEditIconState((prev)=>({
+                                                                                    ...prev,
+                                                                                    TitleIconEditOff:"inline"
+                                                                                    
+                                                                                }))
+                                                                            }
+                                                                        onMouseOut={
+                                                                            ()=>setDisplayEditIconState((prev)=>({
+                                                                                ...prev,
+                                                                                TitleIconEditOff:"none"
+                                                                                
+                                                                            }))
+                                                                    } >
+                                                                        
+                                                                            <span style={{display:displayState.TitleEditOn}}>
+                                                                                <span >
+                                                                                    <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.Title.title : null}</span>
+                                                                                </span>
+                                                                                <span style={{display:displayEditIconState.TitleIconEditOff}}>
+
+                                                                                    <Button  onClick={()=>{
+                                                                                            setDisplayState((prev)=>({
+                                                                                                ...prev,
+                                                                                                
+                                                                                                TitleEditOff: "inline",
+                                                                                                TitleEditOn:"none"
+                                                                                            }))
+                                                                                        }}><EditIcon />
+                                                                                    </Button>
+
+                                                                                    <Button>
+                                                                                        <DeleteForeverIcon />
+                                                                                    </Button>
+                                                                                </span>
+                                                                        
+                                                                                
+                                                                            </span>
+                                                                        <span style={{display:displayState.TitleEditOff}}>
+                                                                            <Field
+                                                            
+                                                                                    component={Autocomplete}
+                                                                                    // {...getFieldProps("Gender")}
+                                                                                    value={values.Title}
+                                                                                    defaultValue={values.Title}
+                                                                                    onBlur={handleBlur}
+                                                                                    onChange={(e,selectedOption )=>
+                                                                                        {setFieldValue("Title", selectedOption)
+                                                                                        //  setFieldError("Gender",errors.Gender)
+                                                                                            }
+                                                                                    }
+                                                                                    
+                                                                                    // inputValue={values.Gender.title}
+                                                                                    options={titleData}
+                                                                                    name="Title"
+                                                                                    id="Title"
+                                                                                    getOptionSelected = {(option,value)=> option.title == value.title}
+                                                                                    getOptionLabel={option => option.title}
+                                                                                    renderInput={params => (
+                                                                                        <>
+                                                                                        
+                                                                                        <Field 
+                                                                                        component={TextField}
+                                                                                        {...params}
+                                                                                        
+                                                                                        name="Title"
+                                                                                        error={errors.hasOwnProperty("Title") && touched.hasOwnProperty("Title") ? true : false }
+                                                                                        label={errors.hasOwnProperty("Title") && touched.hasOwnProperty("Title") ? errors.Title : "Title" }
+                                                                                        variant="filled"    
+                                                                                        
+                                                                                    />
+                                                                                        </>
+                                                                                    
+                                                                                    )}
+
+                                                                                    renderOption={(option, { inputValue }) => {
+                                                                                    const matches = match(option.title, inputValue);
+                                                                                    const parts = parse(option.title, matches);
+                                                                            
+                                                                                    return (
+                                                                                        <div>
+                                                                                        {parts.map((part, index) => (
+                                                                                            <span key={index} >
+                                                                                            {part.text}
+                                                                                            </span>
+                                                                                        ))}
+                                                                                        </div>
+                                                                                    );
+                                                                                    }}
+                                                                                />
+                                                                            <Button onClick={()=>{
+                                                                                    setDisplayState((prev)=>({
+                                                                                        ...prev,
+                                                                                        TitleEditOff:"none",
+                                                                                        TitleEditOn:"inline"
+                                                                                    }))
+                                                                                }}><CloseIcon />
+                                                                            </Button>
+                                                                            <Button onClick={async ()=>{
+                                                                                    let studentbiography = await fetch("/api/staffapi",{
+                                                                                        body: JSON.stringify(
+                                                                                            {
+                                                                                                staffID: staffID, // THIS VALUE WILL BE entered with cookies
+                                                                                                Title:values.Title
+                                                                                            }),
+                                                                                        method:"PUT"
+                                                                                    })
+                                                                                    setDisplayState((prev)=>({
+                                                                                        ...prev,
+                                                                                        TitleEditOff:"none",
+                                                                                        TitleEditOn:"inline"
+                                                                                    }))
+                                                                                }}><DoneIcon />
+                                                                            </Button>
+                                                                        </span>
+                                                                    </div>
+                                                                </TableCell>
+                                                            </TableRow>
+
                                                             <TableRow>
                                                                 <TableCell>
                                                                     Family Name
@@ -626,7 +740,7 @@ let StudentDetails =  ()=>{
                                                                         
                                                                             <span style={{display:displayState.FamilyNameEditOn}}>
                                                                                 <span >
-                                                                                    <span className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.familyname : null}</span>
+                                                                                    <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.lastname : null}</span>
                                                                                 </span>
                                                                                 <span style={{display:displayEditIconState.FamilyNameIconEditOff}}>
 
@@ -668,10 +782,10 @@ let StudentDetails =  ()=>{
                                                                                 }}><CloseIcon />
                                                                             </Button>
                                                                             <Button onClick={async ()=>{
-                                                                                    let studentbiography = await fetch("/api/studentapi",{
+                                                                                    let studentbiography = await fetch("/api/staffapi",{
                                                                                         body: JSON.stringify(
                                                                                             {
-                                                                                                studentID: "GO10", // THIS VALUE WILL BE entered with cookies
+                                                                                                staffID: staffID, // THIS VALUE WILL BE entered with cookies
                                                                                                 familyname:values.FamilyName
                                                                                             }),
                                                                                         method:"PUT"
@@ -713,7 +827,7 @@ let StudentDetails =  ()=>{
                                                                         
                                                                             <span style={{display:displayState.GivenNameEditOn}}>
                                                                                 <span >
-                                                                                    <span className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.givenname : null}</span>
+                                                                                    <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.firstname : null}</span>
                                                                                 </span>
                                                                                 <span style={{display:displayEditIconState.GivenNameIconEditOff}}>
 
@@ -755,10 +869,10 @@ let StudentDetails =  ()=>{
                                                                                 }}><CloseIcon />
                                                                             </Button>
                                                                             <Button onClick={async ()=>{
-                                                                                    let studentbiography = await fetch("/api/studentapi",{
+                                                                                    let studentbiography = await fetch("/api/staffapi",{
                                                                                         body: JSON.stringify(
                                                                                             {
-                                                                                                studentID: "GO10", // THIS VALUE WILL BE entered with cookies
+                                                                                                staffID: staffID, // THIS VALUE WILL BE entered with cookies
                                                                                                 givenname:values.GivenName
                                                                                             }),
                                                                                         method:"PUT"
@@ -774,91 +888,7 @@ let StudentDetails =  ()=>{
                                                                     </div>
                                                                 </TableCell>
                                                             </TableRow>
-                                                            <TableRow>
-                                                                <TableCell  >
-                                                                    Admision ID
-                                                                </TableCell>
-                                                                <TableCell  >
-                                                                    <span className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.AdmissionID : null}</span>
-                                                                {/* <div 
-                                                                        onMouseOver={
-                                                                            ()=>setDisplayEditIconState((prev)=>({
-                                                                                    ...prev,
-                                                                                    AdmissionIDIconEditOff:"inline"
-                                                                                    
-                                                                                }))
-                                                                            }
-                                                                        onMouseOut={
-                                                                            ()=>setDisplayEditIconState((prev)=>({
-                                                                                ...prev,
-                                                                                AdmissionIDIconEditOff:"none"
-                                                                                
-                                                                            }))
-                                                                    } >
-                                                                        
-                                                                            <span style={{display:displayState.AdmissionIDEditOn}}>
-                                                                                <span >
-                                                                                    <span className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.AdmissionID : null}</span>
-                                                                                </span>
-                                                                                <span style={{display:displayEditIconState.AdmissionIDIconEditOff}}>
-
-                                                                                    <Button  onClick={()=>{
-                                                                                            setDisplayState((prev)=>({
-                                                                                                ...prev,
-                                                                                                
-                                                                                                AdmissionIDEditOff: "inline",
-                                                                                                AdmissionIDEditOn:"none"
-                                                                                            }))
-                                                                                        }}><EditIcon />
-                                                                                    </Button>
-
-                                                                                    <Button>
-                                                                                        <DeleteForeverIcon />
-                                                                                    </Button>
-                                                                                </span>
-                                                                        
-                                                                                
-                                                                            </span>
-                                                                        <span style={{display:displayState.AdmissionIDEditOff}}>
-                                                                            <Field
-                                                                                error={errors.hasOwnProperty("GivenName") && touched.hasOwnProperty("GivenName") ? true : false }
-                                                                                {...getFieldProps("GivenName")}
-                                                                                label={errors.hasOwnProperty("GivenName") && touched.hasOwnProperty("GivenName") ? errors.GivenName : "Given Name" }
-                                                                                value={values.GivenName}
-                                                                                name="GivenName"
-                                                                                id="GivenName"
-                                                                                component={TextField}
-                                                                                className="w-100"
-                                                                                variant="filled"
-                                                                                />
-                                                                            <Button onClick={()=>{
-                                                                                    setDisplayState((prev)=>({
-                                                                                        ...prev,
-                                                                                        AdmissionIDEditOff:"none",
-                                                                                        AdmissionIDEditOn:"inline"
-                                                                                    }))
-                                                                                }}><CloseIcon />
-                                                                            </Button>
-                                                                            <Button onClick={async ()=>{
-                                                                                    let studentbiography = await fetch("/api/studentapi",{
-                                                                                        body: JSON.stringify(
-                                                                                            {
-                                                                                                studentID: "GO10", // THIS VALUE WILL BE entered with cookies
-                                                                                                AdmissionID:values.AdmissionID
-                                                                                            }),
-                                                                                        method:"PUT"
-                                                                                    })
-                                                                                    setDisplayState((prev)=>({
-                                                                                        ...prev,
-                                                                                        AdmissionIDEditOff:"none",
-                                                                                        AdmissionIDEditOn:"inline"
-                                                                                    }))
-                                                                                }}><DoneIcon />
-                                                                            </Button>
-                                                                        </span>
-                                                                    </div>  */}
-                                                                </TableCell>
-                                                            </TableRow>
+                                                            
                                                             <TableRow hover>
                                                                 <TableCell >
                                                                     Date of Birth
@@ -881,9 +911,9 @@ let StudentDetails =  ()=>{
                                                                             }))
                                                                     } >
                                                                         
-                                                                            <span style={{display:displayState.GivenNameEditOn}}>
+                                                                            <span style={{display:displayState.DateOfBirthEditOn}}>
                                                                                 <span >
-                                                                                    <span className="bolder">{oneStudentdata ? new Date(oneStudentdata.oneStudent.dateofbirth).toLocaleDateString() : null}</span>
+                                                                                    <span className="bolder">{oneStaffdata ? new Date(oneStaffdata.oneStaff.dateofbirth).toLocaleDateString() : null}</span>
                                                                                 </span>
                                                                                 <span style={{display:displayEditIconState.DateOfBirthIconEditOff}}>
 
@@ -929,10 +959,10 @@ let StudentDetails =  ()=>{
                                                                                 }}><CloseIcon />
                                                                             </Button>
                                                                             <Button onClick={async ()=>{
-                                                                                    let studentbiography = await fetch("/api/studentapi",{
+                                                                                    let studentbiography = await fetch("/api/staffapi",{
                                                                                         body: JSON.stringify(
                                                                                             {
-                                                                                                studentID: "GO10", // THIS VALUE WILL BE entered with cookies
+                                                                                                staffID: staffID, // THIS VALUE WILL BE entered with cookies
                                                                                                 dateofbirth:values.DateOfBirth
                                                                                             }),
                                                                                         method:"PUT"
@@ -954,7 +984,7 @@ let StudentDetails =  ()=>{
                                                                     Age
                                                                 </TableCell>
                                                                 <TableCell>
-                                                                    <div className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.age : null}</div>
+                                                                    <div className="bolder">{oneStaffdata ? new Date().getFullYear() - new Date(oneStaffdata.oneStaff.dateofbirth).getFullYear() : null}</div>
                                                                 </TableCell>
                                                             </TableRow>
 
@@ -982,7 +1012,7 @@ let StudentDetails =  ()=>{
                                                                         
                                                                             <span style={{display:displayState.BloodGroupEditOn}}>
                                                                                 <span >
-                                                                                    <span className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.bloodgroup : null}</span>
+                                                                                    <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.bloodgroup : null}</span>
                                                                                 </span>
                                                                                 <span style={{display:displayEditIconState.BloodGroupIconEditOff}}>
 
@@ -1064,10 +1094,10 @@ let StudentDetails =  ()=>{
                                                                                 }}><CloseIcon />
                                                                             </Button>
                                                                             <Button onClick={async ()=>{
-                                                                                    let studentbiography = await fetch("/api/studentapi",{
+                                                                                    let studentbiography = await fetch("/api/staffapi",{
                                                                                         body: JSON.stringify(
                                                                                             {
-                                                                                                studentID: "GO10", // THIS VALUE WILL BE entered with cookies
+                                                                                                staffID: staffID, // THIS VALUE WILL BE entered with cookies
                                                                                                 bloodgroup:values.BloodGroup
                                                                                             }),
                                                                                         method:"PUT"
@@ -1106,7 +1136,7 @@ let StudentDetails =  ()=>{
                                                                         
                                                                             <span style={{display:displayState.GenderEditOn}}>
                                                                                 <span >
-                                                                                    <span className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.Gender.gender : null}</span>
+                                                                                    <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.Gender.gender : null}</span>
                                                                                 </span>
                                                                                 <span style={{display:displayEditIconState.GenderIconEditOff}}>
 
@@ -1187,10 +1217,10 @@ let StudentDetails =  ()=>{
                                                                                 }}><CloseIcon />
                                                                             </Button>
                                                                             <Button onClick={async ()=>{
-                                                                                    let studentbiography = await fetch("/api/studentapi",{
+                                                                                    let studentbiography = await fetch("/api/staffapi",{
                                                                                         body: JSON.stringify(
                                                                                             {
-                                                                                                studentID: "GO10", // THIS VALUE WILL BE entered with cookies
+                                                                                                staffID: staffID, // THIS VALUE WILL BE entered with cookies
                                                                                                 gender:values.Gender
                                                                                             }),
                                                                                         method:"PUT"
@@ -1230,7 +1260,7 @@ let StudentDetails =  ()=>{
                                                                         
                                                                             <span style={{display:displayState.eMailEditOn}}>
                                                                                 <span >
-                                                                                    <span className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.email : null}</span>
+                                                                                    <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.email : null}</span>
                                                                                 </span>
                                                                                 <span style={{display:displayEditIconState.eMailIconEditOff}}>
 
@@ -1273,10 +1303,10 @@ let StudentDetails =  ()=>{
                                                                                 }}><CloseIcon />
                                                                             </Button>
                                                                             <Button onClick={async ()=>{
-                                                                                    let studentbiography = await fetch("/api/studentapi",{
+                                                                                    let studentbiography = await fetch("/api/staffapi",{
                                                                                         body: JSON.stringify(
                                                                                             {
-                                                                                                studentID: "GO10", // THIS VALUE WILL BE entered with cookies
+                                                                                                staffID: staffID, // THIS VALUE WILL BE entered with cookies
                                                                                                 email:values.eMail
                                                                                             }),
                                                                                         method:"PUT"
@@ -1293,93 +1323,7 @@ let StudentDetails =  ()=>{
                                                                     
                                                                 </TableCell>
                                                             </TableRow>
-                                                            <TableRow hover>
-                                                                <TableCell  >
-                                                                    Phone Number
-                                                                </TableCell>
-                                                                <TableCell  >
-                                                                    <div 
-                                                                            onMouseOver={
-                                                                                ()=>setDisplayEditIconState((prev)=>({
-                                                                                        ...prev,
-                                                                                        PhoneIconEditOff:"inline"
-                                                                                        
-                                                                                    }))
-                                                                                }
-                                                                            onMouseOut={
-                                                                                ()=>setDisplayEditIconState((prev)=>({
-                                                                                    ...prev,
-                                                                                    PhoneIconEditOff:"none"
-                                                                                    
-                                                                                }))
-                                                                        } >
-                                                                            
-                                                                                <span style={{display:displayState.PhoneEditOn}}>
-                                                                                    <span >
-                                                                                        <span className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.phonenumber : null}</span>
-                                                                                    </span>
-                                                                                    <span style={{display:displayEditIconState.PhoneIconEditOff}}>
-
-                                                                                        <Button  onClick={()=>{
-                                                                                                setDisplayState((prev)=>({
-                                                                                                    ...prev,
-                                                                                                    
-                                                                                                    PhoneEditOff: "inline",
-                                                                                                    PhoneEditOn:"none"
-                                                                                                }))
-                                                                                            }}><EditIcon />
-                                                                                        </Button>
-
-                                                                                        <Button>
-                                                                                            <DeleteForeverIcon />
-                                                                                        </Button>
-                                                                                    </span>
-                                                                            
-                                                                                    
-                                                                                </span>
-                                                                            <span style={{display:displayState.PhoneEditOff}}>
-                                                                                <Field
-                                                                                        error={errors.hasOwnProperty("Phone") && touched.hasOwnProperty("Phone") ? true : false }
-                                                                                        {...getFieldProps("Phone")}
-                                                                                        label={errors.hasOwnProperty("Phone") && touched.hasOwnProperty("Phone") ? errors.Phone : "Phone" }
-                                                                                        value={values.Phone}
-                                                                                        name="Phone"
-                                                                                        id="Phone"
-                                                                                        component={TextField}
-                                                                                        className="w-100"
-                                                                                        variant="filled"
-                                                                                        type="tel"
-                                                                                        
-                                                                                        
-                                                                                        />
-                                                                                <Button onClick={()=>{
-                                                                                        setDisplayState((prev)=>({
-                                                                                            ...prev,
-                                                                                            PhoneEditOff:"none",
-                                                                                            PhoneEditOn:"inline"
-                                                                                        }))
-                                                                                    }}><CloseIcon />
-                                                                                </Button>
-                                                                                <Button onClick={async ()=>{
-                                                                                        let studentbiography = await fetch("/api/studentapi",{
-                                                                                            body: JSON.stringify(
-                                                                                                {
-                                                                                                    studentID: "GO10", // THIS VALUE WILL BE entered with cookies
-                                                                                                    phonenumber:values.Phone
-                                                                                                }),
-                                                                                            method:"PUT"
-                                                                                        })
-                                                                                        setDisplayState((prev)=>({
-                                                                                            ...prev,
-                                                                                            PhoneEditOff:"none",
-                                                                                            PhoneEditOn:"inline"
-                                                                                        }))
-                                                                                    }}><DoneIcon />
-                                                                                </Button>
-                                                                            </span>
-                                                                        </div>
-                                                                </TableCell>
-                                                            </TableRow>
+                                                            
                                                             <TableRow hover>
                                                                 <TableCell  >
                                                                     Religion
@@ -1403,7 +1347,7 @@ let StudentDetails =  ()=>{
                                                                         
                                                                             <span style={{display:displayState.ReligionEditOn}}>
                                                                                 <span >
-                                                                                    <span className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.religion : null}</span>
+                                                                                    <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.religion : null}</span>
                                                                                 </span>
                                                                                 <span style={{display:displayEditIconState.ReligionIconEditOff}}>
 
@@ -1485,10 +1429,10 @@ let StudentDetails =  ()=>{
                                                                                 }}><CloseIcon />
                                                                             </Button>
                                                                             <Button onClick={async ()=>{
-                                                                                    let studentbiography = await fetch("/api/studentapi",{
+                                                                                    let studentbiography = await fetch("/api/staffapi",{
                                                                                         body: JSON.stringify(
                                                                                             {
-                                                                                                studentID: "GO10", // THIS VALUE WILL BE entered with cookies
+                                                                                                staffID: staffID, // THIS VALUE WILL BE entered with cookies
                                                                                                 religion:values.Religion
                                                                                             }),
                                                                                         method:"PUT"
@@ -1506,140 +1450,7 @@ let StudentDetails =  ()=>{
                                                             </TableRow>
                                                             <TableRow hover>
                                                                 <TableCell  >
-                                                                    Date of errollment
-                                                                </TableCell>
-                                                                <TableCell  >
-                                                                    <div className="bolder">
-                                                                        {oneStudentdata ? new Date(oneStudentdata.oneStudent.dateOfEnrollment).toLocaleDateString() : null}
-                                                                        <div>{oneStudentdata ? new Date(oneStudentdata.oneStudent.dateOfEnrollment).toLocaleTimeString() : null}</div>
-                                                                    </div>
-                                                                </TableCell>
-                                                            </TableRow>
-                                                            <TableRow hover>
-                                                                <TableCell  >
-                                                                    Section
-                                                                </TableCell>
-                                                                <TableCell  >
-
-                                                                    <div 
-                                                                        onMouseOver={
-                                                                            ()=>setDisplayEditIconState((prev)=>({
-                                                                                    ...prev,
-                                                                                    sectionIconEditOff:"inline"
-                                                                                    
-                                                                                }))
-                                                                            }
-                                                                        onMouseOut={
-                                                                            ()=>setDisplayEditIconState((prev)=>({
-                                                                                ...prev,
-                                                                                sectionIconEditOff:"none"
-                                                                                
-                                                                            }))
-                                                                    } >
-                                                                        
-                                                                            <span style={{display:displayState.sectionEditOn}}>
-                                                                                <span >
-                                                                                    <span className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.Section.section : null}</span>
-                                                                                </span>
-                                                                                <span style={{display:displayEditIconState.sectionIconEditOff}}>
-
-                                                                                    <Button  onClick={()=>{
-                                                                                            setDisplayState((prev)=>({
-                                                                                                ...prev,
-                                                                                                
-                                                                                                sectionEditOff: "inline",
-                                                                                                sectionEditOn:"none"
-                                                                                            }))
-                                                                                        }}><EditIcon />
-                                                                                    </Button>
-
-                                                                                    <Button>
-                                                                                        <DeleteForeverIcon />
-                                                                                    </Button>
-                                                                                </span>
-                                                                        
-                                                                                
-                                                                            </span>
-                                                                        <span style={{display:displayState.sectionEditOff}}>
-                                                                        <Field
-                                                                            component={Autocomplete}
-                                                                            // {...getFieldProps("Gender")}
-                                                                            value={values.section}
-                                                                            onBlur={handleBlur}
-                                                                            onChange={(e,selectedOption )=>
-                                                                                {setFieldValue("section", selectedOption)
-                                                                                //  setFieldError("Gender",errors.Gender)
-                                                                                    }
-                                                                            }
-                                                                            
-                                                                            // inputValue={values.Gender.title}
-                                                                            options={sectiondata}
-                                                                            name="section"
-                                                                            id="section"
-                                                                            getOptionSelected={(option, value) => option.section == value.section}
-                                                                            getOptionLabel={option => option.section}
-                                                                            renderInput={params => (
-                                                                                <>
-                                                                                
-                                                                                <Field 
-                                                                                    component={TextField}
-                                                                                    {...params}
-                                                                                    name="section"
-                                                                                    error={errors.hasOwnProperty("section") && touched.hasOwnProperty("section") ? true : false }
-                                                                                    label={errors.hasOwnProperty("section") && touched.hasOwnProperty("section") ? errors.section : "section" }
-                                                                                    variant="filled"    
-                                                                                    
-                                                                                />
-                                                                                </>
-                                                                            
-                                                                            )}
-                            
-                                                                                        renderOption={(option, { inputValue }) => {
-                                                                                        const matches = match(option.section, inputValue);
-                                                                                        const parts = parse(option.section, matches);
-                                                                                
-                                                                                        return (
-                                                                                            <div>
-                                                                                            {parts.map((part, index) => (
-                                                                                                <span key={index} >
-                                                                                                {part.text}
-                                                                                                </span>
-                                                                                            ))}
-                                                                                            </div>
-                                                                                        );
-                                                                                        }}
-                                                                                    />
-                                                                            <Button onClick={()=>{
-                                                                                    setDisplayState((prev)=>({
-                                                                                        ...prev,
-                                                                                        sectionEditOff:"none",
-                                                                                        sectionEditOn:"inline"
-                                                                                    }))
-                                                                                }}><CloseIcon />
-                                                                            </Button>
-                                                                            <Button onClick={async ()=>{
-                                                                                    let studentbiography = await fetch("/api/studentapi",{
-                                                                                        body: JSON.stringify(
-                                                                                            {
-                                                                                                studentID: "GO10", // THIS VALUE WILL BE entered with cookies
-                                                                                                Section:values.section
-                                                                                            }),
-                                                                                        method:"PUT"
-                                                                                    })
-                                                                                    setDisplayState((prev)=>({
-                                                                                        ...prev,
-                                                                                        sectionEditOff:"none",
-                                                                                        sectionEditOn:"inline"
-                                                                                    }))
-                                                                                }}><DoneIcon />
-                                                                            </Button>
-                                                                        </span>
-                                                                    </div>
-                                                                </TableCell>
-                                                            </TableRow>
-                                                            <TableRow hover>
-                                                                <TableCell  >
-                                                                    Address
+                                                                    Teacher Address
                                                                 </TableCell>
                                                                 <TableCell  >
 
@@ -1647,30 +1458,30 @@ let StudentDetails =  ()=>{
                                                                         onMouseOver={
                                                                             ()=>setDisplayEditIconState((prev)=>({
                                                                                     ...prev,
-                                                                                    StudentAddressIconEditOff:"inline"
+                                                                                    TeacherAddressIconEditOff:"inline"
                                                                                     
                                                                                 }))
                                                                             }
                                                                         onMouseOut={
                                                                             ()=>setDisplayEditIconState((prev)=>({
                                                                                 ...prev,
-                                                                                StudentAddressIconEditOff:"none"
+                                                                                TeacherAddressIconEditOff:"none"
                                                                                 
                                                                             }))
                                                                     } >
                                                                         
-                                                                            <span style={{display:displayState.StudentAddressEditOn}}>
+                                                                            <span style={{display:displayState.TeacherAddressEditOn}}>
                                                                                 <span >
-                                                                                    <span className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.StudentAddress : null}</span>
+                                                                                    <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.teacherAddress : null}</span>
                                                                                 </span>
-                                                                                <span style={{display:displayEditIconState.StudentAddressIconEditOff}}>
+                                                                                <span style={{display:displayEditIconState.TeacherAddressIconEditOff}}>
 
                                                                                     <Button  onClick={()=>{
                                                                                             setDisplayState((prev)=>({
                                                                                                 ...prev,
                                                                                                 
-                                                                                                StudentAddressEditOff: "inline",
-                                                                                                StudentAddressEditOn:"none"
+                                                                                                TeacherAddressEditOff: "inline",
+                                                                                                TeacherAddressEditOn:"none"
                                                                                             }))
                                                                                         }}><EditIcon />
                                                                                     </Button>
@@ -1682,14 +1493,14 @@ let StudentDetails =  ()=>{
                                                                         
                                                                                 
                                                                             </span>
-                                                                            <span style={{display:displayState.StudentAddressEditOff}}>
+                                                                            <span style={{display:displayState.TeacherAddressEditOff}}>
                                                                                 <Field
-                                                                                        error={errors.hasOwnProperty("StudentAddress") && touched.hasOwnProperty("StudentAddress") ? true : false }
-                                                                                        {...getFieldProps("StudentAddress")}
-                                                                                        label={errors.hasOwnProperty("StudentAddress") && touched.hasOwnProperty("StudentAddress") ? errors.roll : "StudentAddress" }
-                                                                                        value={values.StudentAddress}
-                                                                                        name="StudentAddress"
-                                                                                        id="StudentAddress"
+                                                                                        error={errors.hasOwnProperty("TeacherAddress") && touched.hasOwnProperty("TeacherAddress") ? true : false }
+                                                                                        {...getFieldProps("TeacherAddress")}
+                                                                                        label={errors.hasOwnProperty("TeacherAddress") && touched.hasOwnProperty("TeacherAddress") ? errors.TeacherAddress : "Teacher Address" }
+                                                                                        value={values.TeacherAddress}
+                                                                                        name="TeacherAddress"
+                                                                                        id="TeacherAddress"
                                                                                         component={TextField}
                                                                                         className="w-100"
                                                                                         variant="filled"
@@ -1699,24 +1510,24 @@ let StudentDetails =  ()=>{
                                                                             <Button onClick={()=>{
                                                                                     setDisplayState((prev)=>({
                                                                                         ...prev,
-                                                                                        StudentAddressEditOff:"none",
-                                                                                        StudentAddressEditOn:"inline"
+                                                                                        TeacherAddressEditOff:"none",
+                                                                                        TeacherAddressEditOn:"inline"
                                                                                     }))
                                                                                 }}><CloseIcon />
                                                                             </Button>
                                                                             <Button onClick={async ()=>{
-                                                                                    let studentbiography = await fetch("/api/studentapi",{
+                                                                                    let studentbiography = await fetch("/api/staffapi",{
                                                                                         body: JSON.stringify(
                                                                                             {
-                                                                                                studentID: "GO10", // THIS VALUE WILL BE entered with cookies
-                                                                                                StudentAddress:values.StudentAddress
+                                                                                                staffID: staffID, // THIS VALUE WILL BE entered with cookies
+                                                                                                TeacherAddress:values.TeacherAddress
                                                                                             }),
                                                                                         method:"PUT"
                                                                                     })
                                                                                     setDisplayState((prev)=>({
                                                                                         ...prev,
-                                                                                        StudentAddressEditOff:"none",
-                                                                                        StudentAddressEditOn:"inline"
+                                                                                        TeacherAddressEditOff:"none",
+                                                                                        TeacherAddressEditOn:"inline"
                                                                                     }))
                                                                                 }}><DoneIcon />
                                                                             </Button>
@@ -1724,268 +1535,145 @@ let StudentDetails =  ()=>{
                                                                     </div>
                                                                 </TableCell>
                                                             </TableRow>
-                                                            <TableRow hover>
-                                                            
-                                                                <TableCell  colSpan="2" className="bg-info">
-                                                                    <div className="bolder">Guadiant Information</div>
+
+
+                                                            <TableRow hover role="checkbox" tabIndex={-1} >
+                                                                <TableCell colSpan="2"className="bg-info" >
+                                                                    <div className="bolder">Staff Professional Information</div>
                                                                 </TableCell>
                                                             </TableRow>
-                                                            <TableRow hover>
+                                                            <TableRow>
                                                                 <TableCell  >
-                                                                    Guidant Name
+                                                                    Staff ID
                                                                 </TableCell>
                                                                 <TableCell  >
-                                                                    {/* <div className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.Gender.gender : null}</div> */}
-                                                                </TableCell>
-                                                            </TableRow>
-                                                            <TableRow hover>
-                                                                <TableCell  >
-                                                                    Relationship
-                                                                </TableCell>
-                                                                <TableCell  >
-                                                                    {/* <div className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.Gender.gender : null}</div> */}
-                                                                </TableCell>
-                                                            </TableRow>
-                                                            <TableRow hover>
-                                                                <TableCell  >
-                                                                    Occupation
-                                                                </TableCell>
-                                                                <TableCell  >
-                                                                    {/* <div className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.Gender.gender : null}</div> */}
-                                                                </TableCell>
-                                                            </TableRow>
-                                                            <TableRow hover>
-                                                                <TableCell  >
-                                                                    Address
-                                                                </TableCell>
-                                                                <TableCell  >
-                                                                    {/* <div className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.Gender.gender : null}</div> */}
-                                                                </TableCell>
-                                                            </TableRow>
-                                                            <TableRow hover>
-                                                                <TableCell  >
-                                                                    Email
-                                                                </TableCell>
-                                                                <TableCell  >
-                                                                    {/* <div className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.Gender.gender : null}</div> */}
+                                                                    <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.staffID : null}</span>
+                                                                
                                                                 </TableCell>
                                                             </TableRow>
 
                                                             <TableRow hover>
-                                                                <TableCell colSpan="2"  className="bg-info">
-                                                                    <div className="bolder">Parents Information</div>
-                                                                </TableCell>
-                                                            </TableRow>
-                                                            <TableRow hover>
-                                                                <TableCell colSpan="2"  className="bg-info pl-4">
-                                                                    <div className="bolder">Father Information</div>
-                                                                </TableCell>
-                                                            </TableRow>
-                                                            <TableRow hover>
                                                                 <TableCell  >
-                                                                    Father Name
+                                                                    Phone Number
                                                                 </TableCell>
                                                                 <TableCell  >
-
-                                                                <div 
-                                                                        onMouseOver={
-                                                                            ()=>setDisplayEditIconState((prev)=>({
-                                                                                    ...prev,
-                                                                                    FatherNameIconEditOff:"inline"
-                                                                                    
-                                                                                }))
-                                                                            }
-                                                                        onMouseOut={
-                                                                            ()=>setDisplayEditIconState((prev)=>({
-                                                                                ...prev,
-                                                                                FatherNameIconEditOff:"none"
-                                                                                
-                                                                            }))
-                                                                    } >
-                                                                        
-                                                                            <span style={{display:displayState.FatherNameEditOn}}>
-                                                                                <span >
-                                                                                    <span className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.FatherName : null}</span>
-                                                                                </span>
-                                                                                <span style={{display:displayEditIconState.FatherNameIconEditOff}}>
-
-                                                                                    <Button  onClick={()=>{
-                                                                                            setDisplayState((prev)=>({
-                                                                                                ...prev,
-                                                                                                
-                                                                                                FatherNameEditOff: "inline",
-                                                                                                FatherNameEditOn:"none"
-                                                                                            }))
-                                                                                        }}><EditIcon />
-                                                                                    </Button>
-
-                                                                                    <Button>
-                                                                                        <DeleteForeverIcon />
-                                                                                    </Button>
-                                                                                </span>
-                                                                        
-                                                                                
-                                                                            </span>
-                                                                            <span style={{display:displayState.FatherNameEditOff}}>
-                                                                                <Field
-                                                                                    error={errors.hasOwnProperty("FatherName") && touched.hasOwnProperty("FatherName") ? true : false }
-                                                                                    {...getFieldProps("FatherName")}
-                                                                                    label={errors.hasOwnProperty("FatherName") && touched.hasOwnProperty("FatherName") ? errors.FatherName : "FatherName" }
-                                                                                    value={values.FatherName}
-                                                                                    name="FatherName"
-                                                                                    id="FatherName"
-                                                                                    component={TextField}
-                                                                                    className="w-100"
-                                                                                    variant="filled"
-                                                                                    
-                                                                                    />
-                                                                            <Button onClick={()=>{
-                                                                                    setDisplayState((prev)=>({
+                                                                    <div 
+                                                                            onMouseOver={
+                                                                                ()=>setDisplayEditIconState((prev)=>({
                                                                                         ...prev,
-                                                                                        FatherNameEditOff:"none",
-                                                                                        FatherNameEditOn:"inline"
-                                                                                    }))
-                                                                                }}><CloseIcon />
-                                                                            </Button>
-                                                                            <Button onClick={async ()=>{
-                                                                                    let studentbiography = await fetch("/api/studentapi",{
-                                                                                        body: JSON.stringify(
-                                                                                            {
-                                                                                                studentID: "GO10", // THIS VALUE WILL BE entered with cookies
-                                                                                                FatherName:values.FatherName
-                                                                                            }),
-                                                                                        method:"PUT"
-                                                                                    })
-                                                                                    setDisplayState((prev)=>({
-                                                                                        ...prev,
-                                                                                        FatherNameEditOff:"none",
-                                                                                        FatherNameEditOn:"inline"
-                                                                                    }))
-                                                                                }}><DoneIcon />
-                                                                            </Button>
-                                                                        </span>
-                                                                    </div>
-                                                                </TableCell>
-                                                            </TableRow>
-                                                            <TableRow hover>
-                                                                <TableCell  >
-                                                                    Father occupation
-                                                                </TableCell>
-                                                                <TableCell  >
-
-                                                                <div 
-                                                                        onMouseOver={
-                                                                            ()=>setDisplayEditIconState((prev)=>({
-                                                                                    ...prev,
-                                                                                    FatherOccupationIconEditOff:"inline"
-                                                                                    
-                                                                                }))
-                                                                            }
-                                                                        onMouseOut={
-                                                                            ()=>setDisplayEditIconState((prev)=>({
-                                                                                ...prev,
-                                                                                FatherOccupationIconEditOff:"none"
-                                                                                
-                                                                            }))
-                                                                    } >
-                                                                        
-                                                                            <span style={{display:displayState.FatherOccupationEditOn}}>
-                                                                                <span >
-                                                                                    <span className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.FatherOccupation : null}</span>
-                                                                                </span>
-                                                                                <span style={{display:displayEditIconState.FatherOccupationIconEditOff}}>
-
-                                                                                    <Button  onClick={()=>{
-                                                                                            setDisplayState((prev)=>({
-                                                                                                ...prev,
-                                                                                                
-                                                                                                FatherOccupationEditOff: "inline",
-                                                                                                FatherOccupationEditOn:"none"
-                                                                                            }))
-                                                                                        }}><EditIcon />
-                                                                                    </Button>
-
-                                                                                    <Button>
-                                                                                        <DeleteForeverIcon />
-                                                                                    </Button>
-                                                                                </span>
-                                                                        
-                                                                                
-                                                                            </span>
-                                                                        <span style={{display:displayState.FatherOccupationEditOff}}>
-                                                                            <Field
-                                                                                error={errors.hasOwnProperty("FatherOccupation") && touched.hasOwnProperty("FatherOccupation") ? true : false }
-                                                                                {...getFieldProps("FatherOccupation")}
-                                                                                label={errors.hasOwnProperty("FatherOccupation") && touched.hasOwnProperty("FatherOccupation") ? errors.FatherOccupation : "FatherOccupation" }
-                                                                                value={values.FatherOccupation}
-                                                                                name="FatherOccupation"
-                                                                                id="FatherOccupation"
-                                                                                component={TextField}
-                                                                                className="w-100"
-                                                                                variant="filled"
-                                                                                
-                                                                                />
-                                                                            <Button onClick={()=>{
-                                                                                    setDisplayState((prev)=>({
-                                                                                        ...prev,
-                                                                                        FatherOccupationEditOff:"none",
-                                                                                        FatherOccupationEditOn:"inline"
-                                                                                    }))
-                                                                                }}><CloseIcon />
-                                                                            </Button>
-                                                                            <Button onClick={async ()=>{
-                                                                                    let studentbiography = await fetch("/api/studentapi",{
-                                                                                        body: JSON.stringify(
-                                                                                            {
-                                                                                                studentID: "GO10", // THIS VALUE WILL BE entered with cookies
-                                                                                                FatherOccupation:values.FatherOccupation
-                                                                                            }),
-                                                                                        method:"PUT"
-                                                                                    })
-                                                                                    setDisplayState((prev)=>({
-                                                                                        ...prev,
-                                                                                        FatherOccupationEditOff:"none",
-                                                                                        FatherOccupationEditOn:"inline"
-                                                                                    }))
-                                                                                }}><DoneIcon />
-                                                                            </Button>
-                                                                        </span>
-                                                                    </div>
-                                                                </TableCell>
-                                                            </TableRow>
-                                                            <TableRow hover>
-                                                                <TableCell  >
-                                                                    Father Address
-                                                                </TableCell>
-                                                                <TableCell  >
-                                                                        <div 
-                                                                                onMouseOver={
-                                                                                    ()=>setDisplayEditIconState((prev)=>({
-                                                                                            ...prev,
-                                                                                            FatherAddressIconEditOff:"inline"
-                                                                                            
-                                                                                        }))
-                                                                                    }
-                                                                                onMouseOut={
-                                                                                    ()=>setDisplayEditIconState((prev)=>({
-                                                                                        ...prev,
-                                                                                        FatherAddressIconEditOff:"none"
+                                                                                        phoneNumberIconEditOff:"inline"
                                                                                         
                                                                                     }))
-                                                                            } >
-                                                                        
-                                                                            <span style={{display:displayState.FatherAddressEditOn}}>
-                                                                                <span >
-                                                                                    <span className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.FatherAddress : null}</span>
+                                                                                }
+                                                                            onMouseOut={
+                                                                                ()=>setDisplayEditIconState((prev)=>({
+                                                                                    ...prev,
+                                                                                    phoneNumberIconEditOff:"none"
+                                                                                    
+                                                                                }))
+                                                                        } >
+                                                                            
+                                                                                <span style={{display:displayState.phoneNumberEditOn}}>
+                                                                                    <span >
+                                                                                        <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.phoneNumber : null}</span>
+                                                                                    </span>
+                                                                                    <span style={{display:displayEditIconState.phoneNumberIconEditOff}}>
+
+                                                                                        <Button  onClick={()=>{
+                                                                                                setDisplayState((prev)=>({
+                                                                                                    ...prev,
+                                                                                                    
+                                                                                                    phoneNumberEditOff: "inline",
+                                                                                                    phoneNumberEditOn:"none"
+                                                                                                }))
+                                                                                            }}><EditIcon />
+                                                                                        </Button>
+
+                                                                                        <Button>
+                                                                                            <DeleteForeverIcon />
+                                                                                        </Button>
+                                                                                    </span>
+                                                                            
+                                                                                    
                                                                                 </span>
-                                                                                <span style={{display:displayEditIconState.FatherAddressIconEditOff}}>
+                                                                            <span style={{display:displayState.phoneNumberEditOff}}>
+                                                                                <Field
+                                                                                        error={errors.hasOwnProperty("phoneNumber") && touched.hasOwnProperty("phoneNumber") ? true : false }
+                                                                                        {...getFieldProps("phoneNumber")}
+                                                                                        label={errors.hasOwnProperty("phoneNumber") && touched.hasOwnProperty("phoneNumber") ? errors.phoneNumber : "phoneNumber" }
+                                                                                        value={values.phoneNumber}
+                                                                                        name="phoneNumber"
+                                                                                        id="phoneNumber"
+                                                                                        component={TextField}
+                                                                                        className="w-100"
+                                                                                        variant="filled"
+                                                                                        type="tel"
+                                                                                        
+                                                                                        
+                                                                                        />
+                                                                                <Button onClick={()=>{
+                                                                                        setDisplayState((prev)=>({
+                                                                                            ...prev,
+                                                                                            phoneNumberEditOff:"none",
+                                                                                            phoneNumberEditOn:"inline"
+                                                                                        }))
+                                                                                    }}><CloseIcon />
+                                                                                </Button>
+                                                                                <Button onClick={async ()=>{
+                                                                                        let studentbiography = await fetch("/api/staffapi",{
+                                                                                            body: JSON.stringify(
+                                                                                                {
+                                                                                                    staffID: staffID, // THIS VALUE WILL BE entered with cookies
+                                                                                                    phoneNumber:values.phoneNumber
+                                                                                                }),
+                                                                                            method:"PUT"
+                                                                                        })
+                                                                                        setDisplayState((prev)=>({
+                                                                                            ...prev,
+                                                                                            phoneNumberEditOff:"none",
+                                                                                            phoneNumberEditOn:"inline"
+                                                                                        }))
+                                                                                    }}><DoneIcon />
+                                                                                </Button>
+                                                                            </span>
+                                                                        </div>
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            
+
+                                                            <TableRow hover>
+                                                                <TableCell  >
+                                                                speciality
+                                                                </TableCell>
+                                                                <TableCell  >
+                                                                <div 
+                                                                        onMouseOver={
+                                                                            ()=>setDisplayEditIconState((prev)=>({
+                                                                                    ...prev,
+                                                                                    specialityIconEditOff:"inline"
+                                                                                    
+                                                                                }))
+                                                                            }
+                                                                        onMouseOut={
+                                                                            ()=>setDisplayEditIconState((prev)=>({
+                                                                                ...prev,
+                                                                                specialityIconEditOff:"none"
+                                                                                
+                                                                            }))
+                                                                    } >
+                                                                        
+                                                                            <span style={{display:displayState.specialityEditOn}}>
+                                                                                <span >
+                                                                                    <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.Subjects.subject : null}</span>
+                                                                                </span>
+                                                                                <span style={{display:displayEditIconState.specialityIconEditOff}}>
 
                                                                                     <Button  onClick={()=>{
                                                                                             setDisplayState((prev)=>({
                                                                                                 ...prev,
                                                                                                 
-                                                                                                FatherAddressEditOff: "inline",
-                                                                                                FatherAddressEditOn:"none"
+                                                                                                specialityEditOff: "inline",
+                                                                                                specialityEditOn:"none"
                                                                                             }))
                                                                                         }}><EditIcon />
                                                                                     </Button>
@@ -1997,40 +1685,79 @@ let StudentDetails =  ()=>{
                                                                         
                                                                                 
                                                                             </span>
-                                                                        <span style={{display:displayState.FatherAddressEditOff}}>
+                                                                        <span style={{display:displayState.specialityEditOff}}>
                                                                             <Field
-                                                                                error={errors.hasOwnProperty("FatherAddress") && touched.hasOwnProperty("FatherAddress") ? true : false }
-                                                                                {...getFieldProps("FatherAddress")}
-                                                                                label={errors.hasOwnProperty("FatherAddress") && touched.hasOwnProperty("FatherAddress") ? errors.FatherAddress : "FatherAddress" }
-                                                                                value={values.FatherAddress}
-                                                                                name="FatherAddress"
-                                                                                id="FatherAddress"
-                                                                                component={TextField}
-                                                                                className="w-100"
-                                                                                variant="filled"
-                                                                                
+                                                            
+                                                                                    component={Autocomplete}
+                                                                                    // {...getFieldProps("Gender")}
+                                                                                    value={values.speciality}
+                                                                                    defaultValue={values.speciality}
+                                                                                    onBlur={handleBlur}
+                                                                                    onChange={(e,selectedOption )=>
+                                                                                        {setFieldValue("speciality", selectedOption)
+                                                                                        //  setFieldError("Gender",errors.Gender)
+                                                                                            }
+                                                                                    }
+                                                                                    
+                                                                                    // inputValue={values.Gender.title}
+                                                                                    options={specialityData}
+                                                                                    name="speciality"
+                                                                                    id="speciality"
+                                                                                    getOptionSelected = {(option,value)=> option.subject == value.subject}
+                                                                                    getOptionLabel={option => option.subject}
+                                                                                    renderInput={params => (
+                                                                                        <>
+                                                                                        
+                                                                                        <Field 
+                                                                                        component={TextField}
+                                                                                        {...params}
+                                                                                        
+                                                                                        name="speciality"
+                                                                                        error={errors.hasOwnProperty("speciality") && touched.hasOwnProperty("speciality") ? true : false }
+                                                                                        label={errors.hasOwnProperty("speciality") && touched.hasOwnProperty("speciality") ? errors.speciality : "speciality" }
+                                                                                        variant="filled"    
+                                                                                        
+                                                                                    />
+                                                                                        </>
+                                                                                    
+                                                                                    )}
+
+                                                                                    renderOption={(option, { inputValue }) => {
+                                                                                    const matches = match(option.subject, inputValue);
+                                                                                    const parts = parse(option.subject, matches);
+                                                                            
+                                                                                    return (
+                                                                                        <div>
+                                                                                        {parts.map((part, index) => (
+                                                                                            <span key={index} >
+                                                                                            {part.text}
+                                                                                            </span>
+                                                                                        ))}
+                                                                                        </div>
+                                                                                    );
+                                                                                    }}
                                                                                 />
                                                                             <Button onClick={()=>{
                                                                                     setDisplayState((prev)=>({
                                                                                         ...prev,
-                                                                                        FatherAddressEditOff:"none",
-                                                                                        FatherAddressEditOn:"inline"
+                                                                                        specialityEditOff:"none",
+                                                                                        specialityEditOn:"inline"
                                                                                     }))
                                                                                 }}><CloseIcon />
                                                                             </Button>
                                                                             <Button onClick={async ()=>{
-                                                                                    let studentbiography = await fetch("/api/studentapi",{
+                                                                                    let studentbiography = await fetch("/api/staffapi",{
                                                                                         body: JSON.stringify(
                                                                                             {
-                                                                                                studentID: "GO10", // THIS VALUE WILL BE entered with cookies
-                                                                                                FatherAddress:values.FatherAddress
+                                                                                                staffID: staffID, // THIS VALUE WILL BE entered with cookies
+                                                                                                Subjects:values.speciality
                                                                                             }),
                                                                                         method:"PUT"
                                                                                     })
                                                                                     setDisplayState((prev)=>({
                                                                                         ...prev,
-                                                                                        FatherAddressEditOff:"none",
-                                                                                        FatherAddressEditOn:"inline"
+                                                                                        specialityEditOff:"none",
+                                                                                        specialityEditOn:"inline"
                                                                                     }))
                                                                                 }}><DoneIcon />
                                                                             </Button>
@@ -2038,39 +1765,41 @@ let StudentDetails =  ()=>{
                                                                     </div>
                                                                 </TableCell>
                                                             </TableRow>
+                                                            
+                                                            
                                                             <TableRow hover>
                                                                 <TableCell  >
-                                                                    Father Contact
+                                                                Grade
                                                                 </TableCell>
                                                                 <TableCell  >
                                                                 <div 
                                                                         onMouseOver={
                                                                             ()=>setDisplayEditIconState((prev)=>({
                                                                                     ...prev,
-                                                                                    FatherContactIconEditOff:"inline"
+                                                                                    GradeIconEditOff:"inline"
                                                                                     
                                                                                 }))
                                                                             }
                                                                         onMouseOut={
                                                                             ()=>setDisplayEditIconState((prev)=>({
                                                                                 ...prev,
-                                                                                FatherContactIconEditOff:"none"
+                                                                                GradeIconEditOff:"none"
                                                                                 
                                                                             }))
                                                                     } >
                                                                         
-                                                                            <span style={{display:displayState.FatherContactEditOn}}>
+                                                                            <span style={{display:displayState.GradeEditOn}}>
                                                                                 <span >
-                                                                                    <span className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.FatherContact : null}</span>
+                                                                                    <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.staffgrade.grade : null}</span>
                                                                                 </span>
-                                                                                <span style={{display:displayEditIconState.FatherContactIconEditOff}}>
+                                                                                <span style={{display:displayEditIconState.GradeIconEditOff}}>
 
                                                                                     <Button  onClick={()=>{
                                                                                             setDisplayState((prev)=>({
                                                                                                 ...prev,
                                                                                                 
-                                                                                                FatherContactEditOff: "inline",
-                                                                                                FatherContactEditOn:"none"
+                                                                                                GradeEditOff: "inline",
+                                                                                                GradeEditOn:"none"
                                                                                             }))
                                                                                         }}><EditIcon />
                                                                                     </Button>
@@ -2082,40 +1811,79 @@ let StudentDetails =  ()=>{
                                                                         
                                                                                 
                                                                             </span>
-                                                                        <span style={{display:displayState.FatherContactEditOff}}>
+                                                                        <span style={{display:displayState.GradeEditOff}}>
                                                                             <Field
-                                                                                error={errors.hasOwnProperty("FatherContact") && touched.hasOwnProperty("FatherContact") ? true : false }
-                                                                                {...getFieldProps("FatherContact")}
-                                                                                label={errors.hasOwnProperty("FatherContact") && touched.hasOwnProperty("FatherContact") ? errors.FatherContact : "FatherContact" }
-                                                                                value={values.FatherContact}
-                                                                                name="FatherContact"
-                                                                                id="FatherContact"
-                                                                                component={TextField}
-                                                                                className="w-100"
-                                                                                variant="filled"
-                                                                                
+                                                            
+                                                                                    component={Autocomplete}
+                                                                                    // {...getFieldProps("Gender")}
+                                                                                    value={values.Grade}
+                                                                                    defaultValue={values.Grade}
+                                                                                    onBlur={handleBlur}
+                                                                                    onChange={(e,selectedOption )=>
+                                                                                        {setFieldValue("Grade", selectedOption)
+                                                                                        //  setFieldError("Gender",errors.Gender)
+                                                                                            }
+                                                                                    }
+                                                                                    
+                                                                                    // inputValue={values.Gender.title}
+                                                                                    options={staffGradeData}
+                                                                                    name="Grade"
+                                                                                    id="Grade"
+                                                                                    getOptionSelected = {(option,value)=> option.grade == value.grade}
+                                                                                    getOptionLabel={option => option.grade}
+                                                                                    renderInput={params => (
+                                                                                        <>
+                                                                                        
+                                                                                        <Field 
+                                                                                        component={TextField}
+                                                                                        {...params}
+                                                                                        
+                                                                                        name="Grade"
+                                                                                        error={errors.hasOwnProperty("Grade") && touched.hasOwnProperty("Grade") ? true : false }
+                                                                                        label={errors.hasOwnProperty("Grade") && touched.hasOwnProperty("Grade") ? errors.Grade : "Grade" }
+                                                                                        variant="filled"    
+                                                                                        
+                                                                                    />
+                                                                                        </>
+                                                                                    
+                                                                                    )}
+
+                                                                                    renderOption={(option, { inputValue }) => {
+                                                                                    const matches = match(option.grade, inputValue);
+                                                                                    const parts = parse(option.grade, matches);
+                                                                            
+                                                                                    return (
+                                                                                        <div>
+                                                                                        {parts.map((part, index) => (
+                                                                                            <span key={index} >
+                                                                                            {part.text}
+                                                                                            </span>
+                                                                                        ))}
+                                                                                        </div>
+                                                                                    );
+                                                                                    }}
                                                                                 />
                                                                             <Button onClick={()=>{
                                                                                     setDisplayState((prev)=>({
                                                                                         ...prev,
-                                                                                        FatherContactEditOff:"none",
-                                                                                        FatherContactEditOn:"inline"
+                                                                                        GradeEditOff:"none",
+                                                                                        GradeEditOn:"inline"
                                                                                     }))
                                                                                 }}><CloseIcon />
                                                                             </Button>
                                                                             <Button onClick={async ()=>{
-                                                                                    let studentbiography = await fetch("/api/studentapi",{
+                                                                                    let studentbiography = await fetch("/api/staffapi",{
                                                                                         body: JSON.stringify(
                                                                                             {
-                                                                                                studentID: "GO10", // THIS VALUE WILL BE entered with cookies
-                                                                                                FatherContact:values.FatherContact
+                                                                                                staffID: staffID, // THIS VALUE WILL BE entered with cookies
+                                                                                                Grade:values.Grade
                                                                                             }),
                                                                                         method:"PUT"
                                                                                     })
                                                                                     setDisplayState((prev)=>({
                                                                                         ...prev,
-                                                                                        FatherContactEditOff:"none",
-                                                                                        FatherContactEditOn:"inline"
+                                                                                        GradeEditOff:"none",
+                                                                                        GradeEditOn:"inline"
                                                                                     }))
                                                                                 }}><DoneIcon />
                                                                             </Button>
@@ -2123,46 +1891,40 @@ let StudentDetails =  ()=>{
                                                                     </div>
                                                                 </TableCell>
                                                             </TableRow>
-
-                                                            <TableRow hover>
-                                                                <TableCell colSpan="2"  className="bg-info pl-4">
-                                                                    <div className="bolder">Mother Information</div>
-                                                                </TableCell>
-                                                            </TableRow>
+                                                            
                                                             <TableRow hover>
                                                                 <TableCell  >
-                                                                    Mother Name
+                                                                    Position
                                                                 </TableCell>
                                                                 <TableCell  >
-
                                                                 <div 
                                                                         onMouseOver={
                                                                             ()=>setDisplayEditIconState((prev)=>({
                                                                                     ...prev,
-                                                                                    MotherNameIconEditOff:"inline"
+                                                                                    positionIconEditOff:"inline"
                                                                                     
                                                                                 }))
                                                                             }
                                                                         onMouseOut={
                                                                             ()=>setDisplayEditIconState((prev)=>({
                                                                                 ...prev,
-                                                                                MotherNameIconEditOff:"none"
+                                                                                positionIconEditOff:"none"
                                                                                 
                                                                             }))
                                                                     } >
                                                                         
-                                                                            <span style={{display:displayState.MotherNameEditOn}}>
+                                                                            <span style={{display:displayState.positionEditOn}}>
                                                                                 <span >
-                                                                                    <span className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.MotherName : null}</span>
+                                                                                    <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.staffPosition.position : null}</span>
                                                                                 </span>
-                                                                                <span style={{display:displayEditIconState.MotherNameIconEditOff}}>
+                                                                                <span style={{display:displayEditIconState.positionIconEditOff}}>
 
                                                                                     <Button  onClick={()=>{
                                                                                             setDisplayState((prev)=>({
                                                                                                 ...prev,
                                                                                                 
-                                                                                                MotherNameEditOff: "inline",
-                                                                                                MotherNameEditOn:"none"
+                                                                                                positionEditOff: "inline",
+                                                                                                positionEditOn:"none"
                                                                                             }))
                                                                                         }}><EditIcon />
                                                                                     </Button>
@@ -2174,14 +1936,767 @@ let StudentDetails =  ()=>{
                                                                         
                                                                                 
                                                                             </span>
-                                                                        <span style={{display:displayState.MotherNameEditOff}}>
+                                                                        <span style={{display:displayState.positionEditOff}}>
                                                                             <Field
-                                                                                    error={errors.hasOwnProperty("MotherName") && touched.hasOwnProperty("MotherName") ? true : false }
-                                                                                    {...getFieldProps("MotherName")}
-                                                                                    label={errors.hasOwnProperty("MotherName") && touched.hasOwnProperty("MotherName") ? errors.MotherName : "MotherName" }
-                                                                                    value={values.MotherName}
-                                                                                    name="MotherName"
-                                                                                    id="MotherName"
+                                                            
+                                                                                    component={Autocomplete}
+                                                                                    // {...getFieldProps("Gender")}
+                                                                                    value={values.position}
+                                                                                    defaultValue={values.position}
+                                                                                    onBlur={handleBlur}
+                                                                                    onChange={(e,selectedOption )=>
+                                                                                        {setFieldValue("position", selectedOption)
+                                                                                        //  setFieldError("Gender",errors.Gender)
+                                                                                            }
+                                                                                    }
+                                                                                    
+                                                                                    // inputValue={values.Gender.title}
+                                                                                    options={positionData}
+                                                                                    name="position"
+                                                                                    id="position"
+                                                                                    getOptionSelected = {(option,value)=> option.position == value.position}
+                                                                                    getOptionLabel={option => option.position}
+                                                                                    renderInput={params => (
+                                                                                        <>
+                                                                                        
+                                                                                        <Field 
+                                                                                        component={TextField}
+                                                                                        {...params}
+                                                                                        
+                                                                                        name="position"
+                                                                                        error={errors.hasOwnProperty("position") && touched.hasOwnProperty("position") ? true : false }
+                                                                                        label={errors.hasOwnProperty("position") && touched.hasOwnProperty("position") ? errors.position : "position" }
+                                                                                        variant="filled"    
+                                                                                        
+                                                                                    />
+                                                                                        </>
+                                                                                    
+                                                                                    )}
+
+                                                                                    renderOption={(option, { inputValue }) => {
+                                                                                    const matches = match(option.position, inputValue);
+                                                                                    const parts = parse(option.position, matches);
+                                                                            
+                                                                                    return (
+                                                                                        <div>
+                                                                                        {parts.map((part, index) => (
+                                                                                            <span key={index} >
+                                                                                            {part.text}
+                                                                                            </span>
+                                                                                        ))}
+                                                                                        </div>
+                                                                                    );
+                                                                                    }}
+                                                                                />
+                                                                            <Button onClick={()=>{
+                                                                                    setDisplayState((prev)=>({
+                                                                                        ...prev,
+                                                                                        positionEditOff:"none",
+                                                                                        positionEditOn:"inline"
+                                                                                    }))
+                                                                                }}><CloseIcon />
+                                                                            </Button>
+                                                                            <Button onClick={async ()=>{
+                                                                                    let studentbiography = await fetch("/api/staffapi",{
+                                                                                        body: JSON.stringify(
+                                                                                            {
+                                                                                                staffID: staffID, // THIS VALUE WILL BE entered with cookies
+                                                                                                position:values.position
+                                                                                            }),
+                                                                                        method:"PUT"
+                                                                                    })
+                                                                                    setDisplayState((prev)=>({
+                                                                                        ...prev,
+                                                                                        positionEditOff:"none",
+                                                                                        positionEditOn:"inline"
+                                                                                    }))
+                                                                                }}><DoneIcon />
+                                                                            </Button>
+                                                                        </span>
+                                                                    </div>
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            
+                                                            <TableRow hover>
+                                                                <TableCell  >
+                                                                    Matricle
+                                                                </TableCell>
+                                                                <TableCell  >
+                                                                    <div 
+                                                                            onMouseOver={
+                                                                                ()=>setDisplayEditIconState((prev)=>({
+                                                                                        ...prev,
+                                                                                        matricleIconEditOff:"inline"
+                                                                                        
+                                                                                    }))
+                                                                                }
+                                                                            onMouseOut={
+                                                                                ()=>setDisplayEditIconState((prev)=>({
+                                                                                    ...prev,
+                                                                                    matricleIconEditOff:"none"
+                                                                                    
+                                                                                }))
+                                                                        } >
+                                                                            
+                                                                                <span style={{display:displayState.matricleEditOn}}>
+                                                                                    <span >
+                                                                                        <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.matricle : null}</span>
+                                                                                    </span>
+                                                                                    <span style={{display:displayEditIconState.matricleIconEditOff}}>
+
+                                                                                        <Button  onClick={()=>{
+                                                                                                setDisplayState((prev)=>({
+                                                                                                    ...prev,
+                                                                                                    
+                                                                                                    matricleEditOff: "inline",
+                                                                                                    matricleEditOn:"none"
+                                                                                                }))
+                                                                                            }}><EditIcon />
+                                                                                        </Button>
+
+                                                                                        <Button>
+                                                                                            <DeleteForeverIcon />
+                                                                                        </Button>
+                                                                                    </span>
+                                                                            
+                                                                                    
+                                                                                </span>
+                                                                            <span style={{display:displayState.matricleEditOff}}>
+                                                                                <Field
+                                                                                        error={errors.hasOwnProperty("matricle") && touched.hasOwnProperty("matricle") ? true : false }
+                                                                                        {...getFieldProps("matricle")}
+                                                                                        label={errors.hasOwnProperty("matricle") && touched.hasOwnProperty("matricle") ? errors.matricle : "matricle" }
+                                                                                        value={values.matricle}
+                                                                                        name="matricle"
+                                                                                        id="matricle"
+                                                                                        component={TextField}
+                                                                                        className="w-100"
+                                                                                        variant="filled"
+                                                                                        type="tel"
+                                                                                        
+                                                                                        
+                                                                                        />
+                                                                                <Button onClick={()=>{
+                                                                                        setDisplayState((prev)=>({
+                                                                                            ...prev,
+                                                                                            matricleEditOff:"none",
+                                                                                            matricleEditOn:"inline"
+                                                                                        }))
+                                                                                    }}><CloseIcon />
+                                                                                </Button>
+                                                                                <Button onClick={async ()=>{
+                                                                                        let studentbiography = await fetch("/api/staffapi",{
+                                                                                            body: JSON.stringify(
+                                                                                                {
+                                                                                                    staffID: staffID, // THIS VALUE WILL BE entered with cookies
+                                                                                                    matricle:values.matricle
+                                                                                                }),
+                                                                                            method:"PUT"
+                                                                                        })
+                                                                                        setDisplayState((prev)=>({
+                                                                                            ...prev,
+                                                                                            matricleEditOff:"none",
+                                                                                            matricleEditOn:"inline"
+                                                                                        }))
+                                                                                    }}><DoneIcon />
+                                                                                </Button>
+                                                                            </span>
+                                                                        </div>
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            
+                                                            <TableRow>
+                                                            <TableCell  >
+                                                                    Former Post
+                                                                </TableCell>
+                                                            <TableCell  >
+                                                                    <div 
+                                                                            onMouseOver={
+                                                                                ()=>setDisplayEditIconState((prev)=>({
+                                                                                        ...prev,
+                                                                                        formerPostIconEditOff:"inline"
+                                                                                        
+                                                                                    }))
+                                                                                }
+                                                                            onMouseOut={
+                                                                                ()=>setDisplayEditIconState((prev)=>({
+                                                                                    ...prev,
+                                                                                    formerPostIconEditOff:"none"
+                                                                                    
+                                                                                }))
+                                                                        } >
+                                                                            
+                                                                                <span style={{display:displayState.formerPostEditOn}}>
+                                                                                    <span >
+                                                                                        <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.formerPost : null}</span>
+                                                                                    </span>
+                                                                                    <span style={{display:displayEditIconState.formerPostIconEditOff}}>
+
+                                                                                        <Button  onClick={()=>{
+                                                                                                setDisplayState((prev)=>({
+                                                                                                    ...prev,
+                                                                                                    
+                                                                                                    formerPostEditOff: "inline",
+                                                                                                    formerPostEditOn:"none"
+                                                                                                }))
+                                                                                            }}><EditIcon />
+                                                                                        </Button>
+
+                                                                                        <Button>
+                                                                                            <DeleteForeverIcon />
+                                                                                        </Button>
+                                                                                    </span>
+                                                                            
+                                                                                    
+                                                                                </span>
+                                                                            <span style={{display:displayState.formerPostEditOff}}>
+                                                                                <Field
+                                                                                        error={errors.hasOwnProperty("formerPost") && touched.hasOwnProperty("formerPost") ? true : false }
+                                                                                        {...getFieldProps("formerPost")}
+                                                                                        label={errors.hasOwnProperty("formerPost") && touched.hasOwnProperty("formerPost") ? errors.formerPost : "formerPost" }
+                                                                                        value={values.formerPost}
+                                                                                        name="formerPost"
+                                                                                        id="formerPost"
+                                                                                        component={TextField}
+                                                                                        className="w-100"
+                                                                                        variant="filled"
+                                                                                        type="tel"
+                                                                                        
+                                                                                        
+                                                                                        />
+                                                                                <Button onClick={()=>{
+                                                                                        setDisplayState((prev)=>({
+                                                                                            ...prev,
+                                                                                            formerPostEditOff:"none",
+                                                                                            formerPostEditOn:"inline"
+                                                                                        }))
+                                                                                    }}><CloseIcon />
+                                                                                </Button>
+                                                                                <Button onClick={async ()=>{
+                                                                                        let studentbiography = await fetch("/api/staffapi",{
+                                                                                            body: JSON.stringify(
+                                                                                                {
+                                                                                                    staffID: staffID, // THIS VALUE WILL BE entered with cookies
+                                                                                                    formerPost:values.formerPost
+                                                                                                }),
+                                                                                            method:"PUT"
+                                                                                        })
+                                                                                        setDisplayState((prev)=>({
+                                                                                            ...prev,
+                                                                                            formerPostEditOff:"none",
+                                                                                            formerPostEditOn:"inline"
+                                                                                        }))
+                                                                                    }}><DoneIcon />
+                                                                                </Button>
+                                                                            </span>
+                                                                        </div>
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            
+                                                            <TableRow>
+                                                            <TableCell  >
+                                                                    Location of Former Post
+                                                                </TableCell>
+                                                            <TableCell  >
+                                                                    <div 
+                                                                            onMouseOver={
+                                                                                ()=>setDisplayEditIconState((prev)=>({
+                                                                                        ...prev,
+                                                                                        locationOfFomerPostIconEditOff:"inline"
+                                                                                        
+                                                                                    }))
+                                                                                }
+                                                                            onMouseOut={
+                                                                                ()=>setDisplayEditIconState((prev)=>({
+                                                                                    ...prev,
+                                                                                    locationOfFomerPostIconEditOff:"none"
+                                                                                    
+                                                                                }))
+                                                                        } >
+                                                                            
+                                                                                <span style={{display:displayState.locationOfFomerPostEditOn}}>
+                                                                                    <span >
+                                                                                        <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.locationOfFomerPost : null}</span>
+                                                                                    </span>
+                                                                                    <span style={{display:displayEditIconState.locationOfFomerPostIconEditOff}}>
+
+                                                                                        <Button  onClick={()=>{
+                                                                                                setDisplayState((prev)=>({
+                                                                                                    ...prev,
+                                                                                                    
+                                                                                                    locationOfFomerPostEditOff: "inline",
+                                                                                                    locationOfFomerPostEditOn:"none"
+                                                                                                }))
+                                                                                            }}><EditIcon />
+                                                                                        </Button>
+
+                                                                                        <Button>
+                                                                                            <DeleteForeverIcon />
+                                                                                        </Button>
+                                                                                    </span>
+                                                                            
+                                                                                    
+                                                                                </span>
+                                                                            <span style={{display:displayState.locationOfFomerPostEditOff}}>
+                                                                                <Field
+                                                                                        error={errors.hasOwnProperty("locationOfFomerPost") && touched.hasOwnProperty("locationOfFomerPost") ? true : false }
+                                                                                        {...getFieldProps("locationOfFomerPost")}
+                                                                                        label={errors.hasOwnProperty("locationOfFomerPost") && touched.hasOwnProperty("locationOfFomerPost") ? errors.locationOfFomerPost : "location Of Fomer Post" }
+                                                                                        value={values.locationOfFomerPost}
+                                                                                        name="locationOfFomerPost"
+                                                                                        id="locationOfFomerPost"
+                                                                                        component={TextField}
+                                                                                        className="w-100"
+                                                                                        variant="filled"
+                                                                                        type="tel"
+                                                                                        
+                                                                                        
+                                                                                        />
+                                                                                <Button onClick={()=>{
+                                                                                        setDisplayState((prev)=>({
+                                                                                            ...prev,
+                                                                                            locationOfFomerPostEditOff:"none",
+                                                                                            locationOfFomerPostEditOn:"inline"
+                                                                                        }))
+                                                                                    }}><CloseIcon />
+                                                                                </Button>
+                                                                                <Button onClick={async ()=>{
+                                                                                        let studentbiography = await fetch("/api/staffapi",{
+                                                                                            body: JSON.stringify(
+                                                                                                {
+                                                                                                    staffID: staffID, // THIS VALUE WILL BE entered with cookies
+                                                                                                    locationOfFomerPost:values.locationOfFomerPost
+                                                                                                }),
+                                                                                            method:"PUT"
+                                                                                        })
+                                                                                        setDisplayState((prev)=>({
+                                                                                            ...prev,
+                                                                                            locationOfFomerPostEditOff:"none",
+                                                                                            locationOfFomerPostEditOn:"inline"
+                                                                                        }))
+                                                                                    }}><DoneIcon />
+                                                                                </Button>
+                                                                            </span>
+                                                                        </div>
+                                                                </TableCell>
+                                                            </TableRow>
+
+                                                            <TableRow>
+                                                            <TableCell  >
+                                                                    Decision/Decree Number
+                                                                </TableCell>
+                                                            <TableCell  >
+                                                                    <div 
+                                                                            onMouseOver={
+                                                                                ()=>setDisplayEditIconState((prev)=>({
+                                                                                        ...prev,
+                                                                                        decisionNoIconEditOff:"inline"
+                                                                                        
+                                                                                    }))
+                                                                                }
+                                                                            onMouseOut={
+                                                                                ()=>setDisplayEditIconState((prev)=>({
+                                                                                    ...prev,
+                                                                                    decisionNoIconEditOff:"none"
+                                                                                    
+                                                                                }))
+                                                                        } >
+                                                                            
+                                                                                <span style={{display:displayState.decisionNoIconEditOff}}>
+                                                                                    <span >
+                                                                                        <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.decisionNo : null}</span>
+                                                                                    </span>
+                                                                                    <span style={{display:displayEditIconState.decisionNoIconEditOff}}>
+
+                                                                                        <Button  onClick={()=>{
+                                                                                                setDisplayState((prev)=>({
+                                                                                                    ...prev,
+                                                                                                    
+                                                                                                    decisionNoEditOff: "inline",
+                                                                                                    decisionNoEditOn:"none"
+                                                                                                }))
+                                                                                            }}><EditIcon />
+                                                                                        </Button>
+
+                                                                                        <Button>
+                                                                                            <DeleteForeverIcon />
+                                                                                        </Button>
+                                                                                    </span>
+                                                                            
+                                                                                    
+                                                                                </span>
+                                                                            <span style={{display:displayState.decisionNoEditOff}}>
+                                                                                <Field
+                                                                                        error={errors.hasOwnProperty("decisionNo") && touched.hasOwnProperty("decisionNo") ? true : false }
+                                                                                        {...getFieldProps("decisionNo")}
+                                                                                        label={errors.hasOwnProperty("decisionNo") && touched.hasOwnProperty("decisionNo") ? errors.decisionNo : "decisionNo" }
+                                                                                        value={values.decisionNo}
+                                                                                        name="decisionNo"
+                                                                                        id="decisionNo"
+                                                                                        component={TextField}
+                                                                                        className="w-100"
+                                                                                        variant="filled"
+                                                                                        type="tel"
+                                                                                        
+                                                                                        
+                                                                                        />
+                                                                                <Button onClick={()=>{
+                                                                                        setDisplayState((prev)=>({
+                                                                                            ...prev,
+                                                                                            decisionNoEditOff:"none",
+                                                                                            decisionNoEditOn:"inline"
+                                                                                        }))
+                                                                                    }}><CloseIcon />
+                                                                                </Button>
+                                                                                <Button onClick={async ()=>{
+                                                                                        let studentbiography = await fetch("/api/staffapi",{
+                                                                                            body: JSON.stringify(
+                                                                                                {
+                                                                                                    staffID: staffID, // THIS VALUE WILL BE entered with cookies
+                                                                                                    decisionNo:values.decisionNo
+                                                                                                }),
+                                                                                            method:"PUT"
+                                                                                        })
+                                                                                        setDisplayState((prev)=>({
+                                                                                            ...prev,
+                                                                                            decisionNoEditOff:"none",
+                                                                                            decisionNoEditOn:"inline"
+                                                                                        }))
+                                                                                    }}><DoneIcon />
+                                                                                </Button>
+                                                                            </span>
+                                                                        </div>
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            
+                                                            <TableRow hover>
+                                                                <TableCell  >
+                                                                    Decision Date
+                                                                </TableCell>
+                                                                <TableCell  >
+                                                                    <div 
+                                                                            onMouseOver={
+                                                                                ()=>setDisplayEditIconState((prev)=>({
+                                                                                        ...prev,
+                                                                                        decisionDateIconEditOff:"inline"
+                                                                                        
+                                                                                    }))
+                                                                                }
+                                                                            onMouseOut={
+                                                                                ()=>setDisplayEditIconState((prev)=>({
+                                                                                    ...prev,
+                                                                                    decisionDateIconEditOff:"none"
+                                                                                    
+                                                                                }))
+                                                                        } >
+                                                                            
+                                                                                <span style={{display:displayState.decisionDateEditOn}}>
+                                                                                    <span >
+                                                                                        <span className="bolder">{oneStaffdata ? new Date(oneStaffdata.oneStaff.decisionDate).toLocaleDateString() : null}</span>
+                                                                                    </span>
+                                                                                    <span style={{display:displayEditIconState.decisionDateIconEditOff}}>
+
+                                                                                        <Button  onClick={()=>{
+                                                                                                setDisplayState((prev)=>({
+                                                                                                    ...prev,
+                                                                                                    
+                                                                                                    decisionDateEditOff: "inline",
+                                                                                                    decisionDateEditOn:"none"
+                                                                                                }))
+                                                                                            }}><EditIcon />
+                                                                                        </Button>
+
+                                                                                        <Button>
+                                                                                            <DeleteForeverIcon />
+                                                                                        </Button>
+                                                                                    </span>
+                                                                            
+                                                                                    
+                                                                                </span>
+                                                                            <span style={{display:displayState.decisionDateEditOff}}>
+                                                                                <Field
+                                                                                        error={errors.hasOwnProperty("decisionDate") && touched.hasOwnProperty("decisionDate") ? true : false }
+                                                                                        {...getFieldProps("decisionDate")}
+                                                                                        label={errors.hasOwnProperty("decisionDate") && touched.hasOwnProperty("decisionDate") ? errors.decisionDate : "decisionDate" }
+                                                                                        value={values.decisionDate}
+                                                                                        name="decisionDate"
+                                                                                        id="decisionDate"
+                                                                                        component={TextField}
+                                                                                        className="w-100"
+                                                                                        variant="filled"
+                                                                                        type="date"
+                                                                                        
+                                                                                        
+                                                                                        />
+                                                                                <Button onClick={()=>{
+                                                                                        setDisplayState((prev)=>({
+                                                                                            ...prev,
+                                                                                            decisionDateEditOff:"none",
+                                                                                            decisionDateEditOn:"inline"
+                                                                                        }))
+                                                                                    }}><CloseIcon />
+                                                                                </Button>
+                                                                                <Button onClick={async ()=>{
+                                                                                        let studentbiography = await fetch("/api/staffapi",{
+                                                                                            body: JSON.stringify(
+                                                                                                {
+                                                                                                    staffID: staffID, // THIS VALUE WILL BE entered with cookies
+                                                                                                    decisionDate:values.decisionDate
+                                                                                                }),
+                                                                                            method:"PUT"
+                                                                                        })
+                                                                                        setDisplayState((prev)=>({
+                                                                                            ...prev,
+                                                                                            decisionDateEditOff:"none",
+                                                                                            decisionDateEditOn:"inline"
+                                                                                        }))
+                                                                                    }}><DoneIcon />
+                                                                                </Button>
+                                                                            </span>
+                                                                        </div>
+                                                                </TableCell>
+                                                            </TableRow>
+
+                                                            <TableRow hover>
+                                                                <TableCell  >
+                                                                    diploma
+                                                                </TableCell>
+                                                                <TableCell  >
+                                                                    <div 
+                                                                            onMouseOver={
+                                                                                ()=>setDisplayEditIconState((prev)=>({
+                                                                                        ...prev,
+                                                                                        diplomaIconEditOff:"inline"
+                                                                                        
+                                                                                    }))
+                                                                                }
+                                                                            onMouseOut={
+                                                                                ()=>setDisplayEditIconState((prev)=>({
+                                                                                    ...prev,
+                                                                                    diplomaIconEditOff:"none"
+                                                                                    
+                                                                                }))
+                                                                        } >
+                                                                            
+                                                                                <span style={{display:displayState.diplomaEditOn}}>
+                                                                                    <span >
+                                                                                        <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.diploma : null}</span>
+                                                                                    </span>
+                                                                                    <span style={{display:displayEditIconState.diplomaIconEditOff}}>
+
+                                                                                        <Button  onClick={()=>{
+                                                                                                setDisplayState((prev)=>({
+                                                                                                    ...prev,
+                                                                                                    
+                                                                                                    diplomaEditOff: "inline",
+                                                                                                    diplomaEditOn:"none"
+                                                                                                }))
+                                                                                            }}><EditIcon />
+                                                                                        </Button>
+
+                                                                                        <Button>
+                                                                                            <DeleteForeverIcon />
+                                                                                        </Button>
+                                                                                    </span>
+                                                                            
+                                                                                    
+                                                                                </span>
+                                                                            <span style={{display:displayState.diplomaEditOff}}>
+                                                                                <Field
+                                                                                        error={errors.hasOwnProperty("diploma") && touched.hasOwnProperty("diploma") ? true : false }
+                                                                                        {...getFieldProps("diploma")}
+                                                                                        label={errors.hasOwnProperty("diploma") && touched.hasOwnProperty("diploma") ? errors.decisionDate : "diploma" }
+                                                                                        value={values.decisionDate}
+                                                                                        name="diploma"
+                                                                                        id="diploma"
+                                                                                        component={TextField}
+                                                                                        className="w-100"
+                                                                                        variant="filled"
+                                                                                        type="tel"
+                                                                                        
+                                                                                        
+                                                                                        />
+                                                                                <Button onClick={()=>{
+                                                                                        setDisplayState((prev)=>({
+                                                                                            ...prev,
+                                                                                            diplomaEditOff:"none",
+                                                                                            diplomaEditOn:"inline"
+                                                                                        }))
+                                                                                    }}><CloseIcon />
+                                                                                </Button>
+                                                                                <Button onClick={async ()=>{
+                                                                                        let studentbiography = await fetch("/api/staffapi",{
+                                                                                            body: JSON.stringify(
+                                                                                                {
+                                                                                                    staffID: staffID, // THIS VALUE WILL BE entered with cookies
+                                                                                                    diploma:values.diploma
+                                                                                                }),
+                                                                                            method:"PUT"
+                                                                                        })
+                                                                                        setDisplayState((prev)=>({
+                                                                                            ...prev,
+                                                                                            diplomaEditOff:"none",
+                                                                                            diplomaEditOn:"inline"
+                                                                                        }))
+                                                                                    }}><DoneIcon />
+                                                                                </Button>
+                                                                            </span>
+                                                                        </div>
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            
+                                                            <TableRow hover>
+                                                                <TableCell >
+                                                                    date Of Assumption
+                                                                </TableCell>
+                                                                <TableCell  >
+
+                                                                <div 
+                                                                        onMouseOver={
+                                                                            ()=>setDisplayEditIconState((prev)=>({
+                                                                                    ...prev,
+                                                                                    dateOfAssumptionIconEditOff:"inline"
+                                                                                    
+                                                                                }))
+                                                                            }
+                                                                        onMouseOut={
+                                                                            ()=>setDisplayEditIconState((prev)=>({
+                                                                                ...prev,
+                                                                                dateOfAssumptionIconEditOff:"none"
+                                                                                
+                                                                            }))
+                                                                    } >
+                                                                        
+                                                                            <span style={{display:displayState.dateOfAssumptionEditOn}}>
+                                                                                <span >
+                                                                                    <span className="bolder">{oneStaffdata ? new Date(oneStaffdata.oneStaff.dateOfAssumption).toLocaleDateString() : null}</span>
+                                                                                </span>
+                                                                                <span style={{display:displayEditIconState.dateOfAssumptionIconEditOff}}>
+
+                                                                                    <Button  onClick={()=>{
+                                                                                            setDisplayState((prev)=>({
+                                                                                                ...prev,
+                                                                                                dateOfAssumptionEditOff: "inline",
+                                                                                                dateOfAssumptionEditOn:"none"
+                                                                                            }))
+                                                                                        }}><EditIcon />
+                                                                                    </Button>
+
+                                                                                    <Button>
+                                                                                        <DeleteForeverIcon />
+                                                                                    </Button>
+                                                                                </span>
+                                                                        
+                                                                                
+                                                                            </span>
+                                                                        <span style={{display:displayState.dateOfAssumptionEditOff}}>
+                                                                            <Field
+                                                                                error={errors.hasOwnProperty("dateOfAssumption") && touched.hasOwnProperty("dateOfAssumption") ? true : false }
+                                                                                {...getFieldProps("dateOfAssumption")}
+                                                                                label={errors.hasOwnProperty("dateOfAssumption") && touched.hasOwnProperty("dateOfAssumption") ? errors.dateOfAssumption : "date Of Assumption" }
+                                                                                value={values.dateOfAssumption}
+                                                                                name="dateOfAssumption"
+                                                                                id="dateOfAssumption"
+                                                                                component={TextField}
+                                                                                className="w-100"
+                                                                                variant="filled"
+                                                                                type="date"
+                                                                                InputLabelProps={{
+                                                                                    shrink:true
+                                                                                }}
+                                                                                
+                                                                                />
+                                                                            <Button onClick={()=>{
+                                                                                    setDisplayState((prev)=>({
+                                                                                        ...prev,
+                                                                                        dateOfAssumptionEditOff:"none",
+                                                                                        dateOfAssumptionEditOn:"inline"
+                                                                                    }))
+                                                                                }}><CloseIcon />
+                                                                            </Button>
+                                                                            <Button onClick={async ()=>{
+                                                                                    let studentbiography = await fetch("/api/staffapi",{
+                                                                                        body: JSON.stringify(
+                                                                                            {
+                                                                                                staffID: staffID, // THIS VALUE WILL BE entered with cookies
+                                                                                                dateOfAssumption:values.dateOfAssumption
+                                                                                            }),
+                                                                                        method:"PUT"
+                                                                                    })
+                                                                                    setDisplayState((prev)=>({
+                                                                                        ...prev,
+                                                                                        dateOfAssumptionEditOff:"none",
+                                                                                        dateOfAssumptionEditOn:"inline"
+                                                                                    }))
+                                                                                }}><DoneIcon />
+                                                                            </Button>
+                                                                        </span>
+                                                                    </div>   
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            
+                                                            <TableRow hover role="checkbox" tabIndex={-1} >
+                                                                <TableCell colSpan="2"className="bg-info" >
+                                                                    <div className="bolder">Emergency Contact Information</div>
+                                                                </TableCell>
+                                                            </TableRow>
+
+                                                            
+
+                                                            
+                                                            <TableRow hover>
+                                                                <TableCell  >
+                                                                    E-contact Name
+                                                                </TableCell>
+                                                                <TableCell  >
+
+                                                                <div 
+                                                                        onMouseOver={
+                                                                            ()=>setDisplayEditIconState((prev)=>({
+                                                                                    ...prev,
+                                                                                    EcontactNameIconEditOff:"inline"
+                                                                                    
+                                                                                }))
+                                                                            }
+                                                                        onMouseOut={
+                                                                            ()=>setDisplayEditIconState((prev)=>({
+                                                                                ...prev,
+                                                                                EcontactNameIconEditOff:"none"
+                                                                                
+                                                                            }))
+                                                                    } >
+                                                                        
+                                                                            <span style={{display:displayState.EcontactNameEditOn}}>
+                                                                                <span >
+                                                                                    <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.emergencyContactName : null}</span>
+                                                                                </span>
+                                                                                <span style={{display:displayEditIconState.EcontactNameIconEditOff}}>
+
+                                                                                    <Button  onClick={()=>{
+                                                                                            setDisplayState((prev)=>({
+                                                                                                ...prev,
+                                                                                                
+                                                                                                EcontactNameEditOff: "inline",
+                                                                                                EcontactNameEditOn:"none"
+                                                                                            }))
+                                                                                        }}><EditIcon />
+                                                                                    </Button>
+
+                                                                                    <Button>
+                                                                                        <DeleteForeverIcon />
+                                                                                    </Button>
+                                                                                </span>
+                                                                        
+                                                                                
+                                                                            </span>
+                                                                        <span style={{display:displayState.EcontactNameEditOff}}>
+                                                                            <Field
+                                                                                    error={errors.hasOwnProperty("EcontactName") && touched.hasOwnProperty("EcontactName") ? true : false }
+                                                                                    {...getFieldProps("EcontactName")}
+                                                                                    label={errors.hasOwnProperty("EcontactName") && touched.hasOwnProperty("EcontactName") ? errors.EcontactName : "E-contact Name" }
+                                                                                    value={values.EcontactName}
+                                                                                    name="EcontactName"
+                                                                                    id="EcontactName"
                                                                                     component={TextField}
                                                                                     className="w-100"
                                                                                     variant="filled"
@@ -2190,24 +2705,24 @@ let StudentDetails =  ()=>{
                                                                             <Button onClick={()=>{
                                                                                     setDisplayState((prev)=>({
                                                                                         ...prev,
-                                                                                        MotherNameEditOff:"none",
-                                                                                        MotherNameEditOn:"inline"
+                                                                                        EcontactNameEditOff:"none",
+                                                                                        EcontactNameEditOn:"inline"
                                                                                     }))
                                                                                 }}><CloseIcon />
                                                                             </Button>
                                                                             <Button onClick={async ()=>{
-                                                                                    let studentbiography = await fetch("/api/studentapi",{
+                                                                                    let studentbiography = await fetch("/api/staffapi",{
                                                                                         body: JSON.stringify(
                                                                                             {
-                                                                                                studentID: "GO10", // THIS VALUE WILL BE entered with cookies
-                                                                                                MotherName:values.MotherName
+                                                                                                staffID: staffID, // THIS VALUE WILL BE entered with cookies
+                                                                                                EcontactName:values.EcontactName
                                                                                             }),
                                                                                         method:"PUT"
                                                                                     })
                                                                                     setDisplayState((prev)=>({
                                                                                         ...prev,
-                                                                                        MotherNameEditOff:"none",
-                                                                                        MotherNameEditOn:"inline"
+                                                                                        EcontactNameEditOff:"none",
+                                                                                        EcontactNameEditOn:"inline"
                                                                                     }))
                                                                                 }}><DoneIcon />
                                                                             </Button>
@@ -2217,7 +2732,7 @@ let StudentDetails =  ()=>{
                                                             </TableRow>
                                                             <TableRow hover>
                                                                 <TableCell  >
-                                                                    Mother Occupation
+                                                                    E-contactOccupation
                                                                 </TableCell>
                                                                 <TableCell  >
 
@@ -2225,30 +2740,30 @@ let StudentDetails =  ()=>{
                                                                         onMouseOver={
                                                                             ()=>setDisplayEditIconState((prev)=>({
                                                                                     ...prev,
-                                                                                    MotherOccupationIconEditOff:"inline"
+                                                                                    EcontactOccupationIconEditOff:"inline"
                                                                                     
                                                                                 }))
                                                                             }
                                                                         onMouseOut={
                                                                             ()=>setDisplayEditIconState((prev)=>({
                                                                                 ...prev,
-                                                                                MotherOccupationIconEditOff:"none"
+                                                                                EcontactOccupationIconEditOff:"none"
                                                                                 
                                                                             }))
                                                                     } >
                                                                         
-                                                                            <span style={{display:displayState.MotherOccupationEditOn}}>
+                                                                            <span style={{display:displayState.EcontactOccupationEditOn}}>
                                                                                 <span >
-                                                                                    <span className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.MotherOccupation : null}</span>
+                                                                                    <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.EcontactOccupation : null}</span>
                                                                                 </span>
-                                                                                <span style={{display:displayEditIconState.MotherOccupationIconEditOff}}>
+                                                                                <span style={{display:displayEditIconState.EcontactOccupationIconEditOff}}>
 
                                                                                     <Button  onClick={()=>{
                                                                                             setDisplayState((prev)=>({
                                                                                                 ...prev,
                                                                                                 
-                                                                                                MotherOccupationEditOff: "inline",
-                                                                                                MotherOccupationEditOn:"none"
+                                                                                                EcontactOccupationEditOff: "inline",
+                                                                                                EcontactOccupationEditOn:"none"
                                                                                             }))
                                                                                         }}><EditIcon />
                                                                                     </Button>
@@ -2260,14 +2775,14 @@ let StudentDetails =  ()=>{
                                                                         
                                                                                 
                                                                             </span>
-                                                                        <span style={{display:displayState.MotherOccupationEditOff}}>
+                                                                        <span style={{display:displayState.EcontactOccupationEditOff}}>
                                                                             <Field
-                                                                                error={errors.hasOwnProperty("MotherOccupation") && touched.hasOwnProperty("MotherOccupation") ? true : false }
-                                                                                {...getFieldProps("MotherOccupation")}
-                                                                                label={errors.hasOwnProperty("MotherOccupation") && touched.hasOwnProperty("MotherOccupation") ? errors.MotherOccupation : "MotherOccupation" }
-                                                                                value={values.MotherOccupation}
-                                                                                name="MotherOccupation"
-                                                                                id="MotherOccupation"
+                                                                                error={errors.hasOwnProperty("EcontactOccupation") && touched.hasOwnProperty("EcontactOccupation") ? true : false }
+                                                                                {...getFieldProps("EcontactOccupation")}
+                                                                                label={errors.hasOwnProperty("EcontactOccupation") && touched.hasOwnProperty("EcontactOccupation") ? errors.EcontactOccupation : "EcontactOccupation" }
+                                                                                value={values.EcontactOccupation}
+                                                                                name="EcontactOccupation"
+                                                                                id="EcontactOccupation"
                                                                                 component={TextField}
                                                                                 className="w-100"
                                                                                 variant="filled"
@@ -2276,24 +2791,24 @@ let StudentDetails =  ()=>{
                                                                             <Button onClick={()=>{
                                                                                     setDisplayState((prev)=>({
                                                                                         ...prev,
-                                                                                        MotherOccupationEditOff:"none",
-                                                                                        MotherOccupationEditOn:"inline"
+                                                                                        EcontactOccupationEditOff:"none",
+                                                                                        EcontactOccupationEditOn:"inline"
                                                                                     }))
                                                                                 }}><CloseIcon />
                                                                             </Button>
                                                                             <Button onClick={async ()=>{
-                                                                                    let studentbiography = await fetch("/api/studentapi",{
+                                                                                    let studentbiography = await fetch("/api/staffapi",{
                                                                                         body: JSON.stringify(
                                                                                             {
-                                                                                                studentID: "GO10", // THIS VALUE WILL BE entered with cookies
-                                                                                                MotherOccupation:values.MotherOccupation
+                                                                                                staffID: staffID, // THIS VALUE WILL BE entered with cookies
+                                                                                                EcontactOccupation:values.EcontactOccupation
                                                                                             }),
                                                                                         method:"PUT"
                                                                                     })
                                                                                     setDisplayState((prev)=>({
                                                                                         ...prev,
-                                                                                        MotherOccupationEditOff:"none",
-                                                                                        MotherOccupationEditOn:"inline"
+                                                                                        EcontactOccupationEditOff:"none",
+                                                                                        EcontactOccupationEditOn:"inline"
                                                                                     }))
                                                                                 }}><DoneIcon />
                                                                             </Button>
@@ -2303,7 +2818,7 @@ let StudentDetails =  ()=>{
                                                             </TableRow>
                                                             <TableRow hover>
                                                                 <TableCell  >
-                                                                    Mother Address
+                                                                    E-contact Address
                                                                 </TableCell>
                                                                 <TableCell  >
 
@@ -2311,30 +2826,30 @@ let StudentDetails =  ()=>{
                                                                         onMouseOver={
                                                                             ()=>setDisplayEditIconState((prev)=>({
                                                                                     ...prev,
-                                                                                    MotherAddressIconEditOff:"inline"
+                                                                                    EcontactAddressIconEditOff:"inline"
                                                                                     
                                                                                 }))
                                                                             }
                                                                         onMouseOut={
                                                                             ()=>setDisplayEditIconState((prev)=>({
                                                                                 ...prev,
-                                                                                MotherAddressIconEditOff:"none"
+                                                                                EcontactAddressIconEditOff:"none"
                                                                                 
                                                                             }))
                                                                     } >
                                                                         
-                                                                            <span style={{display:displayState.MotherAddressEditOn}}>
+                                                                            <span style={{display:displayState.EcontactAddressEditOn}}>
                                                                                 <span >
-                                                                                    <span className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.MotherAddress : null}</span>
+                                                                                    <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.emergencyContactAddress : null}</span>
                                                                                 </span>
-                                                                                <span style={{display:displayEditIconState.MotherAddressIconEditOff}}>
+                                                                                <span style={{display:displayEditIconState.EcontactAddressIconEditOff}}>
 
                                                                                     <Button  onClick={()=>{
                                                                                             setDisplayState((prev)=>({
                                                                                                 ...prev,
                                                                                                 
-                                                                                                MotherAddressEditOff: "inline",
-                                                                                                MotherAddressEditOn:"none"
+                                                                                                EcontactAddressEditOff: "inline",
+                                                                                                EcontactAddressEditOn:"none"
                                                                                             }))
                                                                                         }}><EditIcon />
                                                                                     </Button>
@@ -2346,14 +2861,14 @@ let StudentDetails =  ()=>{
                                                                         
                                                                                 
                                                                             </span>
-                                                                        <span style={{display:displayState.MotherAddressEditOff}}>
+                                                                        <span style={{display:displayState.EcontactAddressEditOff}}>
                                                                             <Field
-                                                                                error={errors.hasOwnProperty("MotherAddress") && touched.hasOwnProperty("MotherAddress") ? true : false }
-                                                                                {...getFieldProps("MotherAddress")}
-                                                                                label={errors.hasOwnProperty("MotherAddress") && touched.hasOwnProperty("MotherAddress") ? errors.MotherAddress : "MotherAddress" }
-                                                                                value={values.MotherAddress}
-                                                                                name="MotherAddress"
-                                                                                id="MotherAddress"
+                                                                                error={errors.hasOwnProperty("EcontactAddress") && touched.hasOwnProperty("EcontactAddress") ? true : false }
+                                                                                {...getFieldProps("EcontactAddress")}
+                                                                                label={errors.hasOwnProperty("EcontactAddress") && touched.hasOwnProperty("EcontactAddress") ? errors.EcontactAddress : "EcontactAddress" }
+                                                                                value={values.EcontactAddress}
+                                                                                name="EcontactAddress"
+                                                                                id="EcontactAddress"
                                                                                 component={TextField}
                                                                                 className="w-100"
                                                                                 variant="filled"
@@ -2361,24 +2876,24 @@ let StudentDetails =  ()=>{
                                                                             <Button onClick={()=>{
                                                                                     setDisplayState((prev)=>({
                                                                                         ...prev,
-                                                                                        MotherAddressEditOff:"none",
-                                                                                        MotherAddressEditOn:"inline"
+                                                                                        EcontactAddressEditOff:"none",
+                                                                                        EcontactAddressEditOn:"inline"
                                                                                     }))
                                                                                 }}><CloseIcon />
                                                                             </Button>
                                                                             <Button onClick={async ()=>{
-                                                                                    let studentbiography = await fetch("/api/studentapi",{
+                                                                                    let studentbiography = await fetch("/api/staffapi",{
                                                                                         body: JSON.stringify(
                                                                                             {
-                                                                                                studentID: "GO10", // THIS VALUE WILL BE entered with cookies
-                                                                                                MotherAddress:values.MotherAddress
+                                                                                                staffID: staffID, // THIS VALUE WILL BE entered with cookies
+                                                                                                EcontactAddress:values.EcontactAddress
                                                                                             }),
                                                                                         method:"PUT"
                                                                                     })
                                                                                     setDisplayState((prev)=>({
                                                                                         ...prev,
-                                                                                        MotherAddressEditOff:"none",
-                                                                                        MotherAddressEditOn:"inline"
+                                                                                        EcontactAddressEditOff:"none",
+                                                                                        EcontactAddressEditOn:"inline"
                                                                                     }))
                                                                                 }}><DoneIcon />
                                                                             </Button>
@@ -2388,7 +2903,7 @@ let StudentDetails =  ()=>{
                                                             </TableRow>
                                                             <TableRow hover>
                                                                 <TableCell  >
-                                                                    Mother Contact
+                                                                    E-Mobile Contact
                                                                 </TableCell>
                                                                 <TableCell  >
 
@@ -2396,30 +2911,30 @@ let StudentDetails =  ()=>{
                                                                         onMouseOver={
                                                                             ()=>setDisplayEditIconState((prev)=>({
                                                                                     ...prev,
-                                                                                    MotherContactIconEditOff:"inline"
+                                                                                    EcontactContactMobileIconEditOff:"inline"
                                                                                     
                                                                                 }))
                                                                             }
                                                                         onMouseOut={
                                                                             ()=>setDisplayEditIconState((prev)=>({
                                                                                 ...prev,
-                                                                                MotherContactIconEditOff:"none"
+                                                                                EcontactContactMobileIconEditOff:"none"
                                                                                 
                                                                             }))
                                                                     } >
                                                                         
-                                                                            <span style={{display:displayState.MotherContactEditOn}}>
+                                                                            <span style={{display:displayState.EcontactContactMobileEditOn}}>
                                                                                 <span >
-                                                                                    <span className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.MotherContact : null}</span>
+                                                                                    <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.emergencyContactPhone : null}</span>
                                                                                 </span>
-                                                                                <span style={{display:displayEditIconState.MotherContactIconEditOff}}>
+                                                                                <span style={{display:displayEditIconState.EcontactContactMobileIconEditOff}}>
 
                                                                                     <Button  onClick={()=>{
                                                                                             setDisplayState((prev)=>({
                                                                                                 ...prev,
                                                                                                 
-                                                                                                MotherContactEditOff: "inline",
-                                                                                                MotherContactEditOn:"none"
+                                                                                                EcontactContactMobileEditOff: "inline",
+                                                                                                EcontactContactMobileEditOn:"none"
                                                                                             }))
                                                                                         }}><EditIcon />
                                                                                     </Button>
@@ -2431,14 +2946,14 @@ let StudentDetails =  ()=>{
                                                                         
                                                                                 
                                                                             </span>
-                                                                        <span style={{display:displayState.MotherContactEditOff}}>
+                                                                        <span style={{display:displayState.EcontactContactMobileEditOff}}>
                                                                             <Field
-                                                                                error={errors.hasOwnProperty("MotherContact") && touched.hasOwnProperty("MotherContact") ? true : false }
-                                                                                {...getFieldProps("FatherContact")}
-                                                                                label={errors.hasOwnProperty("MotherContact") && touched.hasOwnProperty("MotherContact") ? errors.MotherContact : "MotherContact" }
-                                                                                value={values.MotherContact}
-                                                                                name="MotherContact"
-                                                                                id="MotherContact"
+                                                                                error={errors.hasOwnProperty("EcontactContactMobile") && touched.hasOwnProperty("EcontactContactMobile") ? true : false }
+                                                                                {...getFieldProps("EcontactContactMobile")}
+                                                                                label={errors.hasOwnProperty("EcontactContactMobile") && touched.hasOwnProperty("EcontactContactMobile") ? errors.EcontactContactMobile : "E-Mobile Contact" }
+                                                                                value={values.EcontactContactMobile}
+                                                                                name="EcontactContactMobile"
+                                                                                id="EcontactContactMobile"
                                                                                 component={TextField}
                                                                                 className="w-100"
                                                                                 variant="filled"
@@ -2447,24 +2962,24 @@ let StudentDetails =  ()=>{
                                                                             <Button onClick={()=>{
                                                                                     setDisplayState((prev)=>({
                                                                                         ...prev,
-                                                                                        MotherContactEditOff:"none",
-                                                                                        MotherContactEditOn:"inline"
+                                                                                        EcontactContactMobileEditOff:"none",
+                                                                                        EcontactContactMobileEditOn:"inline"
                                                                                     }))
                                                                                 }}><CloseIcon />
                                                                             </Button>
                                                                             <Button onClick={async ()=>{
-                                                                                    let studentbiography = await fetch("/api/studentapi",{
+                                                                                    let studentbiography = await fetch("/api/staffapi",{
                                                                                         body: JSON.stringify(
                                                                                             {
-                                                                                                studentID: "GO10", // THIS VALUE WILL BE entered with cookies
-                                                                                                MotherContact:values.MotherContact
+                                                                                                staffID: staffID, // THIS VALUE WILL BE entered with cookies
+                                                                                                EcontactContactMobile:values.EcontactContactMobile
                                                                                             }),
                                                                                         method:"PUT"
                                                                                     })
                                                                                     setDisplayState((prev)=>({
                                                                                         ...prev,
-                                                                                        MotherContactEditOff:"none",
-                                                                                        MotherContactEditOn:"inline"
+                                                                                        EcontactContactMobileEditOff:"none",
+                                                                                        EcontactContactMobileEditOn:"inline"
                                                                                     }))
                                                                                 }}><DoneIcon />
                                                                             </Button>
@@ -2472,10 +2987,94 @@ let StudentDetails =  ()=>{
                                                                     </div>
                                                                 </TableCell>
                                                             </TableRow>
-                                                        </TableHead>
-                                                        <TableBody>
-                                                            <TableRow></TableRow>
+                                                            <TableRow hover>
+                                                                <TableCell  >
+                                                                    E-Contact Email
+                                                                </TableCell>
+                                                                <TableCell  >
+
+                                                                <div 
+                                                                        onMouseOver={
+                                                                            ()=>setDisplayEditIconState((prev)=>({
+                                                                                    ...prev,
+                                                                                    EContactEmailIconEditOff:"inline"
+                                                                                    
+                                                                                }))
+                                                                            }
+                                                                        onMouseOut={
+                                                                            ()=>setDisplayEditIconState((prev)=>({
+                                                                                ...prev,
+                                                                                EContactEmailIconEditOff:"none"
+                                                                                
+                                                                            }))
+                                                                    } >
+                                                                        
+                                                                            <span style={{display:displayState.EContactEmailEditOn}}>
+                                                                                <span >
+                                                                                    <span className="bolder">{oneStaffdata ? oneStaffdata.oneStaff.emergencyContactEmail : null}</span>
+                                                                                </span>
+                                                                                <span style={{display:displayEditIconState.EContactEmailIconEditOff}}>
+
+                                                                                    <Button  onClick={()=>{
+                                                                                            setDisplayState((prev)=>({
+                                                                                                ...prev,
+                                                                                                
+                                                                                                EContactEmailEditOff: "inline",
+                                                                                                EContactEmailEditOn:"none"
+                                                                                            }))
+                                                                                        }}><EditIcon />
+                                                                                    </Button>
+
+                                                                                    <Button>
+                                                                                        <DeleteForeverIcon />
+                                                                                    </Button>
+                                                                                </span>
+                                                                        
+                                                                                
+                                                                            </span>
+                                                                        <span style={{display:displayState.EContactEmailEditOff}}>
+                                                                            <Field
+                                                                                error={errors.hasOwnProperty("EContactEmail") && touched.hasOwnProperty("EContactEmail") ? true : false }
+                                                                                {...getFieldProps("EContactEmail")}
+                                                                                label={errors.hasOwnProperty("EContactEmail") && touched.hasOwnProperty("EContactEmail") ? errors.EContactEmail : "E-Contact Email" }
+                                                                                value={values.EContactEmail}
+                                                                                name="EContactEmail"
+                                                                                id="EContactEmail"
+                                                                                component={TextField}
+                                                                                className="w-100"
+                                                                                variant="filled"
+                                                                                
+                                                                                />
+                                                                            <Button onClick={()=>{
+                                                                                    setDisplayState((prev)=>({
+                                                                                        ...prev,
+                                                                                        EContactEmailEditOff:"none",
+                                                                                        EContactEmailEditOn:"inline"
+                                                                                    }))
+                                                                                }}><CloseIcon />
+                                                                            </Button>
+                                                                            <Button onClick={async ()=>{
+                                                                                    let studentbiography = await fetch("/api/staffapi",{
+                                                                                        body: JSON.stringify(
+                                                                                            {
+                                                                                                staffID: staffID, // THIS VALUE WILL BE entered with cookies
+                                                                                                EContactEmail:values.EContactEmail
+                                                                                            }),
+                                                                                        method:"PUT"
+                                                                                    })
+                                                                                    setDisplayState((prev)=>({
+                                                                                        ...prev,
+                                                                                        EContactEmailEditOff:"none",
+                                                                                        EContactEmailEditOn:"inline"
+                                                                                    }))
+                                                                                }}><DoneIcon />
+                                                                            </Button>
+                                                                        </span>
+                                                                    </div>
+                                                                </TableCell>
+                                                            </TableRow>
                                                         </TableBody>
+                                                        
                                                     </Table>
                                                 </TableContainer>
                                             </Grid>
@@ -2509,11 +3108,11 @@ export async function getStaticPaths(context){
 // export const getStaticProps = async ({params,preview, previewData}) =>{
 export const getStaticProps = async ({params}) =>{
     // const student = new StudentDatabase()
-    // const oneStudent = JSON.stringify( await student.findOneStudent("GO10"))
+    // const oneStaff = JSON.stringify( await student.findOneStudent("GO10"))
     return{
         props:{
-            // oneStudent
+            // oneStaff
         }
     }
 }
-export default StudentDetails
+export default StaffDetails

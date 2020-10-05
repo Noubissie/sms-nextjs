@@ -108,7 +108,7 @@ let AddSubjects = ({sectionAll})=>{
                             <Card className="opacityControl border rounded">
                                 
                                 <div className="mt-3 mb-4 ml-3">
-                                    <h3 classNamae="bg-light opacityControl rounded">
+                                    <h3 className="bg-light opacityControl rounded">
                                         Add New Subject
                                     </h3>
                                 </div>

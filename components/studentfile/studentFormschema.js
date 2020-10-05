@@ -1,6 +1,6 @@
 import * as Yup from "yup"
 
-let initialValue=(genderdata,bloodgroupdata,religiondata,sectiondata)=>({
+let initialValue=(genderdata,bloodgroupdata,religiondata)=>({
     FamilyName:"",
     GivenName:"",
     DateOfBirth:"",
@@ -10,7 +10,7 @@ let initialValue=(genderdata,bloodgroupdata,religiondata,sectiondata)=>({
     Religion:religiondata[0],
     eMail:"",
     
-    section:sectiondata[0],
+    // section:sectiondata[0],
     AdmissionID:"",
     Phone:"",
     shortBio:"",
@@ -36,7 +36,7 @@ let ValidationSchema = Yup.object({
     BloodGroup:Yup.object().nullable(),
     Religion: Yup.object().nullable().required("Enter you religion"),
     eMail: Yup.string().nullable().email().required("Enter your email"),
-    section: Yup.object().nullable().required("choose section"),
+    // section: Yup.object().nullable().required("choose section"),
     AdmissionID: Yup.string().nullable().required("User id"),
     Phone: Yup.string().nullable().required("Enter phone number").max(15),
     shortBio: Yup.string().nullable().required("short biography"),

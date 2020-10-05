@@ -84,7 +84,7 @@ let initialEditIcons = {
         ReligionIconEditOff:"none",
         eMailIconEditOff:"none",
         
-        sectionIconEditOff:"none",
+        // sectionIconEditOff:"none",
         AdmissionIDIconEditOff:"none",
         PhoneIconEditOff:"none",
         shortBioIconEditOff:"none",
@@ -112,7 +112,7 @@ let initialDisplay = {
         ReligionEditOn:"inline",
         eMailEditOn:"inline",
         
-        sectionEditOn:"inline",
+        // sectionEditOn:"inline",
         AdmissionIDEditOn:"inline",
         PhoneEditOn:"inline",
         shortBioEditOn:"inline",
@@ -167,8 +167,8 @@ let StudentDetails =  ()=>{
     let [state , setstate] = useState(initialStateImageValues)
 
     let {data:sectionGetData, error:sectionGetError} =  useSWR("/api/sectionapi")
-    let {data:genderGetData, error:genderGetError} =  useSWR("/api/generalapi")
-    let sectiondata = (sectionGetData ? sectionGetData.length != 0 && sectionGetData :undefined) || [{id_:"",section:"", languages:""}]
+    let {data:genderGetData, error:genderGetError} =  useSWR("/api/generalapi?gender=true")
+    // let sectiondata = (sectionGetData ? sectionGetData.length != 0 && sectionGetData :undefined) || [{id_:"",section:"", languages:""}]
     let genderdata = (genderGetData ? genderGetData.length != 0 && genderGetData :undefined) || [{id:"",gender:""}]
 
     // let initialValues=initialValue(genderdata,bloodgroupdata,religiondata,sectiondata)
@@ -189,14 +189,14 @@ let StudentDetails =  ()=>{
     let initialValues={
         FamilyName:oneStudentdata ? oneStudentdata.oneStudent.familyname:"",
         GivenName:oneStudentdata ? oneStudentdata.oneStudent.givenname:"",
-        DateOfBirth:oneStudentdata ? oneStudentdata.oneStudent.dateofbirth:"",
+        DateOfBirth:oneStudentdata ? new Date(oneStudentdata.oneStudent.dateofbirth).toISOString().slice(0,10):new Date().toISOString().slice(0,10),
         Gender: genderdata[0],
         StudentAddress:oneStudentdata ? oneStudentdata.oneStudent.StudentAddress:"",
         BloodGroup:bloodgroupdata[0],
         Religion:religiondata[0],
         eMail:oneStudentdata ? oneStudentdata.oneStudent.email:"",
         
-        section:sectiondata[0],
+        // section:sectiondata[0],
         // AdmissionID:"",
         Phone:oneStudentdata ? oneStudentdata.oneStudent.phonenumber:"",
         shortBio:oneStudentdata ? oneStudentdata.oneStudent.shortbiography:"",
@@ -881,7 +881,7 @@ let StudentDetails =  ()=>{
                                                                             }))
                                                                     } >
                                                                         
-                                                                            <span style={{display:displayState.GivenNameEditOn}}>
+                                                                            <span style={{display:displayState.DateOfBirthEditOn}}>
                                                                                 <span >
                                                                                     <span className="bolder">{oneStudentdata ? new Date(oneStudentdata.oneStudent.dateofbirth).toLocaleDateString() : null}</span>
                                                                                 </span>
@@ -954,7 +954,7 @@ let StudentDetails =  ()=>{
                                                                     Age
                                                                 </TableCell>
                                                                 <TableCell>
-                                                                    <div className="bolder">{oneStudentdata ? oneStudentdata.oneStudent.age : null}</div>
+                                                                    <div className="bolder">{oneStudentdata ?new Date().getFullYear() - new Date(oneStudentdata.oneStudent.dateofbirth).getFullYear()  : null}</div>
                                                                 </TableCell>
                                                             </TableRow>
 
@@ -1515,7 +1515,7 @@ let StudentDetails =  ()=>{
                                                                     </div>
                                                                 </TableCell>
                                                             </TableRow>
-                                                            <TableRow hover>
+                                                            {/* <TableRow hover>
                                                                 <TableCell  >
                                                                     Section
                                                                 </TableCell>
@@ -1636,7 +1636,7 @@ let StudentDetails =  ()=>{
                                                                         </span>
                                                                     </div>
                                                                 </TableCell>
-                                                            </TableRow>
+                                                            </TableRow> */}
                                                             <TableRow hover>
                                                                 <TableCell  >
                                                                     Address
@@ -1686,7 +1686,7 @@ let StudentDetails =  ()=>{
                                                                                 <Field
                                                                                         error={errors.hasOwnProperty("StudentAddress") && touched.hasOwnProperty("StudentAddress") ? true : false }
                                                                                         {...getFieldProps("StudentAddress")}
-                                                                                        label={errors.hasOwnProperty("StudentAddress") && touched.hasOwnProperty("StudentAddress") ? errors.roll : "StudentAddress" }
+                                                                                        label={errors.hasOwnProperty("StudentAddress") && touched.hasOwnProperty("StudentAddress") ? errors.StudentAddress : "StudentAddress" }
                                                                                         value={values.StudentAddress}
                                                                                         name="StudentAddress"
                                                                                         id="StudentAddress"

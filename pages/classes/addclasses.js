@@ -82,7 +82,7 @@ let AddClass = ({sectionAll})=>{
         <React.Fragment>
             <Layout>
                     <div className="mt-3 mb-4 ml-3 ">
-                        <h3 classNamae="bg-light opacityControl rounded">Class</h3>
+                        <h3 className="bg-light opacityControl rounded">Class</h3>
                         <BrowserSiteOutput marginRight="mr-3"/>
                     </div>
                 <Container fluid="true" className="p-3">

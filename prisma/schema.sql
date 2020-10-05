@@ -20,29 +20,34 @@ CREATE TABLE IF NOT EXISTS Section(
     languages TEXT
 );
 
-CREATE TABLE IF NOT EXISTS  Gender (
-    id INTEGER PRIMARY KEY  NOT NULL,
-    gender VARCHAR(10)
+CREATE TABLE IF NOT EXISTS  Gender(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    gender VARCHAR(10) UNIQUE NOT NULL
 );
 
-CREATE TABLE  IF NOT EXISTS Title(
-    id INTEGER PRIMARY KEY,
-    title VARCHAR(100)
+CREATE TABLE IF NOT EXISTS Title(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    title VARCHAR(100) UNIQUE NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS Position (      -- post held BY Staff
-    id INTEGER PRIMARY KEY,
-    position VARCHAR(100)
+CREATE TABLE IF NOT EXISTS staffgrade(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    grade VARCHAR(100) UNIQUE NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS Subjects (
+CREATE TABLE IF NOT EXISTS staffPosition(     -- post held BY Staff
+    id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    position VARCHAR(100) UNIQUE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Subjects(
     id INTEGER PRIMARY KEY,
     subject VARCHAR(255),
     sectionId INTEGER,
     FOREIGN KEY (sectionId) REFERENCES Section(id_)
 );
 
-CREATE TABLE IF NOT EXISTS Classes (
+CREATE TABLE IF NOT EXISTS Classes(
     id INTEGER PRIMARY KEY  NOT NULL,
     class VARCHAR(250) UNIQUE NOT NULL,
     sectionId INTEGER NOT NULL,
@@ -65,12 +70,12 @@ CREATE TABLE IF NOT EXISTS StudentProfile(
   dateofbirth DATE, -- YYYY-MM-DD
   gender INTEGER NOT NULL,
   dateOfEnrollment TIMESTAMP NOT NULL DEFAULT now(),  -- CURDATE()
-  age INTEGER NOT NULL, 
+  -- age INTEGER NOT NULL, 
   religion TEXT NOT NULL,
   bloodgroup VARCHAR(5) NOT NULL,
   email VARCHAR(255) UNIQUE NOT NULL,
-  sectionid INTEGER NOT NULL,
-  AdmissionID VARCHAR(100) UNIQUE NOT NULL,
+  -- sectionid INTEGER NOT NULL,
+  AdmissionID VARCHAR(10) UNIQUE NOT NULL,
   phonenumber VARCHAR(15),
   StudentAddress TEXT,
   shortbiography TEXT NOT NULL,
@@ -83,8 +88,8 @@ CREATE TABLE IF NOT EXISTS StudentProfile(
   MotherOccupation TEXT,
   MotherAddress TEXT,
   MotherContact TEXT,
-  FOREIGN KEY (gender) REFERENCES Gender(id),
-  FOREIGN KEY (sectionid) REFERENCES Section(id_)
+  FOREIGN KEY (gender) REFERENCES Gender(id)
+  -- FOREIGN KEY (sectionid) REFERENCES Section(id_)
 );
 
 CREATE TABLE IF NOT EXISTS StaffProfile(
@@ -92,15 +97,40 @@ CREATE TABLE IF NOT EXISTS StaffProfile(
   firstname TEXT,
   lastname TEXT,
   staffTitle INTEGER NOT NULL,
+  gradeID INTEGER NOT NULL,
+  matricle VARCHAR(50) UNIQUE,
+  staffID VARCHAR(10) UNIQUE NOT NULL,
+  formerPost TEXT,
+  locationOfFomerPost TEXT,
+  decisionNo TEXT,
+  decisionDate DATE,
+  diploma TEXT,
+  speciality INT NOT NULL,
   dateofbirth DATE, -- YYYY-MM-DD
   dateOfAssumption TIMESTAMP NOT NULL DEFAULT now(),  -- CURDATE()
-  age INTEGER NOT NULL, 
   gender INTEGER NOT NULL,
   email VARCHAR(255) UNIQUE,
   phoneNumber VARCHAR(20),
   imagepath TEXT NOT NULL,
+
+  shortbiography TEXT NOT NULL,
+  teacherAddress TEXT,
+  religion TEXT NOT NULL,
+  bloodgroup VARCHAR(5) NOT NULL,
+  positionID INTEGER NOT NULL,
+
+
+  emergencyContactName TEXT,
+  emergencyContactPhone TEXT,
+  EcontactOccupation TEXT,
+  emergencyContactEmail TEXT,
+  emergencyContactAddress TEXT,
   FOREIGN KEY (gender) REFERENCES Gender(id),
-  FOREIGN KEY (staffTitle) REFERENCES Title(id)
+  FOREIGN KEY (staffTitle) REFERENCES Title(id),
+  FOREIGN KEY (speciality) REFERENCES Subjects(id),
+  FOREIGN KEY (positionID) REFERENCES staffPosition(id),
+  FOREIGN KEY (gradeID) REFERENCES staffgrade(id)
+
 );
 
 CREATE TABLE IF NOT EXISTS ParentProfile(
@@ -116,7 +146,7 @@ CREATE TABLE IF NOT EXISTS ParentProfile(
   FOREIGN KEY (parentTitle) REFERENCES Title(id)
 );
 
-INSERT INTO 
-  Gender (id, gender) 
-VALUES 
-  (1,"Male"),(2,"Female"),(3,"unknown");
+-- INSERT INTO 
+--   Gender (id, gender) 
+-- VALUES 
+--   (1,"Male"),(2,"Female"),(3,"unknown");
