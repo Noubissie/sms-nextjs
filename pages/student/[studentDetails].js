@@ -1,5 +1,5 @@
 // import {useRouter} from "next/router"
-import {useState,useEffect,useRef} from "react"
+import {useState,useEffect} from "react"
 import Layout from "../../components/layout"
 import dynamic from "next/dynamic"
 import Card from "@material-ui/core/Card"

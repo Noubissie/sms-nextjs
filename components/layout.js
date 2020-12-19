@@ -6,7 +6,6 @@ import BackgroundControler from "../components/settingsTabs/backgroundControlers
 import VnavRight from "./settingsTabs/vRightNav"
 import Slide from '@material-ui/core/Slide';
 
-
 let initialState = {
     displayImageContainer: "none"  
 }
@@ -42,6 +41,7 @@ let Layout = (props)=>{
     },[])
     return(
         <div className="check" ref={backgroundImageRef} 
+        
         // onScroll={(e)=>{
         //     if(navrightRef.current.style.display="inline"){
         //         navrightRef.current.style.display = "none"
@@ -52,7 +52,7 @@ let Layout = (props)=>{
             
         //     console.log(e.target.scrollLeft)}}
             >
-            
+                
             <div className="  text-light p-0  sticky t-0 w-100 ">
                 <Hnav onclick={onclickdisplayImageContainer} toggleNav={handleNavChange}/>
             </div>

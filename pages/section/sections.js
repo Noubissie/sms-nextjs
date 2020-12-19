@@ -7,7 +7,7 @@ import useSWR from "swr"
 import Layout from "../../components/layout"
 import toast from "../../components/decoration/toast"
 import {BsThreeDots,BsXOctagonFill,BsPen} from "react-icons/bs"
-import {Formik,Form, FastField,} from "formik"
+import {Formik,Form, FastField} from "formik"
 import options from "../../components/languages/languages"
 
 import SectionDatabase from "../../database/sectiondatabase"
@@ -17,7 +17,6 @@ let BrowserSiteOutput = dynamic(
         {ssr:false})
 
 let Section = ({totalsections})=>{
-    console.log("totalsections::",totalsections)
 
     let {data, error} = useSWR('/api/sectionapi')
     
@@ -83,8 +82,6 @@ let Section = ({totalsections})=>{
                                                             data ? data.map((value,index)=>{
                                                                 return (
                                                                     <React.Fragment key={value.id_}>
-
-                                                                    
                                                                         <tr style={{display:initialdisplay[`displayon${value.id_}`]}}>
                                                                             <td >{value.id_}</td>
                                                                             <td>{value.section}</td>

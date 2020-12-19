@@ -5,18 +5,22 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import "react-toastify/dist/ReactToastify.css"
 // import "antd/dist/antd.css"
 
-import { ThemeProvider } from '@material-ui/core/styles';
+// import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import App from 'next/app';
 import Head from 'next/head';
-import Hnav from "../components/navbar/hnavbar"
+import Hnav from "components/navbar/hnavbar"
 
 import {SWRConfig} from "swr"
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import { red } from '@material-ui/core/colors';
 
+import ThemeProvider from "providers/ThemeProvider"
+import "components/fonts.css"
+import {Global} from "components/styles"
+            
 // Create a theme instance.
 const theme = createMuiTheme({
   palette: {
@@ -103,6 +107,7 @@ class MyApp extends App {
               
               <link rel="icon" type="image/x-icon" href="/PHOTO.jpg" />
             </Head>
+            <Global theme={theme} />
               <ThemeProvider theme={theme}>
                   <CssBaseline />
                   {/* <SWRConfig value={{fetcher:this.fetcher,initialData: 0}}> */}
