@@ -14,7 +14,7 @@
     "mock-server": "json-server --watch ./db.json -p 4001"
   },
   "engines": {
-    "node": "12.18.3"
+    "node": "22.x"
   },
   "keywords": [
     "sms",
